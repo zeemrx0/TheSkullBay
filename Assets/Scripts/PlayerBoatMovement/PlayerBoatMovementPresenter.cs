@@ -1,3 +1,4 @@
+using System;
 using LNE.Inputs;
 using LNE.Utilities;
 using UnityEngine;
@@ -63,10 +64,24 @@ namespace LNE.Movements
 
     private void LimitVelocity()
     {
-      if (_rigidbody.velocity.magnitude > _boatMovementSettings.MaxMoveSpeed)
+      if (Math.Abs(_rigidbody.velocity.x) > _boatMovementSettings.MaxMoveSpeed)
       {
-        _rigidbody.velocity =
-          _rigidbody.velocity.normalized * _boatMovementSettings.MaxMoveSpeed;
+        _rigidbody.velocity = new Vector3(
+          _rigidbody.velocity.x,
+          _rigidbody.velocity.y,
+          _boatMovementSettings.MaxMoveSpeed
+            * _boatMovementSettings.MaxMoveSpeed
+        );
+      }
+
+      if (Math.Abs(_rigidbody.velocity.z) > _boatMovementSettings.MaxSteerSpeed)
+      {
+        _rigidbody.velocity = new Vector3(
+          _boatMovementSettings.MaxSteerSpeed
+            * _boatMovementSettings.MaxSteerSpeed,
+          _rigidbody.velocity.y,
+          _rigidbody.velocity.z
+        );
       }
     }
   }
