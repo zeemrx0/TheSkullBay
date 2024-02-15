@@ -1,17 +1,15 @@
+using UnityEditor;
 using UnityEngine;
 
-namespace LNE
+namespace LNE.Spawners
 {
   public class FishermanBoatsSpawnController : MonoBehaviour
   {
     [SerializeField]
-    private Transform _playerPosition;
-
-    [SerializeField]
     private GameObject _boatPrefab;
 
     [SerializeField]
-    private float _radius = 50f;
+    private float _radius = 40f;
 
     private void Start()
     {
@@ -22,7 +20,7 @@ namespace LNE
     {
       GameObject boat = Instantiate(_boatPrefab);
       Vector2 randomPosition = RandomPositionOnCircle(
-        _playerPosition.position,
+        new Vector2(transform.position.x, transform.position.z),
         _radius
       );
       boat.transform.position = new Vector3(
@@ -35,10 +33,23 @@ namespace LNE
 
     private Vector2 RandomPositionOnCircle(Vector2 center, float radius)
     {
-      float angle = Random.value * Mathf.PI * 2;
-      float x = center.x + Mathf.Cos(angle) * radius;
-      float y = center.y + Mathf.Sin(angle) * radius;
+      float randomAngle = Random.value * Mathf.PI * 2;
+      float randomRadius = Random.value * radius;
+      float x = center.x + Mathf.Cos(randomAngle) * randomRadius;
+      float y = center.y + Mathf.Sin(randomAngle) * randomRadius;
       return new Vector2(x, y);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+      Handles.color = Color.blue;
+      Handles.DrawWireArc(
+        transform.position,
+        Vector3.up,
+        Vector3.forward,
+        360,
+        _radius
+      );
     }
   }
 }
