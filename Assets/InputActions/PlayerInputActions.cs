@@ -46,6 +46,15 @@ namespace LNE.Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill1"",
+                    ""type"": ""Button"",
+                    ""id"": ""567e7765-16e1-40ae-a75d-553392b9cb7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,7 +75,7 @@ namespace LNE.Inputs
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -77,7 +86,7 @@ namespace LNE.Inputs
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -88,7 +97,7 @@ namespace LNE.Inputs
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -99,7 +108,7 @@ namespace LNE.Inputs
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -110,20 +119,49 @@ namespace LNE.Inputs
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbcabf45-55be-4263-9f59-1a6b161e5784"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Skill1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KeyboardAndMouse"",
+            ""bindingGroup"": ""KeyboardAndMouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
             // Boat
             m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
             m_Boat_Move = m_Boat.FindAction("Move", throwIfNotFound: true);
             m_Boat_Cancel = m_Boat.FindAction("Cancel", throwIfNotFound: true);
+            m_Boat_Skill1 = m_Boat.FindAction("Skill1", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -187,12 +225,14 @@ namespace LNE.Inputs
         private List<IBoatActions> m_BoatActionsCallbackInterfaces = new List<IBoatActions>();
         private readonly InputAction m_Boat_Move;
         private readonly InputAction m_Boat_Cancel;
+        private readonly InputAction m_Boat_Skill1;
         public struct BoatActions
         {
             private @PlayerInputActions m_Wrapper;
             public BoatActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Boat_Move;
             public InputAction @Cancel => m_Wrapper.m_Boat_Cancel;
+            public InputAction @Skill1 => m_Wrapper.m_Boat_Skill1;
             public InputActionMap Get() { return m_Wrapper.m_Boat; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -208,6 +248,9 @@ namespace LNE.Inputs
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Skill1.started += instance.OnSkill1;
+                @Skill1.performed += instance.OnSkill1;
+                @Skill1.canceled += instance.OnSkill1;
             }
 
             private void UnregisterCallbacks(IBoatActions instance)
@@ -218,6 +261,9 @@ namespace LNE.Inputs
                 @Cancel.started -= instance.OnCancel;
                 @Cancel.performed -= instance.OnCancel;
                 @Cancel.canceled -= instance.OnCancel;
+                @Skill1.started -= instance.OnSkill1;
+                @Skill1.performed -= instance.OnSkill1;
+                @Skill1.canceled -= instance.OnSkill1;
             }
 
             public void RemoveCallbacks(IBoatActions instance)
@@ -235,10 +281,20 @@ namespace LNE.Inputs
             }
         }
         public BoatActions @Boat => new BoatActions(this);
+        private int m_KeyboardAndMouseSchemeIndex = -1;
+        public InputControlScheme KeyboardAndMouseScheme
+        {
+            get
+            {
+                if (m_KeyboardAndMouseSchemeIndex == -1) m_KeyboardAndMouseSchemeIndex = asset.FindControlSchemeIndex("KeyboardAndMouse");
+                return asset.controlSchemes[m_KeyboardAndMouseSchemeIndex];
+            }
+        }
         public interface IBoatActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
+            void OnSkill1(InputAction.CallbackContext context);
         }
     }
 }

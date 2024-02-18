@@ -1,6 +1,5 @@
 using System;
 using LNE.Inputs;
-using LNE.Utilities;
 using UnityEngine;
 using Zenject;
 
@@ -12,14 +11,13 @@ namespace LNE.Movements
     private BoatMovementSettingsSO _boatMovementSettings;
 
     [SerializeField]
-    private PlayerBoatMovementView _playerBoatMovementView;
+    private BoatMovementView _boatMovementView;
 
     // Injected
     private PlayerInput _playerInput;
     private PlayerInputActions _playerInputActions;
 
     private Rigidbody _rigidbody;
-    private Transform _steerPosition;
     private Vector2 _moveInput;
 
     [Inject]
@@ -34,7 +32,6 @@ namespace LNE.Movements
     private void Awake()
     {
       _rigidbody = GetComponent<Rigidbody>();
-      _steerPosition = transform.Find(Constant.SteerPosition);
     }
 
     private void Update()
@@ -53,12 +50,16 @@ namespace LNE.Movements
         _moveInput.y
       ).normalized;
 
-      _playerBoatMovementView.Move(
+      _boatMovementView.Move(
         _rigidbody,
-        moveDirection,
-        _boatMovementSettings.MoveSpeed,
-        _boatMovementSettings.SteerSpeed,
-        _steerPosition
+        moveDirection.y,
+        _boatMovementSettings.MoveSpeed
+      );
+
+      _boatMovementView.Steer(
+        _rigidbody,
+        moveDirection.x,
+        _boatMovementSettings.SteerSpeed
       );
     }
 

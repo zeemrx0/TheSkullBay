@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439099fca6f5c40b8a0d510c9acf495c, type: 3}
   m_Name: SmallBoat_MovementSettingsSO
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 100
-  <SteerSpeed>k__BackingField: 5
-  <MaxMoveSpeed>k__BackingField: 300
-  <MaxSteerSpeed>k__BackingField: 8
+  <MoveSpeed>k__BackingField: 140
+  <SteerSpeed>k__BackingField: 22
+  <MaxMoveSpeed>k__BackingField: 340
+  <MaxSteerSpeed>k__BackingField: 28
