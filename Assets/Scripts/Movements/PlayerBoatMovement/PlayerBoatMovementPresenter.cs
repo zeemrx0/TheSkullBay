@@ -5,19 +5,14 @@ using Zenject;
 
 namespace LNE.Movements
 {
-  public class PlayerBoatMovementPresenter : MonoBehaviour
+  public class PlayerBoatMovementPresenter : BoatMovementPresenter
   {
-    [SerializeField]
-    private BoatMovementSettingsSO _boatMovementSettings;
-
     [SerializeField]
     private BoatMovementView _boatMovementView;
 
     // Injected
     private PlayerInput _playerInput;
     private PlayerInputActions _playerInputActions;
-
-    private Rigidbody _rigidbody;
     private Vector2 _moveInput;
 
     [Inject]
@@ -38,9 +33,8 @@ namespace LNE.Movements
     {
       _moveInput = _playerInputActions.Boat.Move.ReadValue<Vector2>();
 
-      Move();
-
       LimitVelocity();
+      Move();
     }
 
     private void Move()
@@ -61,29 +55,6 @@ namespace LNE.Movements
         moveDirection.x,
         _boatMovementSettings.SteerSpeed
       );
-    }
-
-    private void LimitVelocity()
-    {
-      if (Math.Abs(_rigidbody.velocity.x) > _boatMovementSettings.MaxMoveSpeed)
-      {
-        _rigidbody.velocity = new Vector3(
-          _rigidbody.velocity.x,
-          _rigidbody.velocity.y,
-          _boatMovementSettings.MaxMoveSpeed
-            * _boatMovementSettings.MaxMoveSpeed
-        );
-      }
-
-      if (Math.Abs(_rigidbody.velocity.z) > _boatMovementSettings.MaxSteerSpeed)
-      {
-        _rigidbody.velocity = new Vector3(
-          _boatMovementSettings.MaxSteerSpeed
-            * _boatMovementSettings.MaxSteerSpeed,
-          _rigidbody.velocity.y,
-          _rigidbody.velocity.z
-        );
-      }
     }
   }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SmallBoat_MovementSettingsSO
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 140
-  <SteerSpeed>k__BackingField: 22
-  <MaxMoveSpeed>k__BackingField: 340
-  <MaxSteerSpeed>k__BackingField: 28
+  <SteerSpeed>k__BackingField: 60
+  <MaxMoveSpeed>k__BackingField: 14
+  <MaxSteerSpeed>k__BackingField: 0.3
