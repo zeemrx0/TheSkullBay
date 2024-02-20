@@ -6,7 +6,7 @@ namespace LNE.Inputs
   {
     public override void InstallBindings()
     {
-      Container.Bind<PlayerInput>().AsSingle();
+      Container.Bind<PlayerInputPresenter>().AsSingle();
     }
   }
 }

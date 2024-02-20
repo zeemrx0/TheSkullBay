@@ -6,7 +6,7 @@ namespace LNE.Movements
   public abstract class BoatMovementPresenter : MonoBehaviour
   {
     [SerializeField]
-    protected BoatMovementSettingsSO _boatMovementSettings;
+    protected BoatMovementData _boatMovementSettings;
 
     protected Rigidbody _rigidbody;
 
@@ -19,7 +19,7 @@ namespace LNE.Movements
       {
         float fraction =
           _boatMovementSettings.MaxMoveSpeed / _rigidbody.velocity.magnitude;
-          
+
         _rigidbody.velocity = new Vector3(
           _rigidbody.velocity.x * fraction,
           _rigidbody.velocity.y * fraction,

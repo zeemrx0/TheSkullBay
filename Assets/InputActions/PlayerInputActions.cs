@@ -48,9 +48,27 @@ namespace LNE.Inputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Skill1"",
+                    ""name"": ""Ability1"",
                     ""type"": ""Button"",
                     ""id"": ""567e7765-16e1-40ae-a75d-553392b9cb7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability2"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3b17317-b278-49a2-ba32-7123a4e2b42f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Choose"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a7fea13-78e2-4199-8e0f-10a9e0b65bf6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -131,7 +149,29 @@ namespace LNE.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""Skill1"",
+                    ""action"": ""Ability1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a66869d-af5b-42f1-89a2-f64c28fd3c98"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Ability2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""685ac235-0f40-46f0-925a-f5eeff04b5d0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -161,7 +201,9 @@ namespace LNE.Inputs
             m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
             m_Boat_Move = m_Boat.FindAction("Move", throwIfNotFound: true);
             m_Boat_Cancel = m_Boat.FindAction("Cancel", throwIfNotFound: true);
-            m_Boat_Skill1 = m_Boat.FindAction("Skill1", throwIfNotFound: true);
+            m_Boat_Ability1 = m_Boat.FindAction("Ability1", throwIfNotFound: true);
+            m_Boat_Ability2 = m_Boat.FindAction("Ability2", throwIfNotFound: true);
+            m_Boat_Choose = m_Boat.FindAction("Choose", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -225,14 +267,18 @@ namespace LNE.Inputs
         private List<IBoatActions> m_BoatActionsCallbackInterfaces = new List<IBoatActions>();
         private readonly InputAction m_Boat_Move;
         private readonly InputAction m_Boat_Cancel;
-        private readonly InputAction m_Boat_Skill1;
+        private readonly InputAction m_Boat_Ability1;
+        private readonly InputAction m_Boat_Ability2;
+        private readonly InputAction m_Boat_Choose;
         public struct BoatActions
         {
             private @PlayerInputActions m_Wrapper;
             public BoatActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Boat_Move;
             public InputAction @Cancel => m_Wrapper.m_Boat_Cancel;
-            public InputAction @Skill1 => m_Wrapper.m_Boat_Skill1;
+            public InputAction @Ability1 => m_Wrapper.m_Boat_Ability1;
+            public InputAction @Ability2 => m_Wrapper.m_Boat_Ability2;
+            public InputAction @Choose => m_Wrapper.m_Boat_Choose;
             public InputActionMap Get() { return m_Wrapper.m_Boat; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -248,9 +294,15 @@ namespace LNE.Inputs
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
-                @Skill1.started += instance.OnSkill1;
-                @Skill1.performed += instance.OnSkill1;
-                @Skill1.canceled += instance.OnSkill1;
+                @Ability1.started += instance.OnAbility1;
+                @Ability1.performed += instance.OnAbility1;
+                @Ability1.canceled += instance.OnAbility1;
+                @Ability2.started += instance.OnAbility2;
+                @Ability2.performed += instance.OnAbility2;
+                @Ability2.canceled += instance.OnAbility2;
+                @Choose.started += instance.OnChoose;
+                @Choose.performed += instance.OnChoose;
+                @Choose.canceled += instance.OnChoose;
             }
 
             private void UnregisterCallbacks(IBoatActions instance)
@@ -261,9 +313,15 @@ namespace LNE.Inputs
                 @Cancel.started -= instance.OnCancel;
                 @Cancel.performed -= instance.OnCancel;
                 @Cancel.canceled -= instance.OnCancel;
-                @Skill1.started -= instance.OnSkill1;
-                @Skill1.performed -= instance.OnSkill1;
-                @Skill1.canceled -= instance.OnSkill1;
+                @Ability1.started -= instance.OnAbility1;
+                @Ability1.performed -= instance.OnAbility1;
+                @Ability1.canceled -= instance.OnAbility1;
+                @Ability2.started -= instance.OnAbility2;
+                @Ability2.performed -= instance.OnAbility2;
+                @Ability2.canceled -= instance.OnAbility2;
+                @Choose.started -= instance.OnChoose;
+                @Choose.performed -= instance.OnChoose;
+                @Choose.canceled -= instance.OnChoose;
             }
 
             public void RemoveCallbacks(IBoatActions instance)
@@ -294,7 +352,9 @@ namespace LNE.Inputs
         {
             void OnMove(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
-            void OnSkill1(InputAction.CallbackContext context);
+            void OnAbility1(InputAction.CallbackContext context);
+            void OnAbility2(InputAction.CallbackContext context);
+            void OnChoose(InputAction.CallbackContext context);
         }
     }
 }

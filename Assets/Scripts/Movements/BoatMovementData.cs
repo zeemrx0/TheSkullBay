@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(
-  fileName = "_MovementSettingsSO",
-  menuName = "Game Settings/Boat Movement Settings"
+  fileName = "_BoatMovementData",
+  menuName = "Game Data/Boat Movement Data"
 )]
-public class BoatMovementSettingsSO : ScriptableObject
+public class BoatMovementData : ScriptableObject
 {
   [field: SerializeField]
   public float MoveSpeed { get; private set; } = 100f;

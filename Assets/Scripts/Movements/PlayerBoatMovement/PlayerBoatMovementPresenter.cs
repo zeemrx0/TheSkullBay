@@ -11,17 +11,18 @@ namespace LNE.Movements
     private BoatMovementView _boatMovementView;
 
     // Injected
-    private PlayerInput _playerInput;
+    private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
+
     private Vector2 _moveInput;
 
     [Inject]
-    public void Init(PlayerInput playerInput)
+    public void Init(PlayerInputPresenter playerInputPresenter)
     {
-      _playerInput = playerInput;
-      _playerInput.Init();
+      _playerInputPresenter = playerInputPresenter;
+      _playerInputPresenter.Init();
 
-      _playerInputActions = _playerInput.GetPlayerInputActions();
+      _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
     }
 
     private void Awake()
