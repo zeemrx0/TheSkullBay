@@ -38,6 +38,8 @@ namespace LNE.Abilities.Targeting
       _playerInputActions = playerInputActions;
       _playerBoatAbilitiesView = playerBoatAbilitiesPresenter.View;
 
+      abilityModel.AimRadius = _aimRadius;
+
       playerBoatAbilitiesPresenter.StartCoroutine(
         Target(abilityModel, onTargetAcquired)
       );
@@ -137,7 +139,6 @@ namespace LNE.Abilities.Targeting
       _playerInputActions.Boat.Choose.performed -= HandleConfirmTargetPosition;
       _playerInputActions.Boat.Cancel.performed -= HandleCancelTargeting;
 
-      Debug.Log("Shoot!");
       _playerBoatAbilitiesView.HideRangeIndicator();
       _playerBoatAbilitiesView.HideCircleIndicator();
 

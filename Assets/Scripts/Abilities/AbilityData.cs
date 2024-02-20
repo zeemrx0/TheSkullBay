@@ -13,6 +13,9 @@ namespace LNE.Abilities
     [SerializeField]
     private TargetingStrategy _targetingStrategy;
 
+    [SerializeField]
+    private EffectStrategy _effectStrategy;
+
     public void Perform(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions
@@ -24,14 +27,28 @@ namespace LNE.Abilities
         playerBoatAbilitiesPresenter,
         playerInputActions,
         abilityModel,
-        () => {
-          OnTargetAcquired(abilityModel);
+        () =>
+        {
+          OnTargetAcquired(
+            playerBoatAbilitiesPresenter,
+            playerInputActions,
+            abilityModel
+          );
         }
       );
     }
 
-    public void OnTargetAcquired(AbilityModel abilityModel){
-      
+    public void OnTargetAcquired(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerInputActions playerInputActions,
+      AbilityModel abilityModel
+    )
+    {
+      _effectStrategy.StartEffect(
+        playerBoatAbilitiesPresenter,
+        playerInputActions,
+        abilityModel
+      );
     }
   }
 }

@@ -13,6 +13,9 @@ namespace LNE.Abilities
     [SerializeField]
     private RectTransform _circleIndicator;
 
+    // Test
+    public Vector3 Direction { get; set; }
+
     public void SetRangeIndicatorSize(Vector2 size)
     {
       _rangeIndicator.sizeDelta = size;
@@ -46,6 +49,11 @@ namespace LNE.Abilities
     public void HideRangeIndicator()
     {
       _rangeIndicator.gameObject.SetActive(false);
+    }
+
+    private void OnDrawGizmosSelected() {
+      Gizmos.color = Color.red;
+      Gizmos.DrawRay(Origin.position, Direction);
     }
   }
 }

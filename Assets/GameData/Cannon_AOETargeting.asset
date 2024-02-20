@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1a9e0c8ddcd4409a80485597bb78f7, type: 3}
-  m_Name: Canon_AbilityData
+  m_Script: {fileID: 11500000, guid: 111be4b1e44514de5b6ee9d4850460b8, type: 3}
+  m_Name: Cannon_AOETargeting
   m_EditorClassIdentifier: 
-  _targetingStrategy: {fileID: 11400000, guid: b9d501b5eedef40e89aab7a2c0e5060e, type: 2}
+  _aimRadius: 40
+  _targetRadius: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
