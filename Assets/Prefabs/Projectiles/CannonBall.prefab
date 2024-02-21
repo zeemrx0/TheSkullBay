@@ -146,5 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d54976876aa499281c2887775100dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollideOceanParticleEffectPrefab: {fileID: 8026642304630997905, guid: bf1e5857d03de46938f18f89c635b4df,
+  _onCollideOceanParticleEffectPrefab: {fileID: 8026642304630997905, guid: bf1e5857d03de46938f18f89c635b4df,
     type: 3}
+  _onCollideObjectParticleEffectPrefab: {fileID: 1000012903210382, guid: e4612d1230e4d6a4891f77cd0bd835ed,
+    type: 3}
+  _damage: 50
+  _isDestroyedOnCollision: 0

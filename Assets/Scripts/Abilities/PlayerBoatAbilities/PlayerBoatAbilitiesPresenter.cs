@@ -13,6 +13,8 @@ namespace LNE.Abilities
     [SerializeField]
     private List<AbilityData> _abilityDataList;
 
+    public string Id { get; private set; }
+
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
@@ -24,6 +26,11 @@ namespace LNE.Abilities
       _playerInputPresenter.Init();
 
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
+    }
+
+    private void Awake()
+    {
+      Id = gameObject.GetInstanceID().ToString();
     }
 
     private void OnEnable()

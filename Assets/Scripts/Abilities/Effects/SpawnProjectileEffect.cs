@@ -1,3 +1,4 @@
+using LNE.Combat;
 using LNE.Inputs;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ namespace LNE.Abilities.Effects
         .position;
 
       GameObject projectile = SpawnProjectile(initialPosition);
+      projectile.GetComponent<Projectile>().OwnerId =
+        playerBoatAbilitiesPresenter.Id;
 
       float distance = Vector3.Distance(
         initialPosition,
