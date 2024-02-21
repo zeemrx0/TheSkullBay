@@ -14,10 +14,7 @@ namespace LNE.Abilities.Effects
     private GameObject _projectilePrefab;
 
     [SerializeField]
-    private float _minAngle;
-
-    [SerializeField]
-    private float _maxAngle;
+    private float _speed;
 
     [SerializeField]
     public override void StartEffect(
@@ -38,20 +35,13 @@ namespace LNE.Abilities.Effects
         abilityModel.TargetPosition
       );
 
-      float angle = Mathf.Lerp(
-        _maxAngle,
-        _minAngle,
-        distance / abilityModel.AimRadius
-      );
+      float angle =
+        Mathf.Asin(distance * Physics.gravity.magnitude / Mathf.Pow(_speed, 2))
+        * Mathf.Rad2Deg
+        / 2;
 
-      float speed = Mathf.Sqrt(
-        Physics.gravity.magnitude
-          * distance
-          / Mathf.Sin(2 * angle * Mathf.Deg2Rad)
-      );
-
-      float speedX = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
-      float speedY = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+      float speedX = _speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+      float speedY = _speed * Mathf.Sin(angle * Mathf.Deg2Rad);
 
       Vector3 velocity =
         (abilityModel.TargetPosition - initialPosition).normalized * speedX

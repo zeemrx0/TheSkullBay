@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6319204138848642956}
   - component: {fileID: 8931881141179159277}
   - component: {fileID: 7393955212981234767}
+  - component: {fileID: -113652171322186990}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Untagged
@@ -133,3 +134,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-113652171322186990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969173174093107841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d54976876aa499281c2887775100dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTouchOceanParticleEffectPrefab: {fileID: 8026642304630997905, guid: bf1e5857d03de46938f18f89c635b4df,
+    type: 3}
