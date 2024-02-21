@@ -6,14 +6,16 @@ using UnityEngine;
 )]
 public class BoatMovementData : ScriptableObject
 {
+  [field: Header("Move")]
   [field: SerializeField]
   public float MoveSpeed { get; private set; } = 100f;
 
   [field: SerializeField]
-  public float SteerSpeed { get; private set; } = 5f;
-
-  [field: SerializeField]
   public float MaxMoveSpeed { get; private set; } = 500f;
+
+  [field: Header("Steer")]
+  [field: SerializeField]
+  public float SteerSpeed { get; private set; } = 5f;
 
   [field: SerializeField]
   public float MaxSteerSpeed { get; private set; } = 10f;

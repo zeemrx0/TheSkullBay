@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LargeBoat_MovementData
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 160
-  <SteerSpeed>k__BackingField: 300
   <MaxMoveSpeed>k__BackingField: 18
-  <MaxSteerSpeed>k__BackingField: 1.3
+  <SteerSpeed>k__BackingField: 400
+  <MaxSteerSpeed>k__BackingField: 1.8

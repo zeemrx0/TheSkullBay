@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111be4b1e44514de5b6ee9d4850460b8, type: 3}
   m_Name: Cannon_AOETargeting
   m_EditorClassIdentifier: 
-  _aimRadius: 40
-  _targetRadius: 5
+  _aimRadius: 80
+  _targetRadius: 4
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
