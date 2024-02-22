@@ -1,3 +1,4 @@
+using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.Combat
@@ -24,12 +25,15 @@ namespace LNE.Combat
         return;
       }
 
-      if (other.gameObject.GetInstanceID().ToString() == OwnerId)
+      if (
+        other.gameObject.GetInstanceID().ToString() == OwnerId
+        || other.gameObject.tag == TagName.VFX
+      )
       {
         return;
       }
 
-      if (other.gameObject.layer == LayerMask.NameToLayer("Ocean"))
+      if (other.gameObject.layer == LayerMask.NameToLayer(LayerName.Ocean))
       {
         if (_onCollideOceanParticleEffectPrefab != null)
         {

@@ -1,4 +1,7 @@
-namespace LNE.Utilities
+namespace LNE.Utilities.Constants
 {
-  class Constant { }
+  class Constant
+  {
+    public const string SpawnPoint = "SpawnPoint";
+  }
 }

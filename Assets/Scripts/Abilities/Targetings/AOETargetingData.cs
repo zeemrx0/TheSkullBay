@@ -22,8 +22,6 @@ namespace LNE.Abilities.Targeting
     [SerializeField]
     private LayerMask _layerMask;
 
-    private Vector3 _targetPosition;
-
     private PlayerInputActions _playerInputActions;
     private PlayerBoatAbilitiesView _playerBoatAbilitiesView;
     private bool _hasConfirmedOrCanceledTargetPosition = false;

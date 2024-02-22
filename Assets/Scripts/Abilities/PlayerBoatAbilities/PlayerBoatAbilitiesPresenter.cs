@@ -7,13 +7,13 @@ namespace LNE.Abilities
 {
   public class PlayerBoatAbilitiesPresenter : MonoBehaviour
   {
+    public string Id { get; private set; }
+
     [field: SerializeField]
     public PlayerBoatAbilitiesView View { get; private set; }
 
     [SerializeField]
     private List<AbilityData> _abilityDataList;
-
-    public string Id { get; private set; }
 
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
