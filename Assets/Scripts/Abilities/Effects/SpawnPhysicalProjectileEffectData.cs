@@ -2,6 +2,7 @@ using LNE.Combat;
 using LNE.Inputs;
 using LNE.Utilities.Constants;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace LNE.Abilities.Effects
 {
@@ -15,16 +16,29 @@ namespace LNE.Abilities.Effects
     public const string DefaultFileName = "_SpawnPhysicalProjectileEffectData";
 
     [SerializeField]
-    private GameObject _projectilePrefab;
+    private Projectile _projectilePrefab;
 
     [SerializeField]
     private float _projectSpeed;
 
-    [SerializeField]
+    public override IObjectPool<Projectile> InitProjectilePool()
+    {
+      return new ObjectPool<Projectile>(
+        () => Instantiate(_projectilePrefab),
+        pooledProjectile => pooledProjectile.gameObject.SetActive(true),
+        pooledProjectile => pooledProjectile.gameObject.SetActive(false),
+        pooledProjectile => Destroy(pooledProjectile.gameObject),
+        true,
+        30,
+        30
+      );
+    }
+
     public override void StartEffect(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
-      AbilityModel abilityModel
+      AbilityModel abilityModel,
+      IObjectPool<Projectile> projectilePool
     )
     {
       string abilityName = name.Split(DefaultFileName)[0];
@@ -32,9 +46,9 @@ namespace LNE.Abilities.Effects
         .Find($"{abilityName}{Constant.SpawnPoint}")
         .position;
 
-      GameObject projectile = SpawnProjectile(initialPosition);
-      projectile.GetComponent<Projectile>().OwnerId =
-        playerBoatAbilitiesPresenter.Id;
+      Projectile projectile = projectilePool.Get();
+      projectile.transform.position = initialPosition;
+      projectile.OwnerId = playerBoatAbilitiesPresenter.Id;
 
       float distance = Vector3.Distance(
         initialPosition,
@@ -57,15 +71,9 @@ namespace LNE.Abilities.Effects
 
       playerBoatAbilitiesPresenter.View.Direction = velocity;
 
-      projectile.GetComponent<Rigidbody>().velocity = velocity;
+      projectile.BelongingPool = projectilePool;
+      projectile.SetVelocity(velocity);
       projectile.transform.rotation = Quaternion.LookRotation(velocity);
-    }
-
-    private GameObject SpawnProjectile(Vector3 position)
-    {
-      GameObject projectile = Instantiate(_projectilePrefab);
-      projectile.transform.position = position;
-      return projectile;
     }
   }
 }

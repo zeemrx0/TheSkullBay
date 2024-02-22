@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using LNE.Combat;
 using LNE.Inputs;
 using UnityEngine;
+using UnityEngine.Pool;
 using Zenject;
 
 namespace LNE.Abilities
@@ -14,6 +16,9 @@ namespace LNE.Abilities
 
     [SerializeField]
     private List<AbilityData> _abilityDataList;
+
+    private List<IObjectPool<Projectile>> _projectilePools =
+      new List<IObjectPool<Projectile>>();
 
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
@@ -43,7 +48,13 @@ namespace LNE.Abilities
       _playerInputActions.Boat.Ability1.performed -= HandleAbility1;
     }
 
-    private void Update() { }
+    private void Start()
+    {
+      foreach (var abilityData in _abilityDataList)
+      {
+        _projectilePools.Add(abilityData.InitProjectilePool());
+      }
+    }
 
     private void HandleAbility1(
       UnityEngine.InputSystem.InputAction.CallbackContext context
@@ -51,7 +62,8 @@ namespace LNE.Abilities
     {
       _abilityDataList[0].Perform(
         this,
-        _playerInputPresenter.GetPlayerInputActions()
+        _playerInputPresenter.GetPlayerInputActions(),
+        _projectilePools[0]
       );
     }
   }

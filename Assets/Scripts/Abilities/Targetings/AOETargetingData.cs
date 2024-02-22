@@ -24,7 +24,6 @@ namespace LNE.Abilities.Targeting
 
     private PlayerInputActions _playerInputActions;
     private PlayerBoatAbilitiesView _playerBoatAbilitiesView;
-    private bool _hasConfirmedOrCanceledTargetPosition = false;
 
     public override void StartTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
@@ -48,8 +47,10 @@ namespace LNE.Abilities.Targeting
       Action onTargetAcquired
     )
     {
-      _playerInputActions.Boat.Choose.performed += HandleConfirmTargetPosition;
-      _playerInputActions.Boat.Cancel.performed += HandleCancelTargeting;
+      _playerInputActions.Boat.Choose.performed += ctx =>
+        HandleConfirmTargetPosition(abilityModel);
+      _playerInputActions.Boat.Cancel.performed += ctx =>
+        HandleCancelTargeting(abilityModel);
 
       _playerBoatAbilitiesView.ShowRangeIndicator();
       _playerBoatAbilitiesView.ShowCircleIndicator();
@@ -62,11 +63,7 @@ namespace LNE.Abilities.Targeting
         new Vector2(_targetRadius * 2f, _targetRadius * 2f)
       );
 
-      _hasConfirmedOrCanceledTargetPosition = false;
-
-      while (
-        !abilityModel.IsCancelled && !_hasConfirmedOrCanceledTargetPosition
-      )
+      while (!abilityModel.IsPerformedOrCancelled)
       {
         Vector3 mousePosition = new Vector3(
           Mouse.current.position.ReadValue().x,
@@ -108,7 +105,7 @@ namespace LNE.Abilities.Targeting
           );
         }
 
-        if (_hasConfirmedOrCanceledTargetPosition)
+        if (abilityModel.IsPerformedOrCancelled)
         {
           break;
         }
@@ -119,28 +116,32 @@ namespace LNE.Abilities.Targeting
       onTargetAcquired?.Invoke();
     }
 
-    private void HandleCancelTargeting(InputAction.CallbackContext context)
+    private void HandleCancelTargeting(AbilityModel abilityModel)
     {
-      _playerInputActions.Boat.Choose.performed -= HandleConfirmTargetPosition;
-      _playerInputActions.Boat.Cancel.performed -= HandleCancelTargeting;
+      UnsubscribeFromInputEvents(abilityModel);
 
       _playerBoatAbilitiesView.HideRangeIndicator();
       _playerBoatAbilitiesView.HideCircleIndicator();
 
-      _hasConfirmedOrCanceledTargetPosition = true;
+      abilityModel.IsPerformedOrCancelled = true;
     }
 
-    private void HandleConfirmTargetPosition(
-      InputAction.CallbackContext context
-    )
+    private void HandleConfirmTargetPosition(AbilityModel abilityModel)
     {
-      _playerInputActions.Boat.Choose.performed -= HandleConfirmTargetPosition;
-      _playerInputActions.Boat.Cancel.performed -= HandleCancelTargeting;
+      UnsubscribeFromInputEvents(abilityModel);
 
       _playerBoatAbilitiesView.HideRangeIndicator();
       _playerBoatAbilitiesView.HideCircleIndicator();
 
-      _hasConfirmedOrCanceledTargetPosition = true;
+      abilityModel.IsPerformedOrCancelled = true;
+    }
+
+    private void UnsubscribeFromInputEvents(AbilityModel abilityModel)
+    {
+      _playerInputActions.Boat.Choose.performed -= ctx =>
+        HandleConfirmTargetPosition(abilityModel);
+      _playerInputActions.Boat.Cancel.performed -= ctx =>
+        HandleCancelTargeting(abilityModel);
     }
   }
 }

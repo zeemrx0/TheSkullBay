@@ -1,5 +1,7 @@
+using LNE.Combat;
 using LNE.Inputs;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace LNE.Abilities
 {
@@ -16,9 +18,15 @@ namespace LNE.Abilities
     [SerializeField]
     private EffectStrategy _effectStrategy;
 
+    public IObjectPool<Projectile> InitProjectilePool()
+    {
+      return _effectStrategy.InitProjectilePool();
+    }
+
     public void Perform(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions
+      PlayerInputActions playerInputActions,
+      IObjectPool<Projectile> projectilePool
     )
     {
       AbilityModel abilityModel = new AbilityModel();
@@ -32,7 +40,8 @@ namespace LNE.Abilities
           OnTargetAcquired(
             playerBoatAbilitiesPresenter,
             playerInputActions,
-            abilityModel
+            abilityModel,
+            projectilePool
           );
         }
       );
@@ -41,13 +50,15 @@ namespace LNE.Abilities
     public void OnTargetAcquired(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
-      AbilityModel abilityModel
+      AbilityModel abilityModel,
+      IObjectPool<Projectile> projectilePool
     )
     {
       _effectStrategy.StartEffect(
         playerBoatAbilitiesPresenter,
         playerInputActions,
-        abilityModel
+        abilityModel,
+        projectilePool
       );
     }
   }
