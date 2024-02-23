@@ -2,7 +2,7 @@ using UnityEngine.InputSystem;
 
 namespace LNE.Inputs
 {
-  public class PlayerInput
+  public class PlayerInputPresenter
   {
     public bool IsInitialized { get; private set; } = false;
 
