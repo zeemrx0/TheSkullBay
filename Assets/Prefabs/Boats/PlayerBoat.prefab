@@ -255,6 +255,8 @@ GameObject:
   - component: {fileID: 3292498469647642372}
   - component: {fileID: 6688556670782621033}
   - component: {fileID: 8935126836796905353}
+  - component: {fileID: 274796960253036656}
+  - component: {fileID: 6692614757421814760}
   m_Layer: 0
   m_Name: PlayerBoat
   m_TagString: Player
@@ -416,6 +418,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 522963383290929184}
+--- !u!114 &274796960253036656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067654050787894254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d1c5e99e26e482f89a3b728be0f16a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 0
+  _view: {fileID: 6692614757421814760}
+--- !u!114 &6692614757421814760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067654050787894254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5865a39d76694668b44fcf5d8e95a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 4107579590946056780}
 --- !u!1 &1981393859980045058
 GameObject:
   m_ObjectHideFlags: 0

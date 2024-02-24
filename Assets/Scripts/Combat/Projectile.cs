@@ -65,7 +65,7 @@ namespace LNE.Combat
 
         Destroy(objectParticleEffect, 4f);
 
-        other.TryGetComponent<Health>(out Health health);
+        other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
         health?.TakeDamage(_damage);
       }
 

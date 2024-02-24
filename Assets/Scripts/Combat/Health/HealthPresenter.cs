@@ -2,13 +2,16 @@ using UnityEngine;
 
 namespace LNE.Combat
 {
-  public class Health : MonoBehaviour
+  public class HealthPresenter : MonoBehaviour
   {
     [SerializeField]
     private float _maxHealth = 100;
 
     [SerializeField]
     private float _currentHealth;
+
+    [SerializeField]
+    private HealthView _view;
 
     private void Start()
     {
@@ -20,8 +23,10 @@ namespace LNE.Combat
       _currentHealth -= damage;
       if (_currentHealth <= 0)
       {
+        _currentHealth = 0;
         Die();
       }
+      _view.SetHealthSliderValue(_currentHealth / _maxHealth);
     }
 
     private void Die()
