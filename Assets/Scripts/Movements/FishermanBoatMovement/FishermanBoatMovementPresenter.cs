@@ -10,11 +10,6 @@ namespace LNE.Movements
     private Vector2 _targetPosition;
     private Vector2 _currentPosition;
 
-    private void Awake()
-    {
-      _rigidbody = GetComponent<Rigidbody>();
-    }
-
     private void Start()
     {
       _currentPosition = new Vector2(
@@ -29,6 +24,11 @@ namespace LNE.Movements
 
     private void Update()
     {
+      if (_gameCorePresenter.IsGameOver)
+      {
+        return;
+      }
+
       LimitVelocity();
       Move();
       Steer();

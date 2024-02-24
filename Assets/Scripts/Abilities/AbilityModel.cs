@@ -6,7 +6,8 @@ namespace LNE.Abilities
 {
   public class AbilityModel
   {
-    public bool IsPerformedOrCancelled { get; set; } = false;
+    public bool IsPerformed { get; set; } = false;
+    public bool IsCancelled { get; set; } = false;
     public Vector3 TargetPosition { get; set; }
     public float AimRadius { get; set; } = 0f;
   }

@@ -1,5 +1,7 @@
 using System;
+using LNE.Core;
 using UnityEngine;
+using Zenject;
 
 namespace LNE.Movements
 {
@@ -8,7 +10,29 @@ namespace LNE.Movements
     [SerializeField]
     protected BoatMovementData _boatMovementSettings;
 
+    // Injected
+    protected GameCorePresenter _gameCorePresenter;
+
     protected Rigidbody _rigidbody;
+
+    [Inject]
+    public void Init(GameCorePresenter gameCorePresenter)
+    {
+      _gameCorePresenter = gameCorePresenter;
+      _gameCorePresenter.OnGameOver += HandleGameOver;
+    }
+
+    protected void Awake()
+    {
+      _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable() { }
+
+    private void OnDisable()
+    {
+      _gameCorePresenter.OnGameOver -= HandleGameOver;
+    }
 
     protected void LimitVelocity()
     {
@@ -39,6 +63,12 @@ namespace LNE.Movements
           _rigidbody.angularVelocity.z
         );
       }
+    }
+
+    private void HandleGameOver()
+    {
+      _rigidbody.velocity = Vector3.zero;
+      _rigidbody.angularVelocity = Vector3.zero;
     }
   }
 }

@@ -63,7 +63,7 @@ namespace LNE.Abilities.Targeting
         new Vector2(_targetRadius * 2f, _targetRadius * 2f)
       );
 
-      while (!abilityModel.IsPerformedOrCancelled)
+      while (!abilityModel.IsPerformed && !abilityModel.IsCancelled)
       {
         Vector3 mousePosition = new Vector3(
           Mouse.current.position.ReadValue().x,
@@ -105,7 +105,7 @@ namespace LNE.Abilities.Targeting
           );
         }
 
-        if (abilityModel.IsPerformedOrCancelled)
+        if (abilityModel.IsPerformed)
         {
           break;
         }
@@ -113,7 +113,10 @@ namespace LNE.Abilities.Targeting
         yield return null;
       }
 
-      onTargetAcquired?.Invoke();
+      if (abilityModel.IsPerformed)
+      {
+        onTargetAcquired?.Invoke();
+      }
     }
 
     private void HandleCancelTargeting(AbilityModel abilityModel)
@@ -123,7 +126,7 @@ namespace LNE.Abilities.Targeting
       _playerBoatAbilitiesView.HideRangeIndicator();
       _playerBoatAbilitiesView.HideCircleIndicator();
 
-      abilityModel.IsPerformedOrCancelled = true;
+      abilityModel.IsCancelled = true;
     }
 
     private void HandleConfirmTargetPosition(AbilityModel abilityModel)
@@ -133,7 +136,7 @@ namespace LNE.Abilities.Targeting
       _playerBoatAbilitiesView.HideRangeIndicator();
       _playerBoatAbilitiesView.HideCircleIndicator();
 
-      abilityModel.IsPerformedOrCancelled = true;
+      abilityModel.IsPerformed = true;
     }
 
     private void UnsubscribeFromInputEvents(AbilityModel abilityModel)
