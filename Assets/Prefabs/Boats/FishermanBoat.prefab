@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03505cb38872946fb8dc2c4cb46835a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boatMovementSettings: {fileID: 11400000, guid: 43c552363e4c34846be22c31e3d6ec39,
+  _boatMovementSettings: {fileID: 11400000, guid: acac27730903b40d08260165b44cdae9,
     type: 2}
   _boatMovementView: {fileID: 839752255881498678}
 --- !u!114 &839752255881498678

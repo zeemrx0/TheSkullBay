@@ -1,4 +1,6 @@
+using LNE.Core;
 using UnityEngine;
+using Zenject;
 
 public class HungerPresenter : MonoBehaviour
 {
@@ -11,7 +13,15 @@ public class HungerPresenter : MonoBehaviour
   [SerializeField]
   private HungerView _view;
 
+  // Injected
+  private GameCorePresenter _gameCorePresenter;
   private float _currentHunger;
+
+  [Inject]
+  public void Init(GameCorePresenter gameCorePresenter)
+  {
+    _gameCorePresenter = gameCorePresenter;
+  }
 
   private void Start()
   {
@@ -20,6 +30,11 @@ public class HungerPresenter : MonoBehaviour
 
   private void Update()
   {
+    if (_gameCorePresenter.IsGameOver)
+    {
+      return;
+    }
+
     DecreaseHunger(_hungerDecreaseRate * Time.fixedDeltaTime);
     _view.SetHungerSliderValue(_currentHunger / _maxHunger);
   }
@@ -36,9 +51,10 @@ public class HungerPresenter : MonoBehaviour
   public void DecreaseHunger(float value)
   {
     _currentHunger -= value;
-    if (_currentHunger < 0)
+    if (_currentHunger <= 0)
     {
       _currentHunger = 0;
+      _gameCorePresenter.GameOver();
     }
   }
 }

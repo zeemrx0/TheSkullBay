@@ -1,5 +1,8 @@
+using LNE.Core;
+using LNE.Movements;
 using UnityEditor;
 using UnityEngine;
+using Zenject;
 
 namespace LNE.Spawners
 {
@@ -11,6 +14,15 @@ namespace LNE.Spawners
     [SerializeField]
     private float _radius = 40f;
 
+    // Injected
+    private GameCorePresenter _gameCorePresenter;
+
+    [Inject]
+    public void Init(GameCorePresenter gameCorePresenter)
+    {
+      _gameCorePresenter = gameCorePresenter;
+    }
+
     private void Start()
     {
       SpawnBoat();
@@ -19,6 +31,8 @@ namespace LNE.Spawners
     private GameObject SpawnBoat()
     {
       GameObject boat = Instantiate(_boatPrefab);
+      boat.GetComponent<BoatMovementPresenter>().Init(_gameCorePresenter);
+      
       Vector2 randomPosition = RandomPositionOnCircle(
         new Vector2(transform.position.x, transform.position.z),
         _radius
