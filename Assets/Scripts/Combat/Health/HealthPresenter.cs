@@ -1,3 +1,4 @@
+using LNE.Combat.Trophies;
 using UnityEngine;
 
 namespace LNE.Combat
@@ -31,6 +32,11 @@ namespace LNE.Combat
 
     private void Die()
     {
+      if (TryGetComponent(out SpawnTrophyOnDeath trophySpawner))
+      {
+        trophySpawner.SpawnTrophy();
+      }
+
       Destroy(gameObject);
     }
   }

@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 839752255881498678}
   - component: {fileID: 7075251679736914489}
   - component: {fileID: 3141116624292450348}
+  - component: {fileID: -7725299624925518375}
   m_Layer: 0
   m_Name: FishermanBoat
   m_TagString: Untagged
@@ -496,6 +497,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 4525811780349109096}
+--- !u!114 &-7725299624925518375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943346370273775707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb995334e9f47459c83a4205d0c243b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trophyPrefab: {fileID: 3972543701767278877, guid: 508c4ac19d2084f83aed382b3c315c1d,
+    type: 3}
 --- !u!1001 &847605224777143435
 PrefabInstance:
   m_ObjectHideFlags: 0
