@@ -30,7 +30,16 @@ namespace LNE.Core
       IsGameOver = true;
       OnGameOver?.Invoke();
       _playerInputActions.Disable();
+    }
+
+    public void ShowGameOverPanel()
+    {
       _view.ShowGameOverPanel();
+    }
+
+    public void SetGoldAmount(int amount)
+    {
+      _view.SetGoldAmount(amount);
     }
   }
 }

@@ -1,4 +1,6 @@
+using LNE.Core;
 using UnityEngine;
+using Zenject;
 
 namespace LNE.Combat.Trophies
 {
@@ -6,6 +8,25 @@ namespace LNE.Combat.Trophies
   {
     [SerializeField]
     private PlayerTrophiesView _view;
+
+    private GameCorePresenter _gameCorePresenter;
+
+    [Inject]
+    public void Init(GameCorePresenter gameCorePresenter)
+    {
+      _gameCorePresenter = gameCorePresenter;
+      _gameCorePresenter.OnGameOver += HandleGameOver;
+    }
+
+    private void HandleGameOver()
+    {
+      _gameCorePresenter.SetGoldAmount(_goldAmount);
+    }
+
+    private void OnDisable()
+    {
+      _gameCorePresenter.OnGameOver -= HandleGameOver;
+    }
 
     private int _goldAmount = 0;
 

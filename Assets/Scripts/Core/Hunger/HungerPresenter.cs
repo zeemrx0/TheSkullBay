@@ -55,6 +55,7 @@ public class HungerPresenter : MonoBehaviour
     {
       _currentHunger = 0;
       _gameCorePresenter.GameOver();
+      _gameCorePresenter.ShowGameOverPanel();
     }
   }
 }
