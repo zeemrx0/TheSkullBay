@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241cb4dee1750407c9b6921ef258abd0, type: 3}
   m_Name: Cannon_SpawnPhysicalProjectileEffectData
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: -113652171322186990, guid: d2af3dec018d24e60ae60a35518ec9e6,
+  _projectilePrefab: {fileID: -5377492876554929425, guid: 7052bc20f287b469da297e22db96507c,
     type: 3}
   _projectSpeed: 32

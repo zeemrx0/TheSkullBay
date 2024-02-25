@@ -22,7 +22,7 @@ namespace LNE.Movements
       _gameCorePresenter.OnGameOver += HandleGameOver;
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
       _rigidbody = GetComponent<Rigidbody>();
     }

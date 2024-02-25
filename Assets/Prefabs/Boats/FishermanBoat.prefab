@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boatMovementSettings: {fileID: 11400000, guid: acac27730903b40d08260165b44cdae9,
     type: 2}
-  _boatMovementView: {fileID: 839752255881498678}
+  _view: {fileID: 839752255881498678}
 --- !u!114 &839752255881498678
 MonoBehaviour:
   m_ObjectHideFlags: 0

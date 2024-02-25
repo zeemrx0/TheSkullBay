@@ -1,4 +1,5 @@
 using LNE.Core;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using Zenject;
 
@@ -55,7 +56,7 @@ public class HungerPresenter : MonoBehaviour
     {
       _currentHunger = 0;
       _gameCorePresenter.GameOver();
-      _gameCorePresenter.ShowGameOverPanel();
+      _gameCorePresenter.ShowGameOverPanel(GameString.GameOver);
     }
   }
 }
