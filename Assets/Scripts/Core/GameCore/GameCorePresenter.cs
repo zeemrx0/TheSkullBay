@@ -1,5 +1,6 @@
 using System;
 using LNE.Inputs;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,9 @@ namespace LNE.Core
     [SerializeField]
     private GameCoreView _view;
 
+    [SerializeField]
+    private GameObject _aiBoatsContainer;
+
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
@@ -25,6 +29,23 @@ namespace LNE.Core
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
     }
 
+    private void Start()
+    {
+      _aiBoatsContainer = GameObject.Find(GameObjectName.AIBoatsContainer);
+    }
+
+    private void Update()
+    {
+      if (_aiBoatsContainer)
+      {
+        if (_aiBoatsContainer.transform.childCount == 0)
+        {
+          GameOver();
+          ShowGameOverPanel(GameString.Victory);
+        }
+      }
+    }
+
     public void GameOver()
     {
       IsGameOver = true;
@@ -32,9 +53,9 @@ namespace LNE.Core
       _playerInputActions.Disable();
     }
 
-    public void ShowGameOverPanel()
+    public void ShowGameOverPanel(string title)
     {
-      _view.ShowGameOverPanel();
+      _view.ShowGameOverPanel(title);
     }
 
     public void SetGoldAmount(int amount)

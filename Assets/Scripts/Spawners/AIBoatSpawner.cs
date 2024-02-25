@@ -1,5 +1,6 @@
 using LNE.Core;
 using LNE.Movements;
+using LNE.Utilities.Constants;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
@@ -14,6 +15,8 @@ namespace LNE.Spawners
     [SerializeField]
     private GameObject _boatPrefab;
 
+    private GameObject _aiBoatsContainer;
+
     // Injected
     private GameCorePresenter _gameCorePresenter;
 
@@ -25,12 +28,17 @@ namespace LNE.Spawners
 
     private void Start()
     {
+      _aiBoatsContainer = GameObject.Find(GameObjectName.AIBoatsContainer);
+
       SpawnBoat();
     }
 
     private GameObject SpawnBoat()
     {
-      GameObject boat = Instantiate(_boatPrefab);
+      GameObject boat = Instantiate(
+        original: _boatPrefab,
+        parent: _aiBoatsContainer.transform
+      );
       boat.GetComponent<BoatMovementPresenter>().Init(_gameCorePresenter);
       boat.GetComponent<AIBoatMovementPresenter>().Spawner = this;
 
