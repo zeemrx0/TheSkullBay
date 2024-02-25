@@ -6,6 +6,7 @@ namespace LNE.Abilities
   {
     [field: SerializeField]
     public RectTransform Origin { get; private set; }
+    public Vector3 Direction { get; set; }
 
     [SerializeField]
     private RectTransform _rangeIndicator;
@@ -13,8 +14,6 @@ namespace LNE.Abilities
     [SerializeField]
     private RectTransform _circleIndicator;
 
-    // Test
-    public Vector3 Direction { get; set; }
 
     public void SetRangeIndicatorSize(Vector2 size)
     {

@@ -69,7 +69,7 @@ namespace LNE.Abilities.Effects
         (abilityModel.TargetPosition - initialPosition).normalized * speedX
         + Vector3.up * speedY;
 
-      playerBoatAbilitiesPresenter.View.Direction = velocity;
+      playerBoatAbilitiesPresenter.Direction = velocity;
 
       projectile.BelongingPool = projectilePool;
       projectile.SetVelocity(velocity);

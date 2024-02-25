@@ -18,17 +18,27 @@ namespace LNE.Abilities
     [SerializeField]
     private EffectStrategy _effectStrategy;
 
+    [SerializeField]
+    private float _cooldownTime;
+
     public IObjectPool<Projectile> InitProjectilePool()
     {
       return _effectStrategy.InitProjectilePool();
     }
 
-    public void Perform(
+    public bool Perform(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
       IObjectPool<Projectile> projectilePool
     )
     {
+      if (
+        playerBoatAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
+      )
+      {
+        return false;
+      }
+
       AbilityModel abilityModel = new AbilityModel();
 
       _targetingStrategy.StartTargeting(
@@ -45,6 +55,8 @@ namespace LNE.Abilities
           );
         }
       );
+
+      return true;
     }
 
     public void OnTargetAcquired(
@@ -54,6 +66,8 @@ namespace LNE.Abilities
       IObjectPool<Projectile> projectilePool
     )
     {
+      playerBoatAbilitiesPresenter.StartCooldown(this, _cooldownTime);
+
       _effectStrategy.StartEffect(
         playerBoatAbilitiesPresenter,
         playerInputActions,

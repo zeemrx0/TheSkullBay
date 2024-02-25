@@ -371,7 +371,7 @@ Rigidbody:
   m_GameObject: {fileID: 1067654050787894254}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.2
+  m_Drag: 0.3
   m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcca7699dc8c4253a3629e66e42ae2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <View>k__BackingField: {fileID: 3292498469647642372}
+  _view: {fileID: 3292498469647642372}
   _abilityDataList:
   - {fileID: 11400000, guid: 21277a2173e5349cda1cb74e4cf80c5d, type: 2}
 --- !u!114 &3292498469647642372
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHunger: 1000
-  _hungerDecreaseRate: 1
+  _hungerDecreaseRate: 4
   _view: {fileID: 8935126836796905353}
 --- !u!114 &8935126836796905353
 MonoBehaviour:

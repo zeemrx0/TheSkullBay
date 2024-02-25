@@ -23,7 +23,6 @@ namespace LNE.Abilities.Targeting
     private LayerMask _layerMask;
 
     private PlayerInputActions _playerInputActions;
-    private PlayerBoatAbilitiesView _playerBoatAbilitiesView;
 
     public override void StartTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
@@ -33,33 +32,33 @@ namespace LNE.Abilities.Targeting
     )
     {
       _playerInputActions = playerInputActions;
-      _playerBoatAbilitiesView = playerBoatAbilitiesPresenter.View;
 
       abilityModel.AimRadius = _aimRadius;
 
       playerBoatAbilitiesPresenter.StartCoroutine(
-        Target(abilityModel, onTargetAcquired)
+        Target(playerBoatAbilitiesPresenter, abilityModel, onTargetAcquired)
       );
     }
 
     private IEnumerator Target(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Action onTargetAcquired
     )
     {
       _playerInputActions.Boat.Choose.performed += ctx =>
-        HandleConfirmTargetPosition(abilityModel);
+        HandleConfirmTargetPosition(playerBoatAbilitiesPresenter, abilityModel);
       _playerInputActions.Boat.Cancel.performed += ctx =>
-        HandleCancelTargeting(abilityModel);
+        HandleCancelTargeting(playerBoatAbilitiesPresenter, abilityModel);
 
-      _playerBoatAbilitiesView.ShowRangeIndicator();
-      _playerBoatAbilitiesView.ShowCircleIndicator();
+      playerBoatAbilitiesPresenter.ShowRangeIndicator();
+      playerBoatAbilitiesPresenter.ShowCircleIndicator();
 
-      _playerBoatAbilitiesView.SetRangeIndicatorSize(
+      playerBoatAbilitiesPresenter.SetRangeIndicatorSize(
         new Vector2(_aimRadius * 2f, _aimRadius * 2f)
       );
 
-      _playerBoatAbilitiesView.SetCircleIndicatorSize(
+      playerBoatAbilitiesPresenter.SetCircleIndicatorSize(
         new Vector2(_targetRadius * 2f, _targetRadius * 2f)
       );
 
@@ -83,15 +82,16 @@ namespace LNE.Abilities.Targeting
           if (
             Vector3.Distance(
               raycastHit.point,
-              _playerBoatAbilitiesView.Origin.position
+              playerBoatAbilitiesPresenter.Origin.position
             ) > _aimRadius
           )
           {
             abilityModel.TargetPosition =
-              _playerBoatAbilitiesView.Origin.position
+              playerBoatAbilitiesPresenter.Origin.position
               + (
                 (
-                  raycastHit.point - _playerBoatAbilitiesView.Origin.position
+                  raycastHit.point
+                  - playerBoatAbilitiesPresenter.Origin.position
                 ).normalized * _aimRadius
               );
           }
@@ -100,7 +100,7 @@ namespace LNE.Abilities.Targeting
             abilityModel.TargetPosition = raycastHit.point;
           }
 
-          _playerBoatAbilitiesView.SetCircleIndicatorPosition(
+          playerBoatAbilitiesPresenter.SetCircleIndicatorPosition(
             abilityModel.TargetPosition
           );
         }
@@ -119,32 +119,41 @@ namespace LNE.Abilities.Targeting
       }
     }
 
-    private void HandleCancelTargeting(AbilityModel abilityModel)
+    private void HandleCancelTargeting(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      AbilityModel abilityModel
+    )
     {
-      UnsubscribeFromInputEvents(abilityModel);
+      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
 
-      _playerBoatAbilitiesView.HideRangeIndicator();
-      _playerBoatAbilitiesView.HideCircleIndicator();
+      playerBoatAbilitiesPresenter.HideRangeIndicator();
+      playerBoatAbilitiesPresenter.HideCircleIndicator();
 
       abilityModel.IsCancelled = true;
     }
 
-    private void HandleConfirmTargetPosition(AbilityModel abilityModel)
+    private void HandleConfirmTargetPosition(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      AbilityModel abilityModel
+    )
     {
-      UnsubscribeFromInputEvents(abilityModel);
+      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
 
-      _playerBoatAbilitiesView.HideRangeIndicator();
-      _playerBoatAbilitiesView.HideCircleIndicator();
+      playerBoatAbilitiesPresenter.HideRangeIndicator();
+      playerBoatAbilitiesPresenter.HideCircleIndicator();
 
       abilityModel.IsPerformed = true;
     }
 
-    private void UnsubscribeFromInputEvents(AbilityModel abilityModel)
+    private void UnsubscribeFromInputEvents(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      AbilityModel abilityModel
+    )
     {
       _playerInputActions.Boat.Choose.performed -= ctx =>
-        HandleConfirmTargetPosition(abilityModel);
+        HandleConfirmTargetPosition(playerBoatAbilitiesPresenter, abilityModel);
       _playerInputActions.Boat.Cancel.performed -= ctx =>
-        HandleCancelTargeting(abilityModel);
+        HandleCancelTargeting(playerBoatAbilitiesPresenter, abilityModel);
     }
   }
 }
