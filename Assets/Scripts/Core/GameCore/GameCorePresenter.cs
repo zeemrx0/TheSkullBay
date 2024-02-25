@@ -62,5 +62,13 @@ namespace LNE.Core
     {
       _view.SetGoldAmount(amount);
     }
+
+    public void RestartLevel()
+    {
+      int currentSceneIndex = UnityEngine.SceneManagement.SceneManager
+        .GetActiveScene()
+        .buildIndex;
+      UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
+    }
   }
 }
