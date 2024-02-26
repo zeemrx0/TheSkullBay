@@ -4,5 +4,7 @@ namespace LNE.Utilities.Constants
   {
     public const string VFX = "VFX";
     public const string Player = "Player";
+    public const string Ocean = "Ocean";
+    public const string Projectile = "Projectile";
   }
 }

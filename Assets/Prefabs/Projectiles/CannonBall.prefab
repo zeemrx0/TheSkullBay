@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5377492876554929425}
   m_Layer: 0
   m_Name: CannonBall
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d54976876aa499281c2887775100dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onCollideOceanParticleEffectPrefab: {fileID: 8026642304630997905, guid: bf1e5857d03de46938f18f89c635b4df,
+  _onCollideOceanVFXPrefab: {fileID: 4268388400152814921, guid: bf1e5857d03de46938f18f89c635b4df,
     type: 3}
-  _onCollideObjectParticleEffectPrefab: {fileID: 3865052769994067748, guid: 4c19e6069b271461299a1ebeef4fb158,
+  _onCollideObjectVFXPrefab: {fileID: 3153623433478953696, guid: 4c19e6069b271461299a1ebeef4fb158,
     type: 3}
   _damage: 40
 --- !u!1001 &4352817554629304532
