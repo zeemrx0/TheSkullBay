@@ -12,10 +12,13 @@ namespace LNE.Core
     public bool IsGameOver { get; private set; } = false;
 
     [SerializeField]
-    private GameCoreView _view;
+    private GameObject _aiBoatsContainer;
 
     [SerializeField]
-    private GameObject _aiBoatsContainer;
+    private GameObject _lootsContainer;
+
+    [SerializeField]
+    private GameCoreView _view;
 
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
@@ -32,13 +35,22 @@ namespace LNE.Core
     private void Start()
     {
       _aiBoatsContainer = GameObject.Find(GameObjectName.AIBoatsContainer);
+      _lootsContainer = GameObject.Find(GameObjectName.LootsContainer);
     }
 
     private void Update()
     {
+      CheckIfVictory();
+    }
+
+    private void CheckIfVictory()
+    {
       if (_aiBoatsContainer)
       {
-        if (_aiBoatsContainer.transform.childCount == 0)
+        if (
+          _aiBoatsContainer.transform.childCount == 0
+          && _lootsContainer.transform.childCount == 0
+        )
         {
           GameOver();
           ShowGameOverPanel(GameString.Victory);

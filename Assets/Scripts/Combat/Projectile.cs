@@ -11,10 +11,10 @@ namespace LNE.Combat
     public IObjectPool<Projectile> BelongingPool { get; set; }
 
     [SerializeField]
-    private GameObject _onCollideOceanParticleEffectPrefab;
+    private VFX _onCollideOceanVFXPrefab;
 
     [SerializeField]
-    private GameObject _onCollideObjectParticleEffectPrefab;
+    private VFX _onCollideObjectVFXPrefab;
 
     [SerializeField]
     private float _damage;
@@ -29,48 +29,60 @@ namespace LNE.Combat
 
     private void OnTriggerEnter(Collider other)
     {
-      if (_isDestroyedOnCollision)
-      {
-        return;
-      }
-
       if (
-        other.gameObject.GetInstanceID().ToString() == OwnerId
-        || other.gameObject.tag == TagName.VFX
+        _isDestroyedOnCollision
+        || other.gameObject.GetInstanceID().ToString() == OwnerId
       )
       {
         return;
       }
 
-      if (other.gameObject.layer == LayerMask.NameToLayer(LayerName.Ocean))
+      switch (other.gameObject.tag)
       {
-        if (_onCollideOceanParticleEffectPrefab != null)
-        {
-          GameObject particleEffect = Instantiate(
-            _onCollideOceanParticleEffectPrefab,
-            transform.position,
-            Quaternion.identity
-          );
+        case TagName.Ocean:
+          if (_onCollideOceanVFXPrefab != null)
+          {
+            SpawnVFX(_onCollideOceanVFXPrefab);
+          }
+          break;
 
-          Destroy(particleEffect, 2f);
-        }
-      }
-      else
-      {
-        GameObject objectParticleEffect = Instantiate(
-          _onCollideObjectParticleEffectPrefab,
-          transform.position,
-          Quaternion.identity
-        );
+        case TagName.Projectile:
+          if (other.GetComponent<Projectile>().OwnerId == OwnerId)
+          {
+            return;
+          }
+          break;
 
-        Destroy(objectParticleEffect, 4f);
+        case TagName.VFX:
+          break;
 
-        other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
-        health?.TakeDamage(_damage);
+        default:
+          if (_onCollideObjectVFXPrefab != null)
+          {
+            SpawnVFX(_onCollideObjectVFXPrefab);
+
+            other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
+            health?.TakeDamage(_damage);
+          }
+          break;
       }
 
       _isDestroyedOnCollision = true;
       Deactivate(0.01f);
+    }
+
+    private void SpawnVFX(VFX vfx)
+    {
+      if (vfx != null)
+      {
+        GameObject particleEffect = Instantiate(
+          vfx.gameObject,
+          transform.position,
+          Quaternion.identity
+        );
+
+        Destroy(particleEffect, vfx.Duration);
+      }
     }
 
     private void Deactivate(float time)

@@ -12,7 +12,7 @@ namespace LNE.Abilities
     public string Id { get; private set; }
 
     [field: SerializeField]
-    public PlayerBoatAbilitiesView View { get; private set; }
+    private PlayerBoatAbilitiesView _view;
 
     [SerializeField]
     private List<AbilityData> _abilityDataList;
@@ -23,6 +23,15 @@ namespace LNE.Abilities
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
+
+    private PlayerBoatAbilitiesModel _model;
+
+    public RectTransform Origin => _view.Origin;
+    public Vector3 Direction
+    {
+      get => _view.Direction;
+      set { _view.Direction = value; }
+    }
 
     [Inject]
     public void Init(PlayerInputPresenter playerInputPresenter)
@@ -50,12 +59,86 @@ namespace LNE.Abilities
 
     private void Start()
     {
+      _model = new PlayerBoatAbilitiesModel();
+
       foreach (var abilityData in _abilityDataList)
       {
         _projectilePools.Add(abilityData.InitProjectilePool());
+        _view.SetAbilityButtonIcon(
+          _abilityDataList.IndexOf(abilityData),
+          abilityData.Icon
+        );
+        _view.SetAbilityButtonIconActive(
+          _abilityDataList.IndexOf(abilityData),
+          true
+        );
       }
     }
 
+    private void Update()
+    {
+      _model.CoolDownAbilities();
+
+      foreach (var abilityData in _abilityDataList)
+      {
+        _view.SetAbilityCooldownTime(
+          _abilityDataList.IndexOf(abilityData),
+          _model.GetAbilityCooldownRemainingTime(abilityData),
+          _model.GetAbilityCooldownInitialTime(abilityData)
+        );
+      }
+    }
+
+    #region View Methods
+    public void ShowRangeIndicator()
+    {
+      _view.ShowRangeIndicator();
+    }
+
+    public void ShowCircleIndicator()
+    {
+      _view.ShowCircleIndicator();
+    }
+
+    public void HideRangeIndicator()
+    {
+      _view.HideRangeIndicator();
+    }
+
+    public void HideCircleIndicator()
+    {
+      _view.HideCircleIndicator();
+    }
+
+    public void SetRangeIndicatorSize(Vector2 size)
+    {
+      _view.SetRangeIndicatorSize(size);
+    }
+
+    public void SetCircleIndicatorSize(Vector2 size)
+    {
+      _view.SetCircleIndicatorSize(size);
+    }
+
+    public void SetCircleIndicatorPosition(Vector3 position)
+    {
+      _view.SetCircleIndicatorPosition(position);
+    }
+    #endregion
+
+    #region Model Methods
+    public float GetAbilityCooldownRemainingTime(AbilityData abilityData)
+    {
+      return _model.GetAbilityCooldownRemainingTime(abilityData);
+    }
+
+    public void StartCooldown(AbilityData abilityData, float cooldownTime)
+    {
+      _model.StartCooldown(abilityData, cooldownTime);
+    }
+    #endregion
+
+    #region Input Handlers
     private void HandleAbility1(
       UnityEngine.InputSystem.InputAction.CallbackContext context
     )
@@ -66,5 +149,6 @@ namespace LNE.Abilities
         _projectilePools[0]
       );
     }
+    #endregion
   }
 }

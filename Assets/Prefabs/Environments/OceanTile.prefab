@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanTile
       objectReference: {fileID: 0}
+    - target: {fileID: 110556, guid: a1f656c69d2080948aa8bcd6456962b9, type: 3}
+      propertyPath: m_TagString
+      value: Ocean
+      objectReference: {fileID: 0}
     - target: {fileID: 444698, guid: a1f656c69d2080948aa8bcd6456962b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

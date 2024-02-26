@@ -1,4 +1,4 @@
-using LNE.Combat.Trophies;
+using LNE.Combat.Loots;
 using UnityEngine;
 
 namespace LNE.Combat
@@ -32,7 +32,7 @@ namespace LNE.Combat
 
     private void Die()
     {
-      if (TryGetComponent(out SpawnTrophyOnDeath trophySpawner))
+      if (TryGetComponent(out SpawnLootOnDeath trophySpawner))
       {
         trophySpawner.SpawnTrophy();
       }
