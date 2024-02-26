@@ -18,6 +18,11 @@ namespace LNE.Combat.Loots
       _gameCorePresenter.OnGameOver += HandleGameOver;
     }
 
+    private void Start()
+    {
+      ResetGold();
+    }
+
     private void HandleGameOver()
     {
       _gameCorePresenter.SetGoldAmount(_goldAmount);
@@ -33,6 +38,12 @@ namespace LNE.Combat.Loots
     public void AddGold(int amount)
     {
       _goldAmount += amount;
+      _view.SetGoldAmount(_goldAmount);
+    }
+
+    public void ResetGold()
+    {
+      _goldAmount = 0;
       _view.SetGoldAmount(_goldAmount);
     }
   }

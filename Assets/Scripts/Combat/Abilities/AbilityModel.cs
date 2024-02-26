@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LNE.Abilities
+namespace LNE.Combat.Abilities
 {
   public class AbilityModel
   {

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LNE.Abilities
+namespace LNE.Combat.Abilities
 {
   public class PlayerBoatAbilitiesView : MonoBehaviour
   {

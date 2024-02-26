@@ -2,7 +2,7 @@ using System;
 using LNE.Inputs;
 using UnityEngine;
 
-namespace LNE.Abilities
+namespace LNE.Combat.Abilities
 {
   public abstract class TargetingStrategy : ScriptableObject
   {
