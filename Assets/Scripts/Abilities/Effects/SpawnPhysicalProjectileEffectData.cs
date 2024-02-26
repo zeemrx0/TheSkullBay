@@ -50,7 +50,9 @@ namespace LNE.Abilities.Effects
       playerBoatAbilitiesPresenter.Direction = velocity;
 
       projectile.BelongingPool = projectilePool;
-      projectile.SetVelocity(velocity);
+      projectile.SetVelocity(
+        velocity + playerBoatAbilitiesPresenter.GetCurrentVelocity()
+      );
       projectile.transform.rotation = Quaternion.LookRotation(velocity);
     }
   }

@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHunger: 1000
-  _hungerDecreaseRate: 2
+  _hungerDecreaseRate: 4
   _view: {fileID: 8935126836796905353}
 --- !u!114 &8935126836796905353
 MonoBehaviour:

@@ -97,6 +97,11 @@ namespace LNE.Abilities
         .position;
     }
 
+    public Vector3 GetCurrentVelocity()
+    {
+      return gameObject.GetComponent<Rigidbody>().velocity;
+    }
+
     #region View Methods
     public void ShowRangeIndicator()
     {
