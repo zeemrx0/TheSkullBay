@@ -1,17 +1,19 @@
 using LNE.Combat;
 using LNE.Inputs;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.Pool;
 
 namespace LNE.Abilities
 {
   [CreateAssetMenu(
-    fileName = "_AbilityData",
+    fileName = DefaultFileName,
     menuName = "Abilities/Ability",
     order = 0
   )]
   public class AbilityData : ScriptableObject
   {
+    public const string DefaultFileName = "_AbilityData";
     public Sprite Icon;
 
     [SerializeField]
@@ -41,7 +43,14 @@ namespace LNE.Abilities
         return false;
       }
 
-      AbilityModel abilityModel = new AbilityModel();
+      string abilityName = GetAbilityName(DefaultFileName);
+      AbilityModel abilityModel = new AbilityModel
+      {
+        InitialPosition = playerBoatAbilitiesPresenter.FindAbilitySpawnPosition(
+          abilityName
+        ),
+        ProjectSpeed = _effectStrategy.ProjectSpeed,
+      };
 
       _targetingStrategy.StartTargeting(
         playerBoatAbilitiesPresenter,
@@ -76,6 +85,11 @@ namespace LNE.Abilities
         abilityModel,
         projectilePool
       );
+    }
+
+    private string GetAbilityName(string defaultFileName)
+    {
+      return name.Split(defaultFileName)[0];
     }
   }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Cannon_AbilityData
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8a08e777a119d448cb85f070e549cbfb, type: 3}
-  _targetingStrategy: {fileID: 11400000, guid: b9d501b5eedef40e89aab7a2c0e5060e, type: 2}
+  _targetingStrategy: {fileID: 11400000, guid: 22f574921f7d2415bb7a7e930520def8, type: 2}
   _effectStrategy: {fileID: 11400000, guid: c84d868f5e7f14fb8895726f3974286b, type: 2}
   _cooldownTime: 2

@@ -18,6 +18,9 @@ namespace LNE.Abilities
     private RectTransform _circleIndicator;
 
     [SerializeField]
+    private LineRenderer _lineRenderer;
+
+    [SerializeField]
     private GameObject[] _abilityButtons;
 
     public void SetRangeIndicatorSize(Vector2 size)
@@ -53,6 +56,40 @@ namespace LNE.Abilities
     public void HideRangeIndicator()
     {
       _rangeIndicator.gameObject.SetActive(false);
+    }
+
+    public void ShowPhysicalProjectileTrajectory()
+    {
+      _lineRenderer.gameObject.SetActive(true);
+    }
+
+    public void HidePhysicalProjectileTrajectory()
+    {
+      _lineRenderer.gameObject.SetActive(false);
+    }
+
+    public void SetPhysicalProjectileTrajectory(
+      Vector3 initialPosition,
+      Vector3 velocity
+    )
+    {
+      float maxTime = 2 * Mathf.Abs(velocity.y) / Physics.gravity.magnitude;
+      float timeStep = 0.1f;
+      int steps = Mathf.RoundToInt(maxTime / timeStep * 0.7f);
+
+      Vector3[] positions = new Vector3[steps];
+
+      _lineRenderer.positionCount = steps;
+
+      for (int i = 0; i < steps; i++)
+      {
+        float t = i * timeStep;
+        positions[i] = initialPosition + velocity * t;
+        positions[i].y =
+          initialPosition.y + velocity.y * t + 0.5f * Physics.gravity.y * t * t;
+
+        _lineRenderer.SetPosition(i, positions[i]);
+      }
     }
 
     public void SetAbilityButtonIconActive(int index, bool active)

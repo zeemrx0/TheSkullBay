@@ -7,6 +7,9 @@ namespace LNE.Abilities
 {
   public abstract class EffectStrategy : ScriptableObject
   {
+    [field: SerializeField]
+    public float ProjectSpeed { get; protected set; } = 0f;
+
     public virtual IObjectPool<Projectile> InitProjectilePool()
     {
       return null;
@@ -18,5 +21,10 @@ namespace LNE.Abilities
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     );
+
+    protected virtual string GetAbilityName(string defaultFileName)
+    {
+      return name.Split(defaultFileName)[0];
+    }
   }
 }
