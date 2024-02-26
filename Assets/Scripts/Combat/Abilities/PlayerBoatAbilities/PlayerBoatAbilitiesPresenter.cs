@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using LNE.Combat;
 using LNE.Inputs;
 using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-namespace LNE.Abilities
+namespace LNE.Combat.Abilities
 {
   public class PlayerBoatAbilitiesPresenter : MonoBehaviour
   {

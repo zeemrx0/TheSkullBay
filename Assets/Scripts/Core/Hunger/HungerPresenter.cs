@@ -36,7 +36,7 @@ public class HungerPresenter : MonoBehaviour
       return;
     }
 
-    DecreaseHunger(_hungerDecreaseRate * Time.fixedDeltaTime);
+    DecreaseHunger(_hungerDecreaseRate * Time.deltaTime);
     _view.SetHungerSliderValue(_currentHunger / _maxHunger);
   }
 

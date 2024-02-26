@@ -3,7 +3,7 @@ using LNE.Inputs;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace LNE.Abilities
+namespace LNE.Combat.Abilities
 {
   public abstract class EffectStrategy : ScriptableObject
   {

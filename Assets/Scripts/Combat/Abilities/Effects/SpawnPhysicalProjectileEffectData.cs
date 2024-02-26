@@ -1,9 +1,8 @@
-using LNE.Combat;
 using LNE.Inputs;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace LNE.Abilities.Effects
+namespace LNE.Combat.Abilities.Effects
 {
   [CreateAssetMenu(
     fileName = DefaultFileName,

@@ -4,7 +4,7 @@ using LNE.Inputs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace LNE.Abilities.Targeting
+namespace LNE.Combat.Abilities.Targeting
 {
   [CreateAssetMenu(
     fileName = "_AOETargetingData",
