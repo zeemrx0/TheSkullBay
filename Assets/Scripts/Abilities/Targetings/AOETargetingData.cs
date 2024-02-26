@@ -22,8 +22,6 @@ namespace LNE.Abilities.Targeting
     [SerializeField]
     private LayerMask _layerMask;
 
-    private PlayerInputActions _playerInputActions;
-
     public override void StartTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
@@ -117,43 +115,6 @@ namespace LNE.Abilities.Targeting
       {
         onTargetAcquired?.Invoke();
       }
-    }
-
-    private void HandleCancelTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      AbilityModel abilityModel
-    )
-    {
-      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
-
-      playerBoatAbilitiesPresenter.HideRangeIndicator();
-      playerBoatAbilitiesPresenter.HideCircleIndicator();
-
-      abilityModel.IsCancelled = true;
-    }
-
-    private void HandleConfirmTargetPosition(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      AbilityModel abilityModel
-    )
-    {
-      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
-
-      playerBoatAbilitiesPresenter.HideRangeIndicator();
-      playerBoatAbilitiesPresenter.HideCircleIndicator();
-
-      abilityModel.IsPerformed = true;
-    }
-
-    private void UnsubscribeFromInputEvents(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      AbilityModel abilityModel
-    )
-    {
-      _playerInputActions.Boat.Choose.performed -= ctx =>
-        HandleConfirmTargetPosition(playerBoatAbilitiesPresenter, abilityModel);
-      _playerInputActions.Boat.Cancel.performed -= ctx =>
-        HandleCancelTargeting(playerBoatAbilitiesPresenter, abilityModel);
     }
   }
 }

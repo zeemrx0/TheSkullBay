@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using LNE.Combat;
 using LNE.Inputs;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
@@ -89,6 +90,18 @@ namespace LNE.Abilities
       }
     }
 
+    public Vector3 FindAbilitySpawnPosition(string abilityName)
+    {
+      return transform
+        .Find($"{abilityName}{GameObjectName.SpawnPoint}")
+        .position;
+    }
+
+    public Vector3 GetCurrentVelocity()
+    {
+      return gameObject.GetComponent<Rigidbody>().velocity;
+    }
+
     #region View Methods
     public void ShowRangeIndicator()
     {
@@ -123,6 +136,31 @@ namespace LNE.Abilities
     public void SetCircleIndicatorPosition(Vector3 position)
     {
       _view.SetCircleIndicatorPosition(position);
+    }
+
+    public void ShowPhysicalProjectileTrajectory()
+    {
+      _view.ShowPhysicalProjectileTrajectory();
+    }
+
+    public void HidePhysicalProjectileTrajectory()
+    {
+      _view.HidePhysicalProjectileTrajectory();
+    }
+
+    public void SetPhysicalProjectileTrajectory(
+      Vector3 initialPosition,
+      Vector3 velocity
+    )
+    {
+      _view.SetPhysicalProjectileTrajectory(initialPosition, velocity);
+    }
+
+    public void HideAbilityIndicators()
+    {
+      _view.HideRangeIndicator();
+      _view.HideCircleIndicator();
+      _view.HidePhysicalProjectileTrajectory();
     }
     #endregion
 
