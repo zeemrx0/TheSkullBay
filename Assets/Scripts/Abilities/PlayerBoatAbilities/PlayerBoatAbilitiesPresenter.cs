@@ -60,15 +60,33 @@ namespace LNE.Abilities
     private void Start()
     {
       _model = new PlayerBoatAbilitiesModel();
+
       foreach (var abilityData in _abilityDataList)
       {
         _projectilePools.Add(abilityData.InitProjectilePool());
+        _view.SetAbilityButtonIcon(
+          _abilityDataList.IndexOf(abilityData),
+          abilityData.Icon
+        );
+        _view.SetAbilityButtonIconActive(
+          _abilityDataList.IndexOf(abilityData),
+          true
+        );
       }
     }
 
     private void Update()
     {
       _model.CoolDownAbilities();
+
+      foreach (var abilityData in _abilityDataList)
+      {
+        _view.SetAbilityCooldownTime(
+          _abilityDataList.IndexOf(abilityData),
+          _model.GetAbilityCooldownRemainingTime(abilityData),
+          _model.GetAbilityCooldownInitialTime(abilityData)
+        );
+      }
     }
 
     #region View Methods

@@ -48,5 +48,15 @@ namespace LNE.Abilities
 
       return 0;
     }
+
+    public float GetAbilityCooldownInitialTime(AbilityData abilityData)
+    {
+      if (InitialCooldownTimers.ContainsKey(abilityData))
+      {
+        return InitialCooldownTimers[abilityData];
+      }
+
+      return 0;
+    }
   }
 }

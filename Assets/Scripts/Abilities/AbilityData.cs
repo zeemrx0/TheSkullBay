@@ -12,6 +12,8 @@ namespace LNE.Abilities
   )]
   public class AbilityData : ScriptableObject
   {
+    public Sprite Icon;
+
     [SerializeField]
     private TargetingStrategy _targetingStrategy;
 

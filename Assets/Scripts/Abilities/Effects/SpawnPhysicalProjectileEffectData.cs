@@ -43,7 +43,7 @@ namespace LNE.Abilities.Effects
     {
       string abilityName = name.Split(DefaultFileName)[0];
       Vector3 initialPosition = playerBoatAbilitiesPresenter.transform
-        .Find($"{abilityName}{GameConstant.SpawnPoint}")
+        .Find($"{abilityName}{GameObjectName.SpawnPoint}")
         .position;
 
       Projectile projectile = projectilePool.Get();

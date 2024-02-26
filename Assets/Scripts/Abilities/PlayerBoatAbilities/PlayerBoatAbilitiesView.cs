@@ -1,4 +1,7 @@
+using LNE.Utilities.Constants;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LNE.Abilities
 {
@@ -14,6 +17,8 @@ namespace LNE.Abilities
     [SerializeField]
     private RectTransform _circleIndicator;
 
+    [SerializeField]
+    private GameObject[] _abilityButtons;
 
     public void SetRangeIndicatorSize(Vector2 size)
     {
@@ -50,7 +55,40 @@ namespace LNE.Abilities
       _rangeIndicator.gameObject.SetActive(false);
     }
 
-    private void OnDrawGizmosSelected() {
+    public void SetAbilityButtonIconActive(int index, bool active)
+    {
+      _abilityButtons[index].transform
+        .Find(GameObjectName.Icon)
+        .gameObject.SetActive(active);
+    }
+
+    public void SetAbilityButtonIcon(int index, Sprite icon)
+    {
+      _abilityButtons[index].transform
+        .Find(GameObjectName.Icon)
+        .GetComponent<Image>()
+        .sprite = icon;
+    }
+
+    public void SetAbilityCooldownTime(
+      int index,
+      float remainingTime,
+      float initialTime
+    )
+    {
+      _abilityButtons[index].transform
+        .Find(GameObjectName.Overlay)
+        .GetComponent<Image>()
+        .fillAmount = initialTime == 0 ? 0 : (remainingTime / initialTime);
+
+      _abilityButtons[index].transform
+        .Find(GameObjectName.CooldownTimeText)
+        .GetComponent<TextMeshProUGUI>()
+        .text = initialTime == 0 ? "" : Mathf.Ceil(remainingTime).ToString();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
       Gizmos.color = Color.red;
       Gizmos.DrawRay(Origin.position, Direction);
     }
