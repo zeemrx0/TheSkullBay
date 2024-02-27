@@ -82,5 +82,20 @@ namespace LNE.Core
         .buildIndex;
       UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
     }
+
+    public void ShowTutorialPanel()
+    {
+      _view.ShowTutorialPanel();
+    }
+
+    public void HideTutorialPanel()
+    {
+      _view.HideTutorialPanel();
+    }
+
+    public void ToggleTutorialPanel()
+    {
+      _view.ToggleTutorialPanel();
+    }
   }
 }
