@@ -6,7 +6,7 @@ namespace LNE.Core
   public class GameCoreView : MonoBehaviour
   {
     [SerializeField]
-    private GameObject _gameOverCanvas;
+    private GameObject _gameOverPanel;
 
     [SerializeField]
     private TextMeshProUGUI _gameOverTitle;
@@ -19,7 +19,7 @@ namespace LNE.Core
 
     public void ShowGameOverPanel(string title)
     {
-      _gameOverCanvas.SetActive(true);
+      _gameOverPanel.SetActive(true);
       _gameOverTitle.text = title;
     }
 
