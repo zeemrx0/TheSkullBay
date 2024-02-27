@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHunger: 1000
-  _hungerDecreaseRate: 4
+  _hungerDecreaseRate: 5.5
   _view: {fileID: 8935126836796905353}
 --- !u!114 &8935126836796905353
 MonoBehaviour:
@@ -444,7 +444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3566503604819837208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34903538, y: -0.3543228, z: 0.1445752, w: 0.8554108}
+  m_LocalRotation: {x: 0.3490354, y: -0.3543228, z: 0.14457521, w: 0.8554108}
   m_LocalPosition: {x: 130, y: 183.3, z: -114.39996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
