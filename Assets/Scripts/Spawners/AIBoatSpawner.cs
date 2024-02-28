@@ -65,6 +65,7 @@ namespace LNE.Spawners
 
     private void OnDrawGizmosSelected()
     {
+#if UNITY_EDITOR
       Handles.color = Color.blue;
       Handles.DrawWireArc(
         transform.position,
@@ -73,6 +74,7 @@ namespace LNE.Spawners
         360,
         Radius
       );
+#endif
     }
   }
 }
