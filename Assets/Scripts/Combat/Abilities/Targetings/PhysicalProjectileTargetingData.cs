@@ -80,10 +80,14 @@ namespace LNE.Combat.Abilities.Targeting
 
         if (Application.isMobilePlatform)
         {
+          Debug.Log(
+            playerBoatAbilitiesPresenter.GetJoystickDirection(joystick)
+          );
+          
           FindTargetPositionMobile(
             playerBoatAbilitiesPresenter,
             abilityModel,
-            joystick.Direction
+            playerBoatAbilitiesPresenter.GetJoystickDirection(joystick)
           );
         }
         else
@@ -123,17 +127,17 @@ namespace LNE.Combat.Abilities.Targeting
     private void FindTargetPositionMobile(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
-      Vector2 aimJoystickDirection
+      Vector3 aimDirection
     )
     {
-      if (aimJoystickDirection.magnitude > 0)
+      if (aimDirection.magnitude > 0)
       {
         abilityModel.TargetPosition = new Vector3(
           playerBoatAbilitiesPresenter.Origin.position.x
-            + aimJoystickDirection.x * _aimRadius,
+            + aimDirection.x * _aimRadius,
           playerBoatAbilitiesPresenter.Origin.position.y,
           playerBoatAbilitiesPresenter.Origin.position.z
-            + aimJoystickDirection.y * _aimRadius
+            + aimDirection.z * _aimRadius
         );
       }
     }

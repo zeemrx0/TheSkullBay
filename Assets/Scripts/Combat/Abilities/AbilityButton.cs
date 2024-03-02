@@ -19,6 +19,8 @@ namespace LNE.Combat.Abilities
     private FixedJoystick _joystick;
     private AbilityModel _abilityModel;
 
+    private bool _isPerforming = false;
+
     public void Init(
       AbilityData abilityData,
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
@@ -35,14 +37,26 @@ namespace LNE.Combat.Abilities
     private void Start()
     {
       _joystick = FindObjectOfType<FixedJoystick>();
+      _joystick.gameObject.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+      if (
+        _playerBoatAbilitiesPresenter.GetAbilityCooldownRemainingTime(
+          _abilityData
+        ) > 0
+      )
+      {
+        return;
+      }
+
+      _isPerforming = true;
+      
+      _joystick.gameObject.SetActive(true);
       _joystick.OnPointerDown(eventData);
 
       _abilityModel = new AbilityModel();
-
       _abilityData.Perform(
         _playerBoatAbilitiesPresenter,
         _playerInputPresenter,
@@ -54,13 +68,26 @@ namespace LNE.Combat.Abilities
 
     public void OnPointerUp(PointerEventData eventData)
     {
+      if (!_isPerforming)
+      {
+        return;
+      }
+
       _joystick.OnPointerUp(eventData);
 
       _abilityModel.IsPerformed = true;
+
+      _joystick.gameObject.SetActive(false);
+      _isPerforming = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+      if (!_isPerforming)
+      {
+        return;
+      }
+
       _joystick.OnDrag(eventData);
     }
   }

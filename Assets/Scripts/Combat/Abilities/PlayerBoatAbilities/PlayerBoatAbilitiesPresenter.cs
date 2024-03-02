@@ -113,6 +113,18 @@ namespace LNE.Combat.Abilities
       return gameObject.GetComponent<Rigidbody>().velocity;
     }
 
+    public Vector3 GetJoystickDirection(Joystick joystick)
+    {
+      Transform cameraTransform = Camera.main.transform;
+      float cameraAngle = cameraTransform.eulerAngles.y;
+
+      Vector3 direction =
+        Quaternion.Euler(0, cameraAngle, 0)
+        * new Vector3(joystick.Direction.x, 0, joystick.Direction.y);
+
+      return direction;
+    }
+
     #region View Methods
     public void ShowRangeIndicator()
     {
