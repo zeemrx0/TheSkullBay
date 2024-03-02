@@ -1,12 +1,29 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace LNE.Inputs
 {
-  public class PlayerInputPresenter
+  public class PlayerInputPresenter : MonoBehaviour
   {
     public bool IsInitialized { get; private set; } = false;
 
+    [SerializeField]
+    private FloatingJoystick _moveJoystick;
+
+    [SerializeField]
+    private FixedJoystick _abilityAimJoystick;
+
     private PlayerInputActions _playerInputActions;
+
+    public Vector2 MoveInput
+    {
+      get { return _moveJoystick.Direction; }
+    }
+
+    public Vector2 AbilityAimInput
+    {
+      get { return _abilityAimJoystick.Direction; }
+    }
 
     public PlayerInputActions GetPlayerInputActions()
     {

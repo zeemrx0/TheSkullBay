@@ -1,6 +1,7 @@
 using LNE.Inputs;
 using UnityEngine;
 using Zenject;
+using Application = UnityEngine.Device.Application;
 
 namespace LNE.Movements
 {
@@ -31,7 +32,15 @@ namespace LNE.Movements
         return;
       }
 
-      _moveInput = _playerInputActions.Boat.Move.ReadValue<Vector2>();
+      if (Application.isMobilePlatform)
+      {
+        _moveInput = _playerInputPresenter.MoveInput;
+      }
+      else
+      {
+        _moveInput = _playerInputActions.Boat.Move.ReadValue<Vector2>();
+      }
+
       Vector2 moveDirection = new Vector2(
         _moveInput.x,
         _moveInput.y
