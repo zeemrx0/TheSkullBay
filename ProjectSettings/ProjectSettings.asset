@@ -8,11 +8,11 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Love no Exist
   productName: TheSkullBay
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -809,6 +809,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     Standalone: UNIVERSAL_PACKAGE;PUBLISHING_TOOLS_ASSET_STORE_RELEASE;AREA_OF_EFFECT_REGIONS_ASSET_STORE_RELEASE;UEE
     WebGL: UEE
+    iPhone: UEE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

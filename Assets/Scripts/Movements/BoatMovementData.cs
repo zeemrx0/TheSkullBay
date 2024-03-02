@@ -20,6 +20,9 @@ public class BoatMovementData : ScriptableObject
   [field: SerializeField]
   public float MaxSteerSpeed { get; private set; } = 10f;
 
+  [field: SerializeField]
+  public float AngleThreshold { get; private set; } = 45f;
+
   public float CurrentMoveSpeed { get; private set; } = 0f;
 
   public float CurrentSteerSpeed { get; private set; } = 0f;
