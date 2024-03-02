@@ -3,6 +3,7 @@ using System.Collections;
 using LNE.Inputs;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Application = UnityEngine.Device.Application;
 
 namespace LNE.Combat.Abilities.Targeting
 {
@@ -24,30 +25,46 @@ namespace LNE.Combat.Abilities.Targeting
 
     public override void StartTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
+      PlayerInputPresenter playerInputPresenter,
+      Joystick joystick,
       AbilityModel abilityModel,
       Action onTargetAcquired
     )
     {
-      _playerInputActions = playerInputActions;
-
       abilityModel.AimRadius = _aimRadius;
 
       playerBoatAbilitiesPresenter.StartCoroutine(
-        Target(playerBoatAbilitiesPresenter, abilityModel, onTargetAcquired)
+        Target(
+          playerBoatAbilitiesPresenter,
+          playerInputPresenter,
+          abilityModel,
+          onTargetAcquired
+        )
       );
     }
 
     private IEnumerator Target(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       Action onTargetAcquired
     )
     {
-      _playerInputActions.Boat.Choose.performed += ctx =>
-        HandleConfirmTargetPosition(playerBoatAbilitiesPresenter, abilityModel);
-      _playerInputActions.Boat.Cancel.performed += ctx =>
-        HandleCancelTargeting(playerBoatAbilitiesPresenter, abilityModel);
+      PlayerInputActions playerInputActions =
+        playerInputPresenter.GetPlayerInputActions();
+
+      playerInputActions.Boat.Choose.performed += ctx =>
+        HandleConfirmTargetPosition(
+          playerBoatAbilitiesPresenter,
+          playerInputPresenter,
+          abilityModel
+        );
+      playerInputActions.Boat.Cancel.performed += ctx =>
+        HandleCancelTargeting(
+          playerBoatAbilitiesPresenter,
+          playerInputPresenter,
+          abilityModel
+        );
 
       playerBoatAbilitiesPresenter.ShowRangeIndicator();
       playerBoatAbilitiesPresenter.ShowCircleIndicator();
@@ -67,41 +84,22 @@ namespace LNE.Combat.Abilities.Targeting
           Mouse.current.position.ReadValue().y,
           0
         );
-
-        if (
-          Physics.Raycast(
-            Camera.main.ScreenPointToRay(mousePosition),
-            out RaycastHit raycastHit,
-            Mathf.Infinity,
-            _layerMask
-          )
-        )
+        if (Application.isMobilePlatform)
         {
-          if (
-            Vector3.Distance(
-              raycastHit.point,
-              playerBoatAbilitiesPresenter.Origin.position
-            ) > _aimRadius
-          )
-          {
-            abilityModel.TargetPosition =
-              playerBoatAbilitiesPresenter.Origin.position
-              + (
-                (
-                  raycastHit.point
-                  - playerBoatAbilitiesPresenter.Origin.position
-                ).normalized * _aimRadius
-              );
-          }
-          else
-          {
-            abilityModel.TargetPosition = raycastHit.point;
-          }
-
-          playerBoatAbilitiesPresenter.SetCircleIndicatorPosition(
-            abilityModel.TargetPosition
+          // TODO: Implement mobile targeting
+        }
+        else
+        {
+          FindTargetPositionPC(
+            playerBoatAbilitiesPresenter,
+            abilityModel,
+            mousePosition
           );
         }
+
+        playerBoatAbilitiesPresenter.SetCircleIndicatorPosition(
+          abilityModel.TargetPosition
+        );
 
         if (abilityModel.IsPerformed)
         {
@@ -114,6 +112,43 @@ namespace LNE.Combat.Abilities.Targeting
       if (abilityModel.IsPerformed)
       {
         onTargetAcquired?.Invoke();
+      }
+    }
+
+    private void FindTargetPositionPC(
+      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      AbilityModel abilityModel,
+      Vector3 mousePosition
+    )
+    {
+      if (
+        Physics.Raycast(
+          Camera.main.ScreenPointToRay(mousePosition),
+          out RaycastHit raycastHit,
+          Mathf.Infinity,
+          _layerMask
+        )
+      )
+      {
+        if (
+          Vector3.Distance(
+            raycastHit.point,
+            playerBoatAbilitiesPresenter.Origin.position
+          ) > _aimRadius
+        )
+        {
+          abilityModel.TargetPosition =
+            playerBoatAbilitiesPresenter.Origin.position
+            + (
+              (
+                raycastHit.point - playerBoatAbilitiesPresenter.Origin.position
+              ).normalized * _aimRadius
+            );
+        }
+        else
+        {
+          abilityModel.TargetPosition = raycastHit.point;
+        }
       }
     }
   }

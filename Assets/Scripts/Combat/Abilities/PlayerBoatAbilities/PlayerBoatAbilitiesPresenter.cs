@@ -17,6 +17,9 @@ namespace LNE.Combat.Abilities
     [SerializeField]
     private List<AbilityData> _abilityDataList;
 
+    [SerializeField]
+    private AbilityButton[] _abilityButtons;
+
     private List<IObjectPool<Projectile>> _projectilePools =
       new List<IObjectPool<Projectile>>();
 
@@ -61,8 +64,10 @@ namespace LNE.Combat.Abilities
     {
       _model = new PlayerBoatAbilitiesModel();
 
-      foreach (var abilityData in _abilityDataList)
+      for (int i = 0; i < _abilityDataList.Count; ++i)
       {
+        AbilityData abilityData = _abilityDataList[i];
+
         _projectilePools.Add(abilityData.InitProjectilePool());
         _view.SetAbilityButtonIcon(
           _abilityDataList.IndexOf(abilityData),
@@ -71,6 +76,13 @@ namespace LNE.Combat.Abilities
         _view.SetAbilityButtonIconActive(
           _abilityDataList.IndexOf(abilityData),
           true
+        );
+
+        _abilityButtons[i].Init(
+          abilityData,
+          this,
+          _projectilePools[i],
+          _playerInputPresenter
         );
       }
     }
@@ -180,10 +192,14 @@ namespace LNE.Combat.Abilities
       UnityEngine.InputSystem.InputAction.CallbackContext context
     )
     {
+      AbilityModel abilityModel = new AbilityModel();
+
       _abilityDataList[0].Perform(
         this,
-        _playerInputPresenter.GetPlayerInputActions(),
-        _projectilePools[0]
+        _playerInputPresenter,
+        null,
+        _projectilePools[0],
+        abilityModel
       );
     }
     #endregion

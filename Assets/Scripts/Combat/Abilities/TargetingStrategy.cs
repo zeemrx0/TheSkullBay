@@ -6,23 +6,27 @@ namespace LNE.Combat.Abilities
 {
   public abstract class TargetingStrategy : ScriptableObject
   {
-    protected PlayerInputActions _playerInputActions;
-
     public virtual void Init(AbilityModel abilityModel) { }
 
     public abstract void StartTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
+      PlayerInputPresenter playerInputPresenter,
+      Joystick joystick,
       AbilityModel abilityModel,
       Action onTargetAcquired
     );
 
     protected void HandleCancelTargeting(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
     {
-      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
+      UnsubscribeFromInputEvents(
+        playerBoatAbilitiesPresenter,
+        playerInputPresenter,
+        abilityModel
+      );
 
       playerBoatAbilitiesPresenter.HideAbilityIndicators();
 
@@ -31,10 +35,15 @@ namespace LNE.Combat.Abilities
 
     protected void HandleConfirmTargetPosition(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
     {
-      UnsubscribeFromInputEvents(playerBoatAbilitiesPresenter, abilityModel);
+      UnsubscribeFromInputEvents(
+        playerBoatAbilitiesPresenter,
+        playerInputPresenter,
+        abilityModel
+      );
 
       playerBoatAbilitiesPresenter.HideAbilityIndicators();
 
@@ -43,13 +52,25 @@ namespace LNE.Combat.Abilities
 
     protected void UnsubscribeFromInputEvents(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
     {
-      _playerInputActions.Boat.Choose.performed -= ctx =>
-        HandleConfirmTargetPosition(playerBoatAbilitiesPresenter, abilityModel);
-      _playerInputActions.Boat.Cancel.performed -= ctx =>
-        HandleCancelTargeting(playerBoatAbilitiesPresenter, abilityModel);
+      PlayerInputActions playerInputActions =
+        playerInputPresenter.GetPlayerInputActions();
+
+      playerInputActions.Boat.Choose.performed -= ctx =>
+        HandleConfirmTargetPosition(
+          playerBoatAbilitiesPresenter,
+          playerInputPresenter,
+          abilityModel
+        );
+      playerInputActions.Boat.Cancel.performed -= ctx =>
+        HandleCancelTargeting(
+          playerBoatAbilitiesPresenter,
+          playerInputPresenter,
+          abilityModel
+        );
     }
 
     protected virtual string GetAbilityName(string defaultFileName)

@@ -30,8 +30,10 @@ namespace LNE.Combat.Abilities
 
     public bool Perform(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
-      IObjectPool<Projectile> projectilePool
+      PlayerInputPresenter playerInputPresenter,
+      Joystick joystick,
+      IObjectPool<Projectile> projectilePool,
+      AbilityModel abilityModel
     )
     {
       if (
@@ -42,23 +44,21 @@ namespace LNE.Combat.Abilities
       }
 
       string abilityName = GetAbilityName(DefaultFileName);
-      AbilityModel abilityModel = new AbilityModel
-      {
-        InitialPosition = playerBoatAbilitiesPresenter.FindAbilitySpawnPosition(
-          abilityName
-        ),
-        ProjectSpeed = _effectStrategy.ProjectSpeed,
-      };
+
+      abilityModel.InitialPosition =
+        playerBoatAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+      abilityModel.ProjectSpeed = _effectStrategy.ProjectSpeed;
 
       _targetingStrategy.StartTargeting(
         playerBoatAbilitiesPresenter,
-        playerInputActions,
+        playerInputPresenter,
+        joystick,
         abilityModel,
         () =>
         {
           OnTargetAcquired(
             playerBoatAbilitiesPresenter,
-            playerInputActions,
+            playerInputPresenter,
             abilityModel,
             projectilePool
           );
@@ -70,7 +70,7 @@ namespace LNE.Combat.Abilities
 
     public void OnTargetAcquired(
       PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
@@ -79,7 +79,7 @@ namespace LNE.Combat.Abilities
 
       _effectStrategy.StartEffect(
         playerBoatAbilitiesPresenter,
-        playerInputActions,
+        playerInputPresenter.GetPlayerInputActions(),
         abilityModel,
         projectilePool
       );
