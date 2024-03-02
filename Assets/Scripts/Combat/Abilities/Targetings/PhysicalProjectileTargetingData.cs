@@ -80,10 +80,6 @@ namespace LNE.Combat.Abilities.Targeting
 
         if (Application.isMobilePlatform)
         {
-          Debug.Log(
-            playerBoatAbilitiesPresenter.GetJoystickDirection(joystick)
-          );
-          
           FindTargetPositionMobile(
             playerBoatAbilitiesPresenter,
             abilityModel,
