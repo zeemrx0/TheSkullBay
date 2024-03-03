@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b4149afb274469b5078d29bd10a19, type: 3}
   m_Name: Cannon_PhysicalProjectileTargetingData
   m_EditorClassIdentifier: 
-  _aimRadius: 80
-  _displaySteps: 100
+  _aimRadius: 50
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
