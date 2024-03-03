@@ -22,14 +22,21 @@ namespace LNE.Core
 
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
+    private AdMobPresenter _adMobPresenter;
+
     private PlayerInputActions _playerInputActions;
+    private bool _hasShownAd = false;
 
     [Inject]
-    private void Init(PlayerInputPresenter playerInputPresenter)
+    private void Init(
+      PlayerInputPresenter playerInputPresenter,
+      AdMobPresenter adMobPresenter
+    )
     {
       _playerInputPresenter = playerInputPresenter;
       _playerInputPresenter.Init();
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
+      _adMobPresenter = adMobPresenter;
     }
 
     private void Start()
@@ -96,6 +103,19 @@ namespace LNE.Core
     public void ToggleTutorialPanel()
     {
       _view.ToggleTutorialPanel();
+    }
+
+    public void HandleRetryButton()
+    {
+      if (_hasShownAd)
+      {
+        RestartLevel();
+      }
+      else
+      {
+        _adMobPresenter.ShowInterstitialAd();
+        _hasShownAd = true;
+      }
     }
   }
 }
