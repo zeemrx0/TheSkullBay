@@ -75,7 +75,7 @@ namespace LNE.Combat.Abilities
     {
       float maxTime = 2 * Mathf.Abs(velocity.y) / Physics.gravity.magnitude;
       float timeStep = 0.1f;
-      int steps = Mathf.RoundToInt(maxTime / timeStep * 0.7f);
+      int steps = Mathf.RoundToInt(maxTime / timeStep * 0.8f);
 
       Vector3[] positions = new Vector3[steps];
 
@@ -95,6 +95,7 @@ namespace LNE.Combat.Abilities
     public void SetAbilityButtonIconActive(int index, bool active)
     {
       _abilityButtons[index].transform
+        .Find(GameObjectName.Border)
         .Find(GameObjectName.Icon)
         .gameObject.SetActive(active);
     }
@@ -102,6 +103,7 @@ namespace LNE.Combat.Abilities
     public void SetAbilityButtonIcon(int index, Sprite icon)
     {
       _abilityButtons[index].transform
+        .Find(GameObjectName.Border)
         .Find(GameObjectName.Icon)
         .GetComponent<Image>()
         .sprite = icon;
@@ -114,11 +116,13 @@ namespace LNE.Combat.Abilities
     )
     {
       _abilityButtons[index].transform
+        .Find(GameObjectName.Border)
         .Find(GameObjectName.Overlay)
         .GetComponent<Image>()
         .fillAmount = initialTime == 0 ? 0 : (remainingTime / initialTime);
 
       _abilityButtons[index].transform
+        .Find(GameObjectName.Border)
         .Find(GameObjectName.CooldownTimeText)
         .GetComponent<TextMeshProUGUI>()
         .text = initialTime == 0 ? "" : Mathf.Ceil(remainingTime).ToString();

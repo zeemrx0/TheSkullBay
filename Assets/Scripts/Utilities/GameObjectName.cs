@@ -8,5 +8,6 @@ namespace LNE.Utilities.Constants
     public const string Icon = "Icon";
     public const string Overlay = "Overlay";
     public const string CooldownTimeText = "CooldownTimeText";
+    public const string Border = "Border";
   }
 }

@@ -8,7 +8,7 @@ namespace LNE.Movements
   public abstract class BoatMovementPresenter : MonoBehaviour
   {
     [SerializeField]
-    protected BoatMovementData _boatMovementSettings;
+    protected BoatMovementData _boatMovementData;
 
     // Injected
     protected GameCorePresenter _gameCorePresenter;
@@ -38,11 +38,11 @@ namespace LNE.Movements
     {
       if (
         Math.Abs(_rigidbody.velocity.magnitude)
-        > _boatMovementSettings.MaxMoveSpeed
+        > _boatMovementData.MaxMoveSpeed
       )
       {
         float fraction =
-          _boatMovementSettings.MaxMoveSpeed / _rigidbody.velocity.magnitude;
+          _boatMovementData.MaxMoveSpeed / _rigidbody.velocity.magnitude;
 
         _rigidbody.velocity = new Vector3(
           _rigidbody.velocity.x * fraction,
@@ -53,12 +53,12 @@ namespace LNE.Movements
 
       if (
         Math.Abs(_rigidbody.angularVelocity.y)
-        > _boatMovementSettings.MaxSteerSpeed
+        > _boatMovementData.MaxSteerSpeed
       )
       {
         _rigidbody.angularVelocity = new Vector3(
           _rigidbody.angularVelocity.x,
-          _boatMovementSettings.MaxSteerSpeed
+          _boatMovementData.MaxSteerSpeed
             * Math.Sign(_rigidbody.angularVelocity.y),
           _rigidbody.angularVelocity.z
         );

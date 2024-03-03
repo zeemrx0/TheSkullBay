@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 440
   <MaxMoveSpeed>k__BackingField: 32
-  <SteerSpeed>k__BackingField: 1000
-  <MaxSteerSpeed>k__BackingField: 1.2
+  <SteerSpeed>k__BackingField: 800
+  <MaxSteerSpeed>k__BackingField: 0.8
+  <AngleThreshold>k__BackingField: 45

@@ -49,7 +49,7 @@ namespace LNE.Movements
 
       LimitVelocity();
       Move();
-      Steer();
+      // Steer();
     }
 
     private void Move()
@@ -72,33 +72,7 @@ namespace LNE.Movements
         _view.Move(
           _rigidbody,
           1,
-          _boatMovementSettings.MoveSpeed * Mathf.Clamp01(distance / 100f)
-        );
-      }
-    }
-
-    private void Steer()
-    {
-      if (_model.CheckTargetIsOnWhichSide(transform) > 0)
-      {
-        _view.Steer(
-          _rigidbody,
-          1,
-          _boatMovementSettings.SteerSpeed
-            * Mathf.Clamp01(
-              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
-            )
-        );
-      }
-      else
-      {
-        _view.Steer(
-          _rigidbody,
-          -1,
-          _boatMovementSettings.SteerSpeed
-            * Mathf.Clamp01(
-              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 180f
-            )
+          _boatMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
         );
       }
     }
