@@ -75,7 +75,7 @@ namespace LNE.Combat.Abilities
     {
       float maxTime = 2 * Mathf.Abs(velocity.y) / Physics.gravity.magnitude;
       float timeStep = 0.1f;
-      int steps = Mathf.RoundToInt(maxTime / timeStep * 0.6f);
+      int steps = Mathf.RoundToInt(maxTime / timeStep * 0.8f);
 
       Vector3[] positions = new Vector3[steps];
 

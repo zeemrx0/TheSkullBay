@@ -70,7 +70,12 @@ namespace LNE.Combat.Abilities.Targeting
           abilityModel
         );
 
+      playerBoatAbilitiesPresenter.ShowRangeIndicator();
       playerBoatAbilitiesPresenter.ShowPhysicalProjectileTrajectory();
+
+      playerBoatAbilitiesPresenter.SetRangeIndicatorSize(
+        new Vector2(_aimRadius * 2f, _aimRadius * 2f)
+      );
 
       while (!abilityModel.IsPerformed && !abilityModel.IsCancelled)
       {
