@@ -10,6 +10,9 @@ namespace LNE.Movements
     [SerializeField]
     protected BoatMovementData _boatMovementData;
 
+    [SerializeField]
+    protected BoatMovementView _view;
+
     // Injected
     protected GameCorePresenter _gameCorePresenter;
 
@@ -37,8 +40,7 @@ namespace LNE.Movements
     protected void LimitVelocity()
     {
       if (
-        Math.Abs(_rigidbody.velocity.magnitude)
-        > _boatMovementData.MaxMoveSpeed
+        Math.Abs(_rigidbody.velocity.magnitude) > _boatMovementData.MaxMoveSpeed
       )
       {
         float fraction =
@@ -52,8 +54,7 @@ namespace LNE.Movements
       }
 
       if (
-        Math.Abs(_rigidbody.angularVelocity.y)
-        > _boatMovementData.MaxSteerSpeed
+        Math.Abs(_rigidbody.angularVelocity.y) > _boatMovementData.MaxSteerSpeed
       )
       {
         _rigidbody.angularVelocity = new Vector3(
@@ -69,6 +70,14 @@ namespace LNE.Movements
     {
       _rigidbody.velocity = Vector3.zero;
       _rigidbody.angularVelocity = Vector3.zero;
+    }
+
+    protected void UpdateWaterVFX()
+    {
+      _view.SetWaterVFXRateOverTime(
+        _rigidbody.velocity.magnitude * 20
+          + _rigidbody.angularVelocity.magnitude * 40
+      );
     }
   }
 }

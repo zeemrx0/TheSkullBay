@@ -7,9 +7,6 @@ namespace LNE.Movements
 {
   public class PlayerBoatMovementPresenter : BoatMovementPresenter
   {
-    [SerializeField]
-    private BoatMovementView _boatMovementView;
-
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
@@ -80,16 +77,18 @@ namespace LNE.Movements
           MoveForward();
         }
       }
+
+      UpdateWaterVFX();
     }
 
     private void MoveForward()
     {
-      _boatMovementView.Move(_rigidbody, 1, _boatMovementData.MoveSpeed);
+      _view.Move(_rigidbody, 1, _boatMovementData.MoveSpeed);
     }
 
     private void Steer(float direction, float speed)
     {
-      _boatMovementView.Steer(_rigidbody, direction, speed);
+      _view.Steer(_rigidbody, direction, speed);
     }
   }
 }
