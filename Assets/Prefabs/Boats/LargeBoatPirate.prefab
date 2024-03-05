@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7920634900157843832}
   m_Layer: 0
   m_Name: LargeBoatPirate
-  m_TagString: Untagged
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -56,23 +56,20 @@ namespace LNE.Movements
 
       if (_moveInput.magnitude > 0f)
       {
-        if (Mathf.Abs(angle) > _boatMovementData.AngleThreshold)
-        {
-          // Steer
-          float steerSpeed =
-            _boatMovementData.SteerSpeed
-            * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
+        // Steer
+        float steerSpeed =
+          _boatMovementData.SteerSpeed * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
 
-          if (angle > 0f)
-          {
-            Steer(1, steerSpeed);
-          }
-          else
-          {
-            Steer(-1, steerSpeed);
-          }
+        if (angle > 0f)
+        {
+          Steer(1, steerSpeed);
         }
         else
+        {
+          Steer(-1, steerSpeed);
+        }
+
+        if (Mathf.Abs(angle) < _boatMovementData.AngleThreshold)
         {
           MoveForward();
         }

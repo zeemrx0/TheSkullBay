@@ -37,7 +37,7 @@ namespace LNE.Combat
         return;
       }
 
-      switch (other.gameObject.tag)
+      switch (other.tag)
       {
         case TagName.Ocean:
           if (_onCollideOceanVFXPrefab != null)
