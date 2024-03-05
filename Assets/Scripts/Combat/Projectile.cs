@@ -43,7 +43,9 @@ namespace LNE.Combat
           if (_onCollideOceanVFXPrefab != null)
           {
             SpawnVFX(_onCollideOceanVFXPrefab);
+            Deactivate(0.2f);
           }
+
           break;
 
         case TagName.Projectile:
@@ -63,12 +65,12 @@ namespace LNE.Combat
 
             other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
             health?.TakeDamage(_damage);
+
+            _isDestroyedOnCollision = true;
+            Deactivate(0.01f);
           }
           break;
       }
-
-      _isDestroyedOnCollision = true;
-      Deactivate(0.01f);
     }
 
     private void SpawnVFX(VFX vfx)

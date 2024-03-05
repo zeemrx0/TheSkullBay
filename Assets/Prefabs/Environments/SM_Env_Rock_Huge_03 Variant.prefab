@@ -13,6 +13,18 @@ PrefabInstance:
       value: SM_Env_Rock_Huge_03 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 421944, guid: e0c965224454eb34e84586d6fe313eae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 421944, guid: e0c965224454eb34e84586d6fe313eae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 421944, guid: e0c965224454eb34e84586d6fe313eae, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 421944, guid: e0c965224454eb34e84586d6fe313eae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
