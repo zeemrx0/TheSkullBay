@@ -13,22 +13,16 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList: []
-  prefabData:
-  - prefab: {fileID: 141284, guid: 90d45fff77f00204d9fb1966ba8dd1cc, type: 3}
-    selected: 1
-  - prefab: {fileID: 129968, guid: cb70b578d1fec1e4892024ee505eda1b, type: 3}
-    selected: 1
-  - prefab: {fileID: 113156, guid: 3ee5a26aa7a392e4eb5055d9703e036d, type: 3}
-    selected: 1
+  prefabData: []
   paintType: 0
-  brushSize: 8.1
+  brushSize: 1
   minBrushSize: 0.1
   maxBrushSize: 20
-  paintDeltaDistance: 2.69
+  paintDeltaDistance: 0.4
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
   prefabsPerStroke: 1
-  maxprefabsPerStroke: 5
+  maxprefabsPerStroke: 20
   minprefabsPerStroke: 1
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
@@ -83,7 +77,7 @@ MonoBehaviour:
   requiredLayerMaskForErase: 0
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
-  eraseDetection: 1
+  eraseDetection: 0
   paintBrushHotKey: 112
   paintBrushHoldKey: 1
   removeBrushHotKey: 306
