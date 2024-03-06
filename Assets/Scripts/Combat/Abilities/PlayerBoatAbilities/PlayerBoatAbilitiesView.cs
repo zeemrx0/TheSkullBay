@@ -23,6 +23,13 @@ namespace LNE.Combat.Abilities
     [SerializeField]
     private GameObject[] _abilityButtons;
 
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+      _audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
     public void SetRangeIndicatorSize(Vector2 size)
     {
       _rangeIndicator.sizeDelta = size;
@@ -128,10 +135,10 @@ namespace LNE.Combat.Abilities
         .text = initialTime == 0 ? "" : Mathf.Ceil(remainingTime).ToString();
     }
 
-    private void OnDrawGizmosSelected()
+    public float PlayAudioClip(AudioClip audioClip)
     {
-      Gizmos.color = Color.red;
-      Gizmos.DrawRay(Origin.position, Direction);
+      _audioSource.PlayOneShot(audioClip);
+      return audioClip.length;
     }
   }
 }

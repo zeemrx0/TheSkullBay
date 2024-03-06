@@ -9,5 +9,6 @@ namespace LNE.Utilities.Constants
     public const string Overlay = "Overlay";
     public const string CooldownTimeText = "CooldownTimeText";
     public const string Border = "Border";
+    public const string Origin = "Origin";
   }
 }

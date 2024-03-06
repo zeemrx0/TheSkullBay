@@ -15,3 +15,6 @@ MonoBehaviour:
   <ProjectSpeed>k__BackingField: 24
   _projectilePrefab: {fileID: -5377492876554929425, guid: 7052bc20f287b469da297e22db96507c,
     type: 3}
+  _projectVFX: {fileID: 9164958547708746705, guid: 224b0c0c247b7446688d26f5dddb0e09,
+    type: 3}
+  _audioClip: {fileID: 8300000, guid: 156744ab95c4b4ca890d84658ba14299, type: 3}

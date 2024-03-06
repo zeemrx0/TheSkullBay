@@ -128,6 +128,11 @@ namespace LNE.Combat.Abilities
       return direction;
     }
 
+    public float PlayAudioClip(AudioClip audioClip)
+    {
+      return _view.PlayAudioClip(audioClip);
+    }
+
     #region View Methods
     public void ShowRangeIndicator()
     {

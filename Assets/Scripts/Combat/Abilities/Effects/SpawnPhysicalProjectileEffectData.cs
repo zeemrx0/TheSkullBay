@@ -16,6 +16,12 @@ namespace LNE.Combat.Abilities.Effects
     [SerializeField]
     private Projectile _projectilePrefab;
 
+    [SerializeField]
+    private VFX _projectVFX;
+
+    [SerializeField]
+    private AudioClip _audioClip;
+
     public override IObjectPool<Projectile> InitProjectilePool()
     {
       return new ObjectPool<Projectile>(
@@ -45,6 +51,16 @@ namespace LNE.Combat.Abilities.Effects
       projectile.OwnerId = playerBoatAbilitiesPresenter.Id;
 
       Vector3 velocity = abilityModel.GetProjectVelocity();
+
+      playerBoatAbilitiesPresenter.PlayAudioClip(_audioClip);
+
+      VFX instantiatedProjectVFX = Instantiate(
+        _projectVFX,
+        abilityModel.InitialPosition,
+        Quaternion.LookRotation(velocity)
+      );
+
+      Destroy(instantiatedProjectVFX.gameObject, _projectVFX.Duration);
 
       playerBoatAbilitiesPresenter.Direction = velocity;
 
