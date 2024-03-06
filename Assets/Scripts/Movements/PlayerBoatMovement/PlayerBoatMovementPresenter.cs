@@ -7,9 +7,6 @@ namespace LNE.Movements
 {
   public class PlayerBoatMovementPresenter : BoatMovementPresenter
   {
-    [SerializeField]
-    private BoatMovementView _boatMovementView;
-
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
@@ -59,37 +56,36 @@ namespace LNE.Movements
 
       if (_moveInput.magnitude > 0f)
       {
-        if (Mathf.Abs(angle) > _boatMovementData.AngleThreshold)
-        {
-          // Steer
-          float steerSpeed =
-            _boatMovementData.SteerSpeed
-            * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
+        // Steer
+        float steerSpeed =
+          _boatMovementData.SteerSpeed * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
 
-          if (angle > 0f)
-          {
-            Steer(1, steerSpeed);
-          }
-          else
-          {
-            Steer(-1, steerSpeed);
-          }
+        if (angle > 0f)
+        {
+          Steer(1, steerSpeed);
         }
         else
+        {
+          Steer(-1, steerSpeed);
+        }
+
+        if (Mathf.Abs(angle) < _boatMovementData.AngleThreshold)
         {
           MoveForward();
         }
       }
+
+      UpdateWaterVFX();
     }
 
     private void MoveForward()
     {
-      _boatMovementView.Move(_rigidbody, 1, _boatMovementData.MoveSpeed);
+      _view.Move(_rigidbody, 1, _boatMovementData.MoveSpeed);
     }
 
     private void Steer(float direction, float speed)
     {
-      _boatMovementView.Steer(_rigidbody, direction, speed);
+      _view.Steer(_rigidbody, direction, speed);
     }
   }
 }

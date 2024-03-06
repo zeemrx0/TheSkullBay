@@ -1,3 +1,4 @@
+using LNE.Core;
 using LNE.Utilities.Constants;
 using UnityEngine;
 
@@ -10,9 +11,13 @@ namespace LNE.Combat.Loots
 
     public void SpawnTrophy()
     {
+      Vector3? origin = TryGetComponent<Boat>(out Boat boat)
+        ? boat.Position
+        : null;
+
       Instantiate(
         original: lootPrefab,
-        position: transform.position,
+        position: origin ?? transform.position,
         rotation: Quaternion.identity,
         parent: GameObject.Find(GameObjectName.LootsContainer).transform
       );

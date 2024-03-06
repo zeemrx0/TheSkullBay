@@ -17,14 +17,22 @@ namespace LNE.Combat
     private VFX _onCollideObjectVFXPrefab;
 
     [SerializeField]
+    private AudioClip _onCollideOceanAudioClip;
+
+    [SerializeField]
+    private AudioClip _onCollideObjectAudioClip;
+
+    [SerializeField]
     private float _damage;
 
     private Rigidbody _rigidbody;
+    private AudioSource _audioSource;
     private bool _isDestroyedOnCollision = false;
 
     private void Awake()
     {
       _rigidbody = GetComponent<Rigidbody>();
+      _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,13 +45,21 @@ namespace LNE.Combat
         return;
       }
 
-      switch (other.gameObject.tag)
+      switch (other.tag)
       {
         case TagName.Ocean:
           if (_onCollideOceanVFXPrefab != null)
           {
             SpawnVFX(_onCollideOceanVFXPrefab);
+            _audioSource.PlayOneShot(_onCollideOceanAudioClip);
+            Deactivate(
+              Mathf.Max(
+                _onCollideOceanVFXPrefab.Duration,
+                _onCollideOceanAudioClip.length
+              )
+            );
           }
+
           break;
 
         case TagName.Projectile:
@@ -60,15 +76,21 @@ namespace LNE.Combat
           if (_onCollideObjectVFXPrefab != null)
           {
             SpawnVFX(_onCollideObjectVFXPrefab);
+            _audioSource.PlayOneShot(_onCollideObjectAudioClip);
 
             other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
             health?.TakeDamage(_damage);
+
+            _isDestroyedOnCollision = true;
+            Deactivate(
+              Mathf.Max(
+                _onCollideObjectVFXPrefab.Duration,
+                _onCollideObjectAudioClip.length
+              )
+            );
           }
           break;
       }
-
-      _isDestroyedOnCollision = true;
-      Deactivate(0.01f);
     }
 
     private void SpawnVFX(VFX vfx)
@@ -92,11 +114,22 @@ namespace LNE.Combat
 
     private IEnumerator DeactivateAfterTime(float time)
     {
+      yield return new WaitForSeconds(0.01f);
+
+      foreach (Transform child in transform)
+      {
+        child.gameObject.SetActive(false);
+      }
+
       yield return new WaitForSeconds(time);
 
       _rigidbody.velocity = Vector3.zero;
       _rigidbody.angularVelocity = Vector3.zero;
       _isDestroyedOnCollision = false;
+      foreach (Transform child in transform)
+      {
+        child.gameObject.SetActive(true);
+      }
 
       BelongingPool.Release(this);
     }

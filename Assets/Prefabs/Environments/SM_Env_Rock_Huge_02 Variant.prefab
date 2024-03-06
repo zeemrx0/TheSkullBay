@@ -13,6 +13,18 @@ PrefabInstance:
       value: SM_Env_Rock_Huge_02 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 469860, guid: cab18c6c98d812e45a5e64e9860b3772, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 469860, guid: cab18c6c98d812e45a5e64e9860b3772, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 469860, guid: cab18c6c98d812e45a5e64e9860b3772, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 469860, guid: cab18c6c98d812e45a5e64e9860b3772, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -59,7 +71,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 141854, guid: cab18c6c98d812e45a5e64e9860b3772,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2775438436320986133}
+      addedObject: {fileID: -1521766121026372021}
   m_SourcePrefab: {fileID: 100100000, guid: cab18c6c98d812e45a5e64e9860b3772, type: 3}
 --- !u!1 &3689853718962544177 stripped
 GameObject:
@@ -67,8 +79,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3689853718962418735}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2775438436320986133
-BoxCollider:
+--- !u!64 &-1521766121026372021
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -85,6 +97,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 33.398834, y: 18.195024, z: 30.714619}
-  m_Center: {x: 1.0078278, y: 9.104753, z: 0.13348246}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b5a9fe27f6d8cb0409b973910bb5505a, type: 3}

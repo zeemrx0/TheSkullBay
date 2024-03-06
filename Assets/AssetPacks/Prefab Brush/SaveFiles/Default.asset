@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cb495ffbca0404d878640680165899, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  prefabList: []
+  prefabData:
+  - prefab: {fileID: 8411759716337930332, guid: 6be6d0763152e478e86ec1095b255d7f,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 5138527716617540531, guid: b7d1371b6377542b4b98ada90046505d,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6884417234936832672, guid: 7b83c0bb38204452db89629ff00262e2,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6602048393896372184, guid: caab97b1dba7148f086be1d67f64a552,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 3697986109579965425, guid: 84d2f818faa8d40ed9e24b9720782b4e,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 5633941475385694152, guid: 20a18e1fb92664d31b21cd0d4ea0a7a2,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 8716227103566215055, guid: 54a784aea998d447bb75bbe2d70743a0,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 4060449681353542967, guid: e3da20aae1a0c4e2cb0c4efc84b036c0,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 4566020920008233998, guid: 992bb5e2515c941c092d903f660529ce,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 8362955658671267123, guid: b40718c91f06441b1ae3510bda65139c,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6274162541853848880, guid: 374a57fc8edd640d88aeddcbb88b82f0,
+      type: 3}
+    selected: 1
+  paintType: 0
+  brushSize: 1
+  minBrushSize: 0.1
+  maxBrushSize: 20
+  paintDeltaDistance: 0.4
+  maxPaintDeltaDistance: 3
+  minPaintDeltaDistance: 0.1
+  prefabsPerStroke: 1
+  maxprefabsPerStroke: 20
+  minprefabsPerStroke: 1
+  spawnHeight: 10
+  addRigidbodyToPaintedPrefab: 1
+  physicsIterations: 100
+  checkLayer: 0
+  checkTag: 0
+  checkSlope: 0
+  ignorePaintedPrefabs: 0
+  ignoreTriggers: 1
+  chainPivotAxis: 0
+  chainDirection: 0
+  requiredTagMask: 0
+  requiredLayerMask: 0
+  minRequiredSlope: 0
+  maxRequiredSlope: 0
+  prefabOriginOffset: {x: 0, y: 0, z: 0}
+  prefabRotationOffset: {x: 0, y: 0, z: 0}
+  draggingAction: 0
+  rotationAxis: 0
+  rotationSensitivity: 10
+  parentingStyle: 0
+  parent: {fileID: 0}
+  rotateToMatchSurface: 0
+  rotateSurfaceDirection: 0
+  randomizeRotation: 0
+  minXRotation: 0
+  maxXRotation: 0
+  minYRotation: 0
+  maxYRotation: 0
+  minZRotation: 0
+  maxZRotation: 0
+  scaleType: 0
+  scaleApplicationType: 0
+  minScale: 1
+  maxScale: 1
+  minXScale: 1
+  maxXScale: 1
+  minYScale: 1
+  maxYScale: 1
+  minZScale: 1
+  maxZScale: 1
+  parentList: []
+  eraseBrushSize: 1
+  minEraseBrushSize: 0.1
+  maxEraseBrushSize: 20
+  eraseType: 0
+  checkLayerForErase: 0
+  checkTagForErase: 0
+  checkSlopeForErase: 0
+  mustBeSelectedInBrush: 0
+  requiredTagMaskForErase: 0
+  requiredLayerMaskForErase: 0
+  minRequiredSlopeForErase: 0
+  maxRequiredSlopeForErase: 0
+  eraseDetection: 0
+  paintBrushHotKey: 112
+  paintBrushHoldKey: 1
+  removeBrushHotKey: 306
+  removeBrushHoldKey: 1
+  disableBrushHotKey: 105
+  disableBrushHoldKey: 1

@@ -4,6 +4,9 @@ namespace LNE.Movements
 {
   public class BoatMovementView : MonoBehaviour
   {
+    [SerializeField]
+    private ParticleSystem _boatWaterVFX;
+
     public void Move(Rigidbody rigidbody, float direction, float moveSpeed)
     {
       rigidbody.AddRelativeForce(
@@ -18,6 +21,12 @@ namespace LNE.Movements
         direction * Vector3.up * steerSpeed * Time.deltaTime,
         ForceMode.Force
       );
+    }
+
+    public void SetWaterVFXRateOverTime(float rate)
+    {
+      ParticleSystem.EmissionModule emission = _boatWaterVFX.emission;
+      emission.rateOverTime = rate;
     }
   }
 }

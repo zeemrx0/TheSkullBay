@@ -7,9 +7,6 @@ namespace LNE.Movements
   {
     public AIBoatSpawner Spawner { get; set; }
 
-    [SerializeField]
-    private BoatMovementView _view;
-
     private AIBoatMovementModel _model;
 
     private void Start()
@@ -49,7 +46,34 @@ namespace LNE.Movements
 
       LimitVelocity();
       Move();
-      // Steer();
+      Steer();
+      UpdateWaterVFX();
+    }
+
+    private void Steer()
+    {
+      if (_model.CheckTargetIsOnWhichSide(transform) > 0)
+      {
+        _view.Steer(
+          _rigidbody,
+          1,
+          _boatMovementData.SteerSpeed
+            * Mathf.Clamp01(
+              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
+            )
+        );
+      }
+      else
+      {
+        _view.Steer(
+          _rigidbody,
+          -1,
+          _boatMovementData.SteerSpeed
+            * Mathf.Clamp01(
+              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 180f
+            )
+        );
+      }
     }
 
     private void Move()
@@ -75,18 +99,6 @@ namespace LNE.Movements
           _boatMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
         );
       }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-      Gizmos.color = Color.blue;
-      Gizmos.DrawRay(transform.position, transform.forward * 50);
-
-      Gizmos.color = Color.red;
-      Gizmos.DrawLine(
-        transform.position,
-        new Vector3(_model.TargetPosition.x, 0, _model.TargetPosition.y)
-      );
     }
   }
 }
