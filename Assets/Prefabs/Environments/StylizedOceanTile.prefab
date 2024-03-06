@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2693906783695292892}
   - component: {fileID: 3643770524003385598}
   - component: {fileID: 6845469208149175635}
+  - component: {fileID: 8071734365275690008}
   m_Layer: 4
   m_Name: StylizedOceanTile
-  m_TagString: Untagged
+  m_TagString: Ocean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,3 +100,24 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 76fd7f71a965e4d08b11bf6e4765ed7b, type: 2}
   meshFilter: {fileID: 2693906783695292892}
   meshRenderer: {fileID: 3643770524003385598}
+--- !u!65 &8071734365275690008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200069594166892541}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 0.3, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}

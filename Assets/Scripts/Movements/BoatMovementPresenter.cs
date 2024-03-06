@@ -76,7 +76,7 @@ namespace LNE.Movements
     {
       _view.SetWaterVFXRateOverTime(
         _rigidbody.velocity.magnitude * 20
-          + _rigidbody.angularVelocity.magnitude * 40
+          + _rigidbody.angularVelocity.magnitude * 80
       );
     }
   }

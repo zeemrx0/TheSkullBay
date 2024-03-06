@@ -11,8 +11,11 @@ namespace LNE.Combat.Abilities
   {
     public string Id { get; private set; }
 
-    [field: SerializeField]
+    [SerializeField]
     private PlayerBoatAbilitiesView _view;
+
+    [SerializeField]
+    private Transform _abilitySpawnPointsContainer;
 
     [SerializeField]
     private List<AbilityData> _abilityDataList;
@@ -103,7 +106,7 @@ namespace LNE.Combat.Abilities
 
     public Vector3 FindAbilitySpawnPosition(string abilityName)
     {
-      return transform
+      return _abilitySpawnPointsContainer
         .Find($"{abilityName}{GameObjectName.SpawnPoint}")
         .position;
     }

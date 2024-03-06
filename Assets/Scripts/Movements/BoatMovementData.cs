@@ -8,17 +8,22 @@ public class BoatMovementData : ScriptableObject
 {
   [field: Header("Move")]
   [field: SerializeField]
-  public float MoveSpeed { get; private set; } = 100f;
+  public float MoveSpeed { get; private set; } = 200f;
 
   [field: SerializeField]
-  public float MaxMoveSpeed { get; private set; } = 500f;
+  public float MaxMoveSpeed { get; private set; } = 20f;
 
   [field: Header("Steer")]
   [field: SerializeField]
-  public float SteerSpeed { get; private set; } = 5f;
+  private float _steerSpeed = 60f;
+  public float SteerSpeed => _steerSpeed * 10f;
 
   [field: SerializeField]
-  public float MaxSteerSpeed { get; private set; } = 10f;
+  private float _maxSteerSpeed = 40f;
+  public float MaxSteerSpeed
+  {
+    get => _maxSteerSpeed / 100f;
+  }
 
   [field: SerializeField]
   public float AngleThreshold { get; private set; } = 45f;
@@ -26,14 +31,4 @@ public class BoatMovementData : ScriptableObject
   public float CurrentMoveSpeed { get; private set; } = 0f;
 
   public float CurrentSteerSpeed { get; private set; } = 0f;
-
-  public void SetCurrentMoveSpeed(float moveSpeed)
-  {
-    CurrentMoveSpeed = moveSpeed;
-  }
-
-  public void SetCurrentSteerSpeed(float steerSpeed)
-  {
-    CurrentSteerSpeed = steerSpeed;
-  }
 }
