@@ -8,6 +8,8 @@ TagManager:
   - Ocean
   - Projectile
   - Vehicle
+  - FX
+  - Boundary
   layers:
   - Default
   - TransparentFX
