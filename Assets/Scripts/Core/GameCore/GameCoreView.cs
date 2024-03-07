@@ -9,18 +9,14 @@ namespace LNE.Core
     private GameObject _gameOverPanel;
 
     [SerializeField]
-    private TextMeshProUGUI _gameOverTitle;
-
-    [SerializeField]
     private TextMeshProUGUI _goldAmountText;
 
     [SerializeField]
     private GameObject _tutorialPanel;
 
-    public void ShowGameOverPanel(string title)
+    public void ShowGameOverPanel()
     {
       _gameOverPanel.SetActive(true);
-      _gameOverTitle.text = title;
     }
 
     public void SetGoldAmount(int amount)

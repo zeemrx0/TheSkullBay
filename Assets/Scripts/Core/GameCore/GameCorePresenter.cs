@@ -74,7 +74,7 @@ namespace LNE.Core
 
     public void ShowGameOverPanel(string title)
     {
-      _view.ShowGameOverPanel(title);
+      _view.ShowGameOverPanel();
     }
 
     public void SetGoldAmount(int amount)
