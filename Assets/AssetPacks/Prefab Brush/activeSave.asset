@@ -13,13 +13,59 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList: []
-  prefabData: []
+  prefabData:
+  - prefab: {fileID: 2804654312422818214, guid: db54cb6eb253afe41822ba19bd43bc47,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6188487808649184773, guid: 2ece1c07d21b14d40bd9e82e549fd2ee,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 387934809887785715, guid: 7c91e2e39fb8fea46938124887657928, type: 3}
+    selected: 1
+  - prefab: {fileID: 4365908102935044562, guid: e636e32bd406ed849a151f1f94065975,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 5640219507135939675, guid: a97be0ee276b1ba43a5bcb1bedef0488,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 7646827345261236973, guid: b138238ae2a5c484c996307e08505519,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6816789311000306823, guid: 96c26a22b5fb6f249b21348161bb7940,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 930776581048045520, guid: 8557b92b45103314d8e3ef14f1cdac71, type: 3}
+    selected: 1
+  - prefab: {fileID: 8248600234682720494, guid: 7ab8253070896d5478cda53a72af8cc2,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 8728532306686821610, guid: 6207326d717e9af40a8feeb555deb057,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 6993296731310520135, guid: d14f75e40d234fa40b599c77caead52e,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 9024992322474302092, guid: 6df6b8785dee999478ad41f92b12feae,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 4749007521984119844, guid: 558370cde06fd664391416250b15f135,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 5371263039845371417, guid: 1113af091f63e2146b8eedba09532d55,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 5070252405104787513, guid: eb5f4cfc4bf217c48a1cc235232d3c51,
+      type: 3}
+    selected: 1
+  - prefab: {fileID: 4569916078294864918, guid: e95ad334a9449014bb2c22159803a803,
+      type: 3}
+    selected: 1
   paintType: 0
-  brushSize: 1
+  brushSize: 398
   minBrushSize: 0.1
-  maxBrushSize: 20
-  paintDeltaDistance: 0.4
-  maxPaintDeltaDistance: 3
+  maxBrushSize: 1000
+  paintDeltaDistance: 2.54
+  maxPaintDeltaDistance: 10
   minPaintDeltaDistance: 0.1
   prefabsPerStroke: 1
   maxprefabsPerStroke: 20
@@ -54,10 +100,10 @@ MonoBehaviour:
   maxYRotation: 0
   minZRotation: 0
   maxZRotation: 0
-  scaleType: 0
+  scaleType: 1
   scaleApplicationType: 0
-  minScale: 1
-  maxScale: 1
+  minScale: 3
+  maxScale: 5
   minXScale: 1
   maxXScale: 1
   minYScale: 1
@@ -77,7 +123,7 @@ MonoBehaviour:
   requiredLayerMaskForErase: 0
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
-  eraseDetection: 0
+  eraseDetection: 1
   paintBrushHotKey: 112
   paintBrushHoldKey: 1
   removeBrushHotKey: 306
