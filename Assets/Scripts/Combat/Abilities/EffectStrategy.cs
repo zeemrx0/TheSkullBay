@@ -16,7 +16,7 @@ namespace LNE.Combat.Abilities
     }
 
     public abstract void StartEffect(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool

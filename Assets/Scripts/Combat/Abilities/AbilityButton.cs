@@ -12,7 +12,7 @@ namespace LNE.Combat.Abilities
       IDragHandler
   {
     private AbilityData _abilityData;
-    private PlayerBoatAbilitiesPresenter _playerBoatAbilitiesPresenter;
+    private PlayerWatercraftAbilitiesPresenter _playerBoatAbilitiesPresenter;
     private PlayerInputPresenter _playerInputPresenter;
     private IObjectPool<Projectile> _projectilePool;
 
@@ -23,7 +23,7 @@ namespace LNE.Combat.Abilities
 
     public void Init(
       AbilityData abilityData,
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       IObjectPool<Projectile> projectilePool,
       PlayerInputPresenter playerInputPresenter
     )

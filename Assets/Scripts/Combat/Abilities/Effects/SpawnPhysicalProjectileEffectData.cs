@@ -36,7 +36,7 @@ namespace LNE.Combat.Abilities.Effects
     }
 
     public override void StartEffect(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
@@ -61,8 +61,6 @@ namespace LNE.Combat.Abilities.Effects
       );
 
       Destroy(instantiatedProjectVFX.gameObject, _projectVFX.Duration);
-
-      playerBoatAbilitiesPresenter.Direction = velocity;
 
       projectile.BelongingPool = projectilePool;
       projectile.SetVelocity(

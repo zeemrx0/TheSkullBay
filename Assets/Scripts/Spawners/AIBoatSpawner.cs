@@ -39,8 +39,8 @@ namespace LNE.Spawners
         original: _boatPrefab,
         parent: _aiBoatsContainer.transform
       );
-      boat.GetComponent<BoatMovementPresenter>().Init(_gameCorePresenter);
-      boat.GetComponent<AIBoatMovementPresenter>().Spawner = this;
+      boat.GetComponent<WatercraftMovementPresenter>().Init(_gameCorePresenter);
+      boat.GetComponent<AIWatercraftMovementPresenter>().Spawner = this;
 
       Vector2 randomPosition = RandomPositionOnCircle(
         new Vector2(transform.position.x, transform.position.z),

@@ -23,7 +23,7 @@ namespace LNE.Combat.Abilities.Targeting
     private LayerMask _layerMask;
 
     public override void StartTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -47,7 +47,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private IEnumerator Target(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -126,7 +126,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private void FindTargetPositionMobile(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector3 aimDirection
     )
@@ -134,17 +134,15 @@ namespace LNE.Combat.Abilities.Targeting
       if (aimDirection.magnitude > 0)
       {
         abilityModel.TargetPosition = new Vector3(
-          playerBoatAbilitiesPresenter.Origin.position.x
-            + aimDirection.x * _aimRadius,
-          playerBoatAbilitiesPresenter.Origin.position.y,
-          playerBoatAbilitiesPresenter.Origin.position.z
-            + aimDirection.z * _aimRadius
+          playerBoatAbilitiesPresenter.Origin.x + aimDirection.x * _aimRadius,
+          playerBoatAbilitiesPresenter.Origin.y,
+          playerBoatAbilitiesPresenter.Origin.z + aimDirection.z * _aimRadius
         );
       }
     }
 
     private void FindTargetPositionPC(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector2 mousePosition
     )
@@ -161,15 +159,15 @@ namespace LNE.Combat.Abilities.Targeting
         if (
           Vector3.Distance(
             raycastHit.point,
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
           ) > _aimRadius
         )
         {
           abilityModel.TargetPosition =
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
             + (
               (
-                raycastHit.point - playerBoatAbilitiesPresenter.Origin.position
+                raycastHit.point - playerBoatAbilitiesPresenter.Origin
               ).normalized * _aimRadius
             );
         }

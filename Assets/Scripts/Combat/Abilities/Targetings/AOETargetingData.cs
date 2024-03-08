@@ -24,7 +24,7 @@ namespace LNE.Combat.Abilities.Targeting
     private LayerMask _layerMask;
 
     public override void StartTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -44,7 +44,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private IEnumerator Target(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       Action onTargetAcquired
@@ -116,7 +116,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private void FindTargetPositionPC(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector3 mousePosition
     )
@@ -133,15 +133,15 @@ namespace LNE.Combat.Abilities.Targeting
         if (
           Vector3.Distance(
             raycastHit.point,
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
           ) > _aimRadius
         )
         {
           abilityModel.TargetPosition =
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
             + (
               (
-                raycastHit.point - playerBoatAbilitiesPresenter.Origin.position
+                raycastHit.point - playerBoatAbilitiesPresenter.Origin
               ).normalized * _aimRadius
             );
         }
