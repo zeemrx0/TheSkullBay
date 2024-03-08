@@ -11,7 +11,7 @@ namespace LNE.Combat.Loots
 
     public void SpawnTrophy()
     {
-      Vector3? origin = TryGetComponent<Boat>(out Boat boat)
+      Vector3? origin = TryGetComponent<Character>(out Character boat)
         ? boat.Position
         : null;
 

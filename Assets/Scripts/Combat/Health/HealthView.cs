@@ -1,4 +1,5 @@
 using LNE.Core;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,22 @@ namespace LNE.Combat
   public class HealthView : MonoBehaviour
   {
     [SerializeField]
-    private Slider _slider;
-
-    [SerializeField]
     private VFX _onDieVFX;
 
     [SerializeField]
     private AudioClip _onDieAudioClip;
 
+    private Slider _slider;
     private AudioSource _audioSource;
 
     private void Awake()
     {
       _audioSource = GetComponent<AudioSource>();
+      _slider = transform
+        .GetComponentInChildren<Vehicle>()
+        .transform.Find(GameObjectName.BoatInfoCanvas)
+        .Find(GameObjectName.HealthBar)
+        .GetComponent<Slider>();
     }
 
     public void SetHealthSliderValue(float value)
@@ -29,7 +33,7 @@ namespace LNE.Combat
 
     public void ShowOnDieVFX()
     {
-      Vector3? origin = TryGetComponent<Boat>(out Boat boat)
+      Vector3? origin = TryGetComponent<Character>(out Character boat)
         ? boat.Position
         : null;
 
@@ -38,7 +42,7 @@ namespace LNE.Combat
         origin ?? transform.position,
         Quaternion.identity
       );
-      
+
       Destroy(vfx.gameObject, vfx.Duration);
     }
 

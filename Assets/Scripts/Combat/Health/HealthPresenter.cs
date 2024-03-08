@@ -12,8 +12,12 @@ namespace LNE.Combat
     [SerializeField]
     private float _currentHealth;
 
-    [SerializeField]
     private HealthView _view;
+
+    private void Awake()
+    {
+      _view = GetComponent<HealthView>();
+    }
 
     private void Start()
     {

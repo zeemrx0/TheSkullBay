@@ -10,5 +10,9 @@ namespace LNE.Utilities.Constants
     public const string CooldownTimeText = "CooldownTimeText";
     public const string Border = "Border";
     public const string Origin = "Origin";
+    public const string MoveWaterFX = "MoveWaterFX";
+    public const string HealthBar = "HealthBar";
+    public const string HungerBar = "HungerBar";
+    public const string BoatInfoCanvas = "BoatInfoCanvas";
   }
 }
