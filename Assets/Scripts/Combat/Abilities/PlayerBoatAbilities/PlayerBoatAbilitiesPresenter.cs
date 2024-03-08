@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LNE.Core;
 using LNE.Inputs;
 using LNE.Utilities.Constants;
 using UnityEngine;
@@ -23,12 +24,14 @@ namespace LNE.Combat.Abilities
     [SerializeField]
     private AbilityButton[] _abilityButtons;
 
-    private List<IObjectPool<Projectile>> _projectilePools =
-      new List<IObjectPool<Projectile>>();
-
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
+
+    private Character _character;
+
+    private List<IObjectPool<Projectile>> _projectilePools =
+      new List<IObjectPool<Projectile>>();
 
     private PlayerBoatAbilitiesModel _model;
 
@@ -51,6 +54,8 @@ namespace LNE.Combat.Abilities
     private void Awake()
     {
       Id = gameObject.GetInstanceID().ToString();
+
+      _character = GetComponent<Character>();
     }
 
     private void OnEnable()
@@ -106,9 +111,7 @@ namespace LNE.Combat.Abilities
 
     public Vector3 FindAbilitySpawnPosition(string abilityName)
     {
-      return _abilitySpawnPointsContainer
-        .Find($"{abilityName}{GameObjectName.SpawnPoint}")
-        .position;
+      return _character.AbilitySpawnPosition;
     }
 
     public Vector3 GetCurrentVelocity()

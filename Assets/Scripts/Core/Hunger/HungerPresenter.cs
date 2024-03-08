@@ -11,7 +11,6 @@ public class HungerPresenter : MonoBehaviour
   [SerializeField]
   private float _hungerDecreaseRate = 1f;
 
-  [SerializeField]
   private HungerView _view;
 
   // Injected
@@ -22,6 +21,11 @@ public class HungerPresenter : MonoBehaviour
   public void Init(GameCorePresenter gameCorePresenter)
   {
     _gameCorePresenter = gameCorePresenter;
+  }
+
+  private void Awake()
+  {
+    _view = GetComponent<HungerView>();
   }
 
   private void Start()

@@ -10,13 +10,11 @@ namespace LNE.Movements
     [SerializeField]
     protected BoatMovementData _boatMovementData;
 
-    [SerializeField]
-    protected BoatMovementView _view;
-
     // Injected
     protected GameCorePresenter _gameCorePresenter;
 
     protected Rigidbody _rigidbody;
+    protected BoatMovementView _view;
 
     [Inject]
     public void Init(GameCorePresenter gameCorePresenter)
@@ -28,6 +26,7 @@ namespace LNE.Movements
     protected virtual void Awake()
     {
       _rigidbody = GetComponent<Rigidbody>();
+      _view = GetComponent<BoatMovementView>();
     }
 
     private void OnEnable() { }
