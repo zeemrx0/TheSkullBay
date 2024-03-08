@@ -172,8 +172,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.757476, y: 3.8832417, z: 25.219112}
-  m_Center: {x: 0, y: 1.99302, z: 10.94224}
+  m_Size: {x: 8.757476, y: 4.3008356, z: 25.4238}
+  m_Center: {x: 0, y: 1.1512178, z: 11.329249}
 --- !u!82 &2752421781403158919
 AudioSource:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 404.81445
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -554,7 +554,7 @@ Transform:
   m_GameObject: {fileID: 3566503604819837208}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32379538, y: -0.35841078, z: 0.1341204, w: 0.86528033}
-  m_LocalPosition: {x: 130, y: 163.3, z: -114.400024}
+  m_LocalPosition: {x: 130, y: 163.3, z: -114.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
