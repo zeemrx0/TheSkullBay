@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(
-  fileName = "_BoatMovementData",
-  menuName = "Game Data/Boat Movement Data"
+  fileName = "_WatercraftMovementData",
+  menuName = "Game Data/Watercraft Movement Data"
 )]
-public class BoatMovementData : ScriptableObject
+public class WatercraftMovementData : ScriptableObject
 {
   [field: Header("Move")]
   [field: SerializeField]

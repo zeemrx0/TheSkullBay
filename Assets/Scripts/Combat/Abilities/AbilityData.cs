@@ -29,7 +29,7 @@ namespace LNE.Combat.Abilities
     }
 
     public bool Perform(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       IObjectPool<Projectile> projectilePool,
@@ -69,7 +69,7 @@ namespace LNE.Combat.Abilities
     }
 
     public void OnTargetAcquired(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool

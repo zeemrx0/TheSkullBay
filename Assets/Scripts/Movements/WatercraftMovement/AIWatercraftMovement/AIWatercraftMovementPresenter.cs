@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace LNE.Movements
 {
-  public class AIBoatMovementPresenter : BoatMovementPresenter
+  public class AIWatercraftMovementPresenter : WatercraftMovementPresenter
   {
     public AIBoatSpawner Spawner { get; set; }
 
-    private AIBoatMovementModel _model;
+    private AIWatercraftMovementModel _model;
 
     protected override void Awake()
     {
       base.Awake();
-      _view = GetComponent<AIBoatMovementView>();
+      _view = GetComponent<AIWatercraftMovementView>();
     }
 
     private void Start()
     {
-      _model = new AIBoatMovementModel
+      _model = new AIWatercraftMovementModel
       {
         CurrentPosition = new Vector2(
           transform.position.x,

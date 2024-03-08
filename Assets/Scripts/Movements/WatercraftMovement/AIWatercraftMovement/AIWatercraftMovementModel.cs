@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LNE.Movements
 {
-  public class AIBoatMovementModel
+  public class AIWatercraftMovementModel
   {
     public Vector2 TargetPosition { get; set; }
     public Vector2 CurrentPosition { get; set; }

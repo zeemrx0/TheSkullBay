@@ -5,16 +5,16 @@ using Zenject;
 
 namespace LNE.Movements
 {
-  public abstract class BoatMovementPresenter : MonoBehaviour
+  public abstract class WatercraftMovementPresenter : MonoBehaviour
   {
     [SerializeField]
-    protected BoatMovementData _boatMovementData;
+    protected WatercraftMovementData _boatMovementData;
 
     // Injected
     protected GameCorePresenter _gameCorePresenter;
 
     protected Rigidbody _rigidbody;
-    protected BoatMovementView _view;
+    protected WatercraftMovementView _view;
 
     [Inject]
     public void Init(GameCorePresenter gameCorePresenter)

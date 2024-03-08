@@ -5,7 +5,7 @@ using Application = UnityEngine.Device.Application;
 
 namespace LNE.Movements
 {
-  public class PlayerBoatMovementPresenter : BoatMovementPresenter
+  public class PlayerBoatMovementPresenter : WatercraftMovementPresenter
   {
     // Injected
     private PlayerInputPresenter _playerInputPresenter;

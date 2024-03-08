@@ -9,7 +9,7 @@ namespace LNE.Combat.Abilities
     public virtual void Init(AbilityModel abilityModel) { }
 
     public abstract void StartTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -17,7 +17,7 @@ namespace LNE.Combat.Abilities
     );
 
     protected void HandleCancelTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
@@ -34,7 +34,7 @@ namespace LNE.Combat.Abilities
     }
 
     protected void HandleConfirmTargetPosition(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
@@ -51,7 +51,7 @@ namespace LNE.Combat.Abilities
     }
 
     protected void UnsubscribeFromInputEvents(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LNE.Combat.Abilities
 {
-  public class BoatAbilitiesModel
+  public class WatercraftAbilitiesModel
   {
     public Dictionary<AbilityData, float> CooldownTimers =
       new Dictionary<AbilityData, float>();

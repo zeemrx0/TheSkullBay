@@ -36,7 +36,7 @@ namespace LNE.Combat.Abilities.Effects
     }
 
     public override void StartEffect(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputActions playerInputActions,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool

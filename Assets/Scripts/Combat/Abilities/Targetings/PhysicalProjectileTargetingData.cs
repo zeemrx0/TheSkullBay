@@ -23,7 +23,7 @@ namespace LNE.Combat.Abilities.Targeting
     private LayerMask _layerMask;
 
     public override void StartTargeting(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -47,7 +47,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private IEnumerator Target(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -126,7 +126,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private void FindTargetPositionMobile(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector3 aimDirection
     )
@@ -142,7 +142,7 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private void FindTargetPositionPC(
-      PlayerBoatAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector2 mousePosition
     )

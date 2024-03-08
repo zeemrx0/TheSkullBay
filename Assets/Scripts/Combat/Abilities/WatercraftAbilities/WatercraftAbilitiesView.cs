@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace LNE.Combat.Abilities
 {
-  public abstract class BoatAbilitiesView : MonoBehaviour
+  public abstract class WatercraftAbilitiesView : MonoBehaviour
   {
     [SerializeField]
     protected RectTransform _rangeIndicator;

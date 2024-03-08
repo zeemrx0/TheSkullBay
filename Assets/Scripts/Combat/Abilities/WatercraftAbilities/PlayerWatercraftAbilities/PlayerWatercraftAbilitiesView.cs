@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace LNE.Combat.Abilities
 {
-  public class PlayerBoatAbilitiesView : BoatAbilitiesView
+  public class PlayerWatercraftAbilitiesView : WatercraftAbilitiesView
   {
     public void SetAbilityButtonIconActive(int index, bool active)
     {

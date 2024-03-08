@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 namespace LNE.Combat.Abilities
 {
-  public abstract class BoatAbilitiesPresenter : MonoBehaviour
+  public abstract class WatercraftAbilitiesPresenter : MonoBehaviour
   {
     public string Id { get; protected set; }
 
@@ -17,8 +17,8 @@ namespace LNE.Combat.Abilities
     protected List<IObjectPool<Projectile>> _projectilePools =
       new List<IObjectPool<Projectile>>();
 
-    protected BoatAbilitiesView _view;
-    protected BoatAbilitiesModel _model;
+    protected WatercraftAbilitiesView _view;
+    protected WatercraftAbilitiesModel _model;
 
     public Vector3 Origin => _character.Position;
 
@@ -30,7 +30,7 @@ namespace LNE.Combat.Abilities
 
     protected virtual void Start()
     {
-      _model = new BoatAbilitiesModel();
+      _model = new WatercraftAbilitiesModel();
 
       for (int i = 0; i < _abilityDataList.Count; ++i)
       {

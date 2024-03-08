@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LNE.Movements
 {
-  public abstract class BoatMovementView : MonoBehaviour
+  public abstract class WatercraftMovementView : MonoBehaviour
   {
     protected ParticleSystem _boatWaterVFX;
 

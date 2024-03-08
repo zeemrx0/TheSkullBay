@@ -4,7 +4,7 @@ using Zenject;
 
 namespace LNE.Combat.Abilities
 {
-  public class PlayerBoatAbilitiesPresenter : BoatAbilitiesPresenter
+  public class PlayerWatercraftAbilitiesPresenter : WatercraftAbilitiesPresenter
   {
     [SerializeField]
     private AbilityButton[] _abilityButtons;
@@ -25,7 +25,7 @@ namespace LNE.Combat.Abilities
     protected override void Awake()
     {
       base.Awake();
-      _view = GetComponent<PlayerBoatAbilitiesView>();
+      _view = GetComponent<PlayerWatercraftAbilitiesView>();
     }
 
     private void OnEnable()
@@ -46,11 +46,11 @@ namespace LNE.Combat.Abilities
       {
         AbilityData abilityData = _abilityDataList[i];
 
-        ((PlayerBoatAbilitiesView)_view).SetAbilityButtonIcon(
+        ((PlayerWatercraftAbilitiesView)_view).SetAbilityButtonIcon(
           _abilityDataList.IndexOf(abilityData),
           abilityData.Icon
         );
-        ((PlayerBoatAbilitiesView)_view).SetAbilityButtonIconActive(
+        ((PlayerWatercraftAbilitiesView)_view).SetAbilityButtonIconActive(
           _abilityDataList.IndexOf(abilityData),
           true
         );
@@ -69,7 +69,7 @@ namespace LNE.Combat.Abilities
       base.Update();
       foreach (var abilityData in _abilityDataList)
       {
-        ((PlayerBoatAbilitiesView)_view).SetAbilityCooldownTime(
+        ((PlayerWatercraftAbilitiesView)_view).SetAbilityCooldownTime(
           _abilityDataList.IndexOf(abilityData),
           _model.GetAbilityCooldownRemainingTime(abilityData),
           _model.GetAbilityCooldownInitialTime(abilityData)
