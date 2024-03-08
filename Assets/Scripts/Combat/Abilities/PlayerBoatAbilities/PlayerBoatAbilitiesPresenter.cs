@@ -1,46 +1,17 @@
-using System.Collections.Generic;
-using LNE.Core;
 using LNE.Inputs;
-using LNE.Utilities.Constants;
 using UnityEngine;
-using UnityEngine.Pool;
 using Zenject;
 
 namespace LNE.Combat.Abilities
 {
-  public class PlayerBoatAbilitiesPresenter : MonoBehaviour
+  public class PlayerBoatAbilitiesPresenter : BoatAbilitiesPresenter
   {
-    public string Id { get; private set; }
-
-    [SerializeField]
-    private PlayerBoatAbilitiesView _view;
-
-    [SerializeField]
-    private Transform _abilitySpawnPointsContainer;
-
-    [SerializeField]
-    private List<AbilityData> _abilityDataList;
-
     [SerializeField]
     private AbilityButton[] _abilityButtons;
 
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
-
-    private Character _character;
-
-    private List<IObjectPool<Projectile>> _projectilePools =
-      new List<IObjectPool<Projectile>>();
-
-    private PlayerBoatAbilitiesModel _model;
-
-    public RectTransform Origin => _view.Origin;
-    public Vector3 Direction
-    {
-      get => _view.Direction;
-      set { _view.Direction = value; }
-    }
 
     [Inject]
     public void Init(PlayerInputPresenter playerInputPresenter)
@@ -51,11 +22,10 @@ namespace LNE.Combat.Abilities
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-      Id = gameObject.GetInstanceID().ToString();
-
-      _character = GetComponent<Character>();
+      base.Awake();
+      _view = GetComponent<PlayerBoatAbilitiesView>();
     }
 
     private void OnEnable()
@@ -68,20 +38,19 @@ namespace LNE.Combat.Abilities
       _playerInputActions.Boat.Ability1.performed -= HandleAbility1;
     }
 
-    private void Start()
+    protected override void Start()
     {
-      _model = new PlayerBoatAbilitiesModel();
+      base.Start();
 
       for (int i = 0; i < _abilityDataList.Count; ++i)
       {
         AbilityData abilityData = _abilityDataList[i];
 
-        _projectilePools.Add(abilityData.InitProjectilePool());
-        _view.SetAbilityButtonIcon(
+        ((PlayerBoatAbilitiesView)_view).SetAbilityButtonIcon(
           _abilityDataList.IndexOf(abilityData),
           abilityData.Icon
         );
-        _view.SetAbilityButtonIconActive(
+        ((PlayerBoatAbilitiesView)_view).SetAbilityButtonIconActive(
           _abilityDataList.IndexOf(abilityData),
           true
         );
@@ -95,28 +64,17 @@ namespace LNE.Combat.Abilities
       }
     }
 
-    private void Update()
+    protected override void Update()
     {
-      _model.CoolDownAbilities();
-
+      base.Update();
       foreach (var abilityData in _abilityDataList)
       {
-        _view.SetAbilityCooldownTime(
+        ((PlayerBoatAbilitiesView)_view).SetAbilityCooldownTime(
           _abilityDataList.IndexOf(abilityData),
           _model.GetAbilityCooldownRemainingTime(abilityData),
           _model.GetAbilityCooldownInitialTime(abilityData)
         );
       }
-    }
-
-    public Vector3 FindAbilitySpawnPosition(string abilityName)
-    {
-      return _character.AbilitySpawnPosition;
-    }
-
-    public Vector3 GetCurrentVelocity()
-    {
-      return gameObject.GetComponent<Rigidbody>().velocity;
     }
 
     public Vector3 GetJoystickDirection(Joystick joystick)
@@ -131,20 +89,17 @@ namespace LNE.Combat.Abilities
       return direction;
     }
 
-    public float PlayAudioClip(AudioClip audioClip)
+    #region View Methods
+    public void HideAbilityIndicators()
     {
-      return _view.PlayAudioClip(audioClip);
+      _view.HideRangeIndicator();
+      _view.HideCircleIndicator();
+      _view.HidePhysicalProjectileTrajectory();
     }
 
-    #region View Methods
     public void ShowRangeIndicator()
     {
       _view.ShowRangeIndicator();
-    }
-
-    public void ShowCircleIndicator()
-    {
-      _view.ShowCircleIndicator();
     }
 
     public void HideRangeIndicator()
@@ -152,14 +107,19 @@ namespace LNE.Combat.Abilities
       _view.HideRangeIndicator();
     }
 
-    public void HideCircleIndicator()
-    {
-      _view.HideCircleIndicator();
-    }
-
     public void SetRangeIndicatorSize(Vector2 size)
     {
       _view.SetRangeIndicatorSize(size);
+    }
+
+    public void ShowCircleIndicator()
+    {
+      _view.ShowCircleIndicator();
+    }
+
+    public void HideCircleIndicator()
+    {
+      _view.HideCircleIndicator();
     }
 
     public void SetCircleIndicatorSize(Vector2 size)
@@ -188,13 +148,6 @@ namespace LNE.Combat.Abilities
     )
     {
       _view.SetPhysicalProjectileTrajectory(initialPosition, velocity);
-    }
-
-    public void HideAbilityIndicators()
-    {
-      _view.HideRangeIndicator();
-      _view.HideCircleIndicator();
-      _view.HidePhysicalProjectileTrajectory();
     }
     #endregion
 

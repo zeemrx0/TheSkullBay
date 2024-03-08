@@ -22,6 +22,12 @@ namespace LNE.Movements
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
     }
 
+    protected override void Awake()
+    {
+      base.Awake();
+      _view = GetComponent<PlayerBoatMovementView>();
+    }
+
     private void Update()
     {
       if (_gameCorePresenter.IsGameOver)

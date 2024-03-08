@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace LNE.Movements
 {
-  public class BoatMovementView : MonoBehaviour
+  public abstract class BoatMovementView : MonoBehaviour
   {
-    private ParticleSystem _boatWaterVFX;
+    protected ParticleSystem _boatWaterVFX;
 
-    private void Awake()
+    protected virtual void Awake()
     {
       _boatWaterVFX = transform
         .GetComponentInChildren<Vehicle>()

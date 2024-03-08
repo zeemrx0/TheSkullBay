@@ -26,7 +26,6 @@ namespace LNE.Movements
     protected virtual void Awake()
     {
       _rigidbody = GetComponent<Rigidbody>();
-      _view = GetComponent<BoatMovementView>();
     }
 
     private void OnEnable() { }

@@ -133,15 +133,15 @@ namespace LNE.Combat.Abilities.Targeting
         if (
           Vector3.Distance(
             raycastHit.point,
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
           ) > _aimRadius
         )
         {
           abilityModel.TargetPosition =
-            playerBoatAbilitiesPresenter.Origin.position
+            playerBoatAbilitiesPresenter.Origin
             + (
               (
-                raycastHit.point - playerBoatAbilitiesPresenter.Origin.position
+                raycastHit.point - playerBoatAbilitiesPresenter.Origin
               ).normalized * _aimRadius
             );
         }

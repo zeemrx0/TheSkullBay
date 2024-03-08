@@ -62,8 +62,6 @@ namespace LNE.Combat.Abilities.Effects
 
       Destroy(instantiatedProjectVFX.gameObject, _projectVFX.Duration);
 
-      playerBoatAbilitiesPresenter.Direction = velocity;
-
       projectile.BelongingPool = projectilePool;
       projectile.SetVelocity(
         velocity + playerBoatAbilitiesPresenter.GetCurrentVelocity()

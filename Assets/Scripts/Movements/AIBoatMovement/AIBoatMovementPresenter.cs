@@ -9,6 +9,12 @@ namespace LNE.Movements
 
     private AIBoatMovementModel _model;
 
+    protected override void Awake()
+    {
+      base.Awake();
+      _view = GetComponent<AIBoatMovementView>();
+    }
+
     private void Start()
     {
       _model = new AIBoatMovementModel
