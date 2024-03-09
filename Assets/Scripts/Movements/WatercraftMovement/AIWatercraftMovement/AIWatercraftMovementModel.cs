@@ -4,28 +4,28 @@ namespace LNE.Movements
 {
   public class AIWatercraftMovementModel
   {
-    public Vector2 TargetPosition { get; set; }
-    public Vector2 CurrentPosition { get; set; }
+    public Vector3 TargetPosition { get; set; }
+    public Vector3 CurrentPosition { get; set; }
     public bool IsArrived { get; set; }
 
     public void CheckIfArrived()
     {
-      if (Vector2.Distance(CurrentPosition, TargetPosition) < 10f)
+      if (Vector3.Distance(CurrentPosition, TargetPosition) < 10f)
       {
         IsArrived = true;
       }
     }
 
-    public void RandomNewTargetPosition(Vector2 center, float radius)
+    public void RandomNewTargetPosition(Vector3 center, float radius)
     {
       float randomAngle = Random.value * Mathf.PI * 2;
       float randomRadius = Random.value * radius;
       float x = center.x + Mathf.Cos(randomAngle) * randomRadius;
-      float y = center.y + Mathf.Sin(randomAngle) * randomRadius;
+      float z = center.z + Mathf.Sin(randomAngle) * randomRadius;
 
       IsArrived = false;
 
-      TargetPosition = new Vector2(x, y);
+      TargetPosition = new Vector3(x, center.y, z);
     }
 
     // Positive = Right, Negative = Left
@@ -38,7 +38,7 @@ namespace LNE.Movements
       }
 
       float slopeAbs =
-        Mathf.Abs(TargetPosition.y - CurrentPosition.y)
+        Mathf.Abs(TargetPosition.z - CurrentPosition.z)
         / Mathf.Abs(TargetPosition.x - CurrentPosition.x);
 
       float beta = 0;
@@ -46,7 +46,7 @@ namespace LNE.Movements
       // Quadrant I
       if (
         TargetPosition.x - CurrentPosition.x > 0
-        && TargetPosition.y - CurrentPosition.y > 0
+        && TargetPosition.z - CurrentPosition.z > 0
       )
       {
         beta = Mathf.Atan(slopeAbs);
@@ -55,7 +55,7 @@ namespace LNE.Movements
       // Quadrant II
       if (
         TargetPosition.x - CurrentPosition.x < 0
-        && TargetPosition.y - CurrentPosition.y > 0
+        && TargetPosition.z - CurrentPosition.z > 0
       )
       {
         beta = Mathf.PI - Mathf.Atan(slopeAbs);
@@ -63,7 +63,7 @@ namespace LNE.Movements
       // Quadrant III
       else if (
         TargetPosition.x - CurrentPosition.x < 0
-        && TargetPosition.y - CurrentPosition.y < 0
+        && TargetPosition.z - CurrentPosition.z < 0
       )
       {
         beta = Mathf.PI + Mathf.Atan(slopeAbs);

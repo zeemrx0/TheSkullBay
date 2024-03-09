@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7323455703051384968, guid: fed577999acd749c1b52cc6e0ecc136e,
+        type: 3}
+      propertyPath: m_Name
+      value: WatercraftCharacterInfoCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 7799411573478394309, guid: fed577999acd749c1b52cc6e0ecc136e,
         type: 3}
       propertyPath: m_Name

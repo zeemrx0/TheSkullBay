@@ -41,7 +41,7 @@ namespace LNE.Core
 
     private void Start()
     {
-      _aiBoatsContainer = GameObject.Find(GameObjectName.AIBoatsContainer);
+      _aiBoatsContainer = GameObject.Find(GameObjectName.AIWatercraftCharactersContainer);
       _lootsContainer = GameObject.Find(GameObjectName.LootsContainer);
     }
 

@@ -11,7 +11,7 @@ public class HungerView : MonoBehaviour
   {
     _slider = transform
       .GetComponentInChildren<Vehicle>()
-      .transform.Find(GameObjectName.BoatInfoCanvas)
+      .transform.Find(GameObjectName.WatercraftCharacterInfoCanvas)
       .Find(GameObjectName.HungerBar)
       .GetComponent<Slider>();
   }
