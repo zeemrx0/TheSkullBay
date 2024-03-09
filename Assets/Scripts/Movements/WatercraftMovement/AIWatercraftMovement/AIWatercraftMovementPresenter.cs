@@ -7,6 +7,8 @@ namespace LNE.Movements
   {
     public AIWatercraftCharacterSpawner Spawner { get; set; }
 
+    [field: SerializeField]
+    public float FieldOfViewRadius { get; private set; } = 200f;
     private AIWatercraftMovementModel _model;
 
     protected override void Awake()
@@ -99,6 +101,11 @@ namespace LNE.Movements
           _boatMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
         );
       }
+    }
+
+    public void SetTargetPosition(Vector3 targetPosition)
+    {
+      _model.TargetPosition = targetPosition;
     }
   }
 }
