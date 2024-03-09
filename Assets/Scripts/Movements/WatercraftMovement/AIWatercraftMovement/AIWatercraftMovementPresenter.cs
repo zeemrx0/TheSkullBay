@@ -5,7 +5,7 @@ namespace LNE.Movements
 {
   public class AIWatercraftMovementPresenter : WatercraftMovementPresenter
   {
-    public AIBoatSpawner Spawner { get; set; }
+    public AIWatercraftCharacterSpawner Spawner { get; set; }
 
     private AIWatercraftMovementModel _model;
 
@@ -26,7 +26,7 @@ namespace LNE.Movements
       };
 
       _model.RandomNewTargetPosition(
-        new Vector2(Spawner.transform.position.x, Spawner.transform.position.z),
+        Spawner.transform.position,
         Spawner.Radius
       );
     }
@@ -42,10 +42,7 @@ namespace LNE.Movements
       if (_model.IsArrived)
       {
         _model.RandomNewTargetPosition(
-          new Vector2(
-            Spawner.transform.position.x,
-            Spawner.transform.position.z
-          ),
+          Spawner.transform.position,
           Spawner.Radius
         );
       }
@@ -84,12 +81,9 @@ namespace LNE.Movements
 
     private void Move()
     {
-      _model.CurrentPosition = new Vector2(
-        transform.position.x,
-        transform.position.z
-      );
+      _model.CurrentPosition = transform.position;
 
-      float distance = Vector2.Distance(
+      float distance = Vector3.Distance(
         _model.CurrentPosition,
         _model.TargetPosition
       );

@@ -21,7 +21,7 @@ namespace LNE.Combat
       _audioSource = GetComponent<AudioSource>();
       _slider = transform
         .GetComponentInChildren<Vehicle>()
-        .transform.Find(GameObjectName.BoatInfoCanvas)
+        .transform.Find(GameObjectName.WatercraftCharacterInfoCanvas)
         .Find(GameObjectName.HealthBar)
         .GetComponent<Slider>();
     }
