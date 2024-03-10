@@ -29,7 +29,7 @@ namespace LNE.Combat.Abilities
     }
 
     public bool Perform(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       IObjectPool<Projectile> projectilePool,
@@ -37,7 +37,7 @@ namespace LNE.Combat.Abilities
     )
     {
       if (
-        playerBoatAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
+        playerWatercraftAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
       )
       {
         return false;
@@ -46,18 +46,18 @@ namespace LNE.Combat.Abilities
       string abilityName = GetAbilityName(DefaultFileName);
 
       abilityModel.InitialPosition =
-        playerBoatAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+        playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
       abilityModel.ProjectSpeed = _effectStrategy.ProjectSpeed;
 
       _targetingStrategy.StartTargeting(
-        playerBoatAbilitiesPresenter,
+        playerWatercraftAbilitiesPresenter,
         playerInputPresenter,
         joystick,
         abilityModel,
         () =>
         {
           OnTargetAcquired(
-            playerBoatAbilitiesPresenter,
+            playerWatercraftAbilitiesPresenter,
             playerInputPresenter,
             abilityModel,
             projectilePool
@@ -69,16 +69,16 @@ namespace LNE.Combat.Abilities
     }
 
     public void OnTargetAcquired(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
     {
-      playerBoatAbilitiesPresenter.StartCooldown(this, _cooldownTime);
+      playerWatercraftAbilitiesPresenter.StartCooldown(this, _cooldownTime);
 
       _effectStrategy.StartEffect(
-        playerBoatAbilitiesPresenter,
+        playerWatercraftAbilitiesPresenter,
         playerInputPresenter.GetPlayerInputActions(),
         abilityModel,
         projectilePool

@@ -30,12 +30,12 @@ namespace LNE.Combat.Abilities
 
     private void OnEnable()
     {
-      _playerInputActions.Boat.Ability1.performed += HandleAbility1;
+      _playerInputActions.Watercraft.Ability1.performed += HandleAbility1;
     }
 
     private void OnDisable()
     {
-      _playerInputActions.Boat.Ability1.performed -= HandleAbility1;
+      _playerInputActions.Watercraft.Ability1.performed -= HandleAbility1;
     }
 
     protected override void Start()

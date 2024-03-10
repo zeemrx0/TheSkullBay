@@ -26,7 +26,7 @@ namespace LNE.Inputs
     ""name"": ""PlayerInputActions"",
     ""maps"": [
         {
-            ""name"": ""Boat"",
+            ""name"": ""Watercraft"",
             ""id"": ""19c1fcc8-54e9-4577-be2e-36c8fe629162"",
             ""actions"": [
                 {
@@ -197,13 +197,13 @@ namespace LNE.Inputs
         }
     ]
 }");
-            // Boat
-            m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
-            m_Boat_Move = m_Boat.FindAction("Move", throwIfNotFound: true);
-            m_Boat_Cancel = m_Boat.FindAction("Cancel", throwIfNotFound: true);
-            m_Boat_Ability1 = m_Boat.FindAction("Ability1", throwIfNotFound: true);
-            m_Boat_Ability2 = m_Boat.FindAction("Ability2", throwIfNotFound: true);
-            m_Boat_Choose = m_Boat.FindAction("Choose", throwIfNotFound: true);
+            // Watercraft
+            m_Watercraft = asset.FindActionMap("Watercraft", throwIfNotFound: true);
+            m_Watercraft_Move = m_Watercraft.FindAction("Move", throwIfNotFound: true);
+            m_Watercraft_Cancel = m_Watercraft.FindAction("Cancel", throwIfNotFound: true);
+            m_Watercraft_Ability1 = m_Watercraft.FindAction("Ability1", throwIfNotFound: true);
+            m_Watercraft_Ability2 = m_Watercraft.FindAction("Ability2", throwIfNotFound: true);
+            m_Watercraft_Choose = m_Watercraft.FindAction("Choose", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -262,32 +262,32 @@ namespace LNE.Inputs
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Boat
-        private readonly InputActionMap m_Boat;
-        private List<IBoatActions> m_BoatActionsCallbackInterfaces = new List<IBoatActions>();
-        private readonly InputAction m_Boat_Move;
-        private readonly InputAction m_Boat_Cancel;
-        private readonly InputAction m_Boat_Ability1;
-        private readonly InputAction m_Boat_Ability2;
-        private readonly InputAction m_Boat_Choose;
-        public struct BoatActions
+        // Watercraft
+        private readonly InputActionMap m_Watercraft;
+        private List<IWatercraftActions> m_WatercraftActionsCallbackInterfaces = new List<IWatercraftActions>();
+        private readonly InputAction m_Watercraft_Move;
+        private readonly InputAction m_Watercraft_Cancel;
+        private readonly InputAction m_Watercraft_Ability1;
+        private readonly InputAction m_Watercraft_Ability2;
+        private readonly InputAction m_Watercraft_Choose;
+        public struct WatercraftActions
         {
             private @PlayerInputActions m_Wrapper;
-            public BoatActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Boat_Move;
-            public InputAction @Cancel => m_Wrapper.m_Boat_Cancel;
-            public InputAction @Ability1 => m_Wrapper.m_Boat_Ability1;
-            public InputAction @Ability2 => m_Wrapper.m_Boat_Ability2;
-            public InputAction @Choose => m_Wrapper.m_Boat_Choose;
-            public InputActionMap Get() { return m_Wrapper.m_Boat; }
+            public WatercraftActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_Watercraft_Move;
+            public InputAction @Cancel => m_Wrapper.m_Watercraft_Cancel;
+            public InputAction @Ability1 => m_Wrapper.m_Watercraft_Ability1;
+            public InputAction @Ability2 => m_Wrapper.m_Watercraft_Ability2;
+            public InputAction @Choose => m_Wrapper.m_Watercraft_Choose;
+            public InputActionMap Get() { return m_Wrapper.m_Watercraft; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(BoatActions set) { return set.Get(); }
-            public void AddCallbacks(IBoatActions instance)
+            public static implicit operator InputActionMap(WatercraftActions set) { return set.Get(); }
+            public void AddCallbacks(IWatercraftActions instance)
             {
-                if (instance == null || m_Wrapper.m_BoatActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_BoatActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_WatercraftActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_WatercraftActionsCallbackInterfaces.Add(instance);
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -305,7 +305,7 @@ namespace LNE.Inputs
                 @Choose.canceled += instance.OnChoose;
             }
 
-            private void UnregisterCallbacks(IBoatActions instance)
+            private void UnregisterCallbacks(IWatercraftActions instance)
             {
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
@@ -324,21 +324,21 @@ namespace LNE.Inputs
                 @Choose.canceled -= instance.OnChoose;
             }
 
-            public void RemoveCallbacks(IBoatActions instance)
+            public void RemoveCallbacks(IWatercraftActions instance)
             {
-                if (m_Wrapper.m_BoatActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_WatercraftActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IBoatActions instance)
+            public void SetCallbacks(IWatercraftActions instance)
             {
-                foreach (var item in m_Wrapper.m_BoatActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_WatercraftActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_BoatActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_WatercraftActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public BoatActions @Boat => new BoatActions(this);
+        public WatercraftActions @Watercraft => new WatercraftActions(this);
         private int m_KeyboardAndMouseSchemeIndex = -1;
         public InputControlScheme KeyboardAndMouseScheme
         {
@@ -348,7 +348,7 @@ namespace LNE.Inputs
                 return asset.controlSchemes[m_KeyboardAndMouseSchemeIndex];
             }
         }
-        public interface IBoatActions
+        public interface IWatercraftActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);

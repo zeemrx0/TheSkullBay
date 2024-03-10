@@ -62,7 +62,7 @@ namespace LNE.Movements
         _view.Steer(
           _rigidbody,
           1,
-          _boatMovementData.SteerSpeed
+          _watercraftMovementData.SteerSpeed
             * Mathf.Clamp01(
               Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
             )
@@ -73,7 +73,7 @@ namespace LNE.Movements
         _view.Steer(
           _rigidbody,
           -1,
-          _boatMovementData.SteerSpeed
+          _watercraftMovementData.SteerSpeed
             * Mathf.Clamp01(
               Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 180f
             )
@@ -98,7 +98,7 @@ namespace LNE.Movements
         _view.Move(
           _rigidbody,
           1,
-          _boatMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
+          _watercraftMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
         );
       }
     }

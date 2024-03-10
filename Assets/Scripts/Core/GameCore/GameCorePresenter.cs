@@ -12,7 +12,7 @@ namespace LNE.Core
     public bool IsGameOver { get; private set; } = false;
 
     [SerializeField]
-    private GameObject _aiBoatsContainer;
+    private GameObject _aiWatercraftsContainer;
 
     [SerializeField]
     private GameObject _lootsContainer;
@@ -41,7 +41,7 @@ namespace LNE.Core
 
     private void Start()
     {
-      _aiBoatsContainer = GameObject.Find(GameObjectName.AIWatercraftCharactersContainer);
+      _aiWatercraftsContainer = GameObject.Find(GameObjectName.AIWatercraftCharactersContainer);
       _lootsContainer = GameObject.Find(GameObjectName.LootsContainer);
     }
 
@@ -52,10 +52,10 @@ namespace LNE.Core
 
     private void CheckIfVictory()
     {
-      if (_aiBoatsContainer)
+      if (_aiWatercraftsContainer)
       {
         if (
-          _aiBoatsContainer.transform.childCount == 0
+          _aiWatercraftsContainer.transform.childCount == 0
           && _lootsContainer.transform.childCount == 0
         )
         {

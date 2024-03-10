@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Boat",
+            "name": "Watercraft",
             "id": "19c1fcc8-54e9-4577-be2e-36c8fe629162",
             "actions": [
                 {

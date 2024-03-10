@@ -1,4 +1,4 @@
 namespace LNE.Movements
 {
-  public class PlayerBoatMovementView : WatercraftMovementView { }
+  public class PlayerWatercraftMovementView : WatercraftMovementView { }
 }
