@@ -6,10 +6,13 @@ namespace LNE.Combat.Abilities
 {
   public abstract class TargetingStrategy : ScriptableObject
   {
+    [field: SerializeField]
+    public float AimRadius { get; protected set; } = 0f;
+
     public virtual void Init(AbilityModel abilityModel) { }
 
     public abstract void StartTargeting(
-      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,

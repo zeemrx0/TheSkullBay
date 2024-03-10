@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using LNE.Inputs;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Application = UnityEngine.Device.Application;
 
 namespace LNE.Combat.Abilities.Targeting
@@ -17,36 +16,47 @@ namespace LNE.Combat.Abilities.Targeting
     public const string DefaultFileName = "_PhysicalProjectileTargetingData";
 
     [SerializeField]
-    private float _aimRadius;
-
-    [SerializeField]
     private LayerMask _layerMask;
 
     public override void StartTargeting(
-      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
       Action onTargetAcquired
     )
     {
-      PlayerInputActions playerInputActions =
-        playerInputPresenter.GetPlayerInputActions();
+      abilityModel.AimRadius = AimRadius;
 
-      abilityModel.AimRadius = _aimRadius;
-
-      playerWatercraftAbilitiesPresenter.StartCoroutine(
-        Target(
-          playerWatercraftAbilitiesPresenter,
-          playerInputPresenter,
-          joystick,
+      if (
+        watercraftAbilitiesPresenter
+        is PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter
+      )
+      {
+        playerWatercraftAbilitiesPresenter.StartCoroutine(
+          PlayerTargetCoroutine(
+            playerWatercraftAbilitiesPresenter,
+            playerInputPresenter,
+            joystick,
+            abilityModel,
+            onTargetAcquired
+          )
+        );
+      }
+      else if (
+        watercraftAbilitiesPresenter
+        is AIWatercraftAbilitiesPresenter aiWatercraftAbilitiesPresenter
+      )
+      {
+        AITarget(
+          aiWatercraftAbilitiesPresenter,
           abilityModel,
           onTargetAcquired
-        )
-      );
+        );
+      }
     }
 
-    private IEnumerator Target(
+    private IEnumerator PlayerTargetCoroutine(
       PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
@@ -74,14 +84,16 @@ namespace LNE.Combat.Abilities.Targeting
       playerWatercraftAbilitiesPresenter.ShowPhysicalProjectileTrajectory();
 
       playerWatercraftAbilitiesPresenter.SetRangeIndicatorSize(
-        new Vector2(_aimRadius * 2f, _aimRadius * 2f)
+        new Vector2(AimRadius * 2f, AimRadius * 2f)
       );
 
       while (!abilityModel.IsPerformed && !abilityModel.IsCancelled)
       {
         string abilityName = GetAbilityName(DefaultFileName);
         abilityModel.InitialPosition =
-          playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+          playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(
+            abilityName
+          );
 
         if (Application.isMobilePlatform)
         {
@@ -125,6 +137,21 @@ namespace LNE.Combat.Abilities.Targeting
       }
     }
 
+    public void AITarget(
+      AIWatercraftAbilitiesPresenter aiWatercraftAbilitiesPresenter,
+      AbilityModel abilityModel,
+      Action onTargetAcquired
+    )
+    {
+      if (aiWatercraftAbilitiesPresenter.GetDistanceToTarget() < AimRadius)
+      {
+        abilityModel.TargetPosition =
+          aiWatercraftAbilitiesPresenter.GetTargetPosition();
+
+        onTargetAcquired?.Invoke();
+      }
+    }
+
     private void FindTargetPositionMobile(
       PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       AbilityModel abilityModel,
@@ -134,9 +161,11 @@ namespace LNE.Combat.Abilities.Targeting
       if (aimDirection.magnitude > 0)
       {
         abilityModel.TargetPosition = new Vector3(
-          playerWatercraftAbilitiesPresenter.Origin.x + aimDirection.x * _aimRadius,
+          playerWatercraftAbilitiesPresenter.Origin.x
+            + aimDirection.x * AimRadius,
           playerWatercraftAbilitiesPresenter.Origin.y,
-          playerWatercraftAbilitiesPresenter.Origin.z + aimDirection.z * _aimRadius
+          playerWatercraftAbilitiesPresenter.Origin.z
+            + aimDirection.z * AimRadius
         );
       }
     }
@@ -160,7 +189,7 @@ namespace LNE.Combat.Abilities.Targeting
           Vector3.Distance(
             raycastHit.point,
             playerWatercraftAbilitiesPresenter.Origin
-          ) > _aimRadius
+          ) > AimRadius
         )
         {
           abilityModel.TargetPosition =
@@ -168,7 +197,7 @@ namespace LNE.Combat.Abilities.Targeting
             + (
               (
                 raycastHit.point - playerWatercraftAbilitiesPresenter.Origin
-              ).normalized * _aimRadius
+              ).normalized * AimRadius
             );
         }
         else

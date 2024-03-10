@@ -37,7 +37,8 @@ namespace LNE.Combat.Abilities
     )
     {
       if (
-        playerWatercraftAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
+        playerWatercraftAbilitiesPresenter.GetAbilityCooldownRemainingTime(this)
+        > 0
       )
       {
         return false;
@@ -46,7 +47,9 @@ namespace LNE.Combat.Abilities
       string abilityName = GetAbilityName(DefaultFileName);
 
       abilityModel.InitialPosition =
-        playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+        playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(
+          abilityName
+        );
       abilityModel.ProjectSpeed = _effectStrategy.ProjectSpeed;
 
       _targetingStrategy.StartTargeting(
@@ -89,5 +92,7 @@ namespace LNE.Combat.Abilities
     {
       return name.Split(defaultFileName)[0];
     }
+
+    public float AimRadius => _targetingStrategy.AimRadius;
   }
 }
