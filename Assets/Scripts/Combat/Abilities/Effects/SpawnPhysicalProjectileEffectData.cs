@@ -36,23 +36,23 @@ namespace LNE.Combat.Abilities.Effects
     }
 
     public override void StartEffect(
-      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
     {
       string abilityName = GetAbilityName(DefaultFileName);
       abilityModel.InitialPosition =
-        playerWatercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+        watercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
 
       Projectile projectile = projectilePool.Get();
       projectile.transform.position = abilityModel.InitialPosition;
-      projectile.OwnerId = playerWatercraftAbilitiesPresenter.Id;
+      projectile.OwnerId = watercraftAbilitiesPresenter.Id;
 
       Vector3 velocity = abilityModel.GetProjectVelocity();
 
-      playerWatercraftAbilitiesPresenter.PlayAudioClip(_audioClip);
+      watercraftAbilitiesPresenter.PlayAudioClip(_audioClip);
 
       VFX instantiatedProjectVFX = Instantiate(
         _projectVFX,
@@ -64,7 +64,7 @@ namespace LNE.Combat.Abilities.Effects
 
       projectile.BelongingPool = projectilePool;
       projectile.SetVelocity(
-        velocity + playerWatercraftAbilitiesPresenter.GetCurrentVelocity()
+        velocity + watercraftAbilitiesPresenter.GetCurrentVelocity()
       );
       projectile.transform.rotation = Quaternion.LookRotation(velocity);
     }

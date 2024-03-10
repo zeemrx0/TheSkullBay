@@ -1,6 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
 using LNE.Combat.Abilities;
-using UnityEngine;
 
 public class AttackTarget : Action
 {
@@ -9,5 +8,11 @@ public class AttackTarget : Action
   public override void OnAwake()
   {
     _presenter = GetComponent<AIWatercraftAbilitiesPresenter>();
+  }
+
+  public override TaskStatus OnUpdate()
+  {
+    _presenter.PerformAbilities();
+    return TaskStatus.Success;
   }
 }

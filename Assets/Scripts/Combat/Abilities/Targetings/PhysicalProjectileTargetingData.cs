@@ -143,10 +143,16 @@ namespace LNE.Combat.Abilities.Targeting
       Action onTargetAcquired
     )
     {
-      if (aiWatercraftAbilitiesPresenter.GetDistanceToTarget() < AimRadius)
+      if (
+        aiWatercraftAbilitiesPresenter.Target != null
+        && aiWatercraftAbilitiesPresenter.GetDistanceToTarget() < AimRadius
+      )
       {
-        abilityModel.TargetPosition =
-          aiWatercraftAbilitiesPresenter.GetTargetPosition();
+        abilityModel.TargetPosition = GetLimitedTargetPosition(
+          aiWatercraftAbilitiesPresenter.GetPredictiveTargetPosition(),
+          aiWatercraftAbilitiesPresenter.Origin,
+          AimRadius
+        );
 
         onTargetAcquired?.Invoke();
       }
@@ -185,26 +191,26 @@ namespace LNE.Combat.Abilities.Targeting
         )
       )
       {
-        if (
-          Vector3.Distance(
-            raycastHit.point,
-            playerWatercraftAbilitiesPresenter.Origin
-          ) > AimRadius
-        )
-        {
-          abilityModel.TargetPosition =
-            playerWatercraftAbilitiesPresenter.Origin
-            + (
-              (
-                raycastHit.point - playerWatercraftAbilitiesPresenter.Origin
-              ).normalized * AimRadius
-            );
-        }
-        else
-        {
-          abilityModel.TargetPosition = raycastHit.point;
-        }
+        abilityModel.TargetPosition = GetLimitedTargetPosition(
+          raycastHit.point,
+          playerWatercraftAbilitiesPresenter.Origin,
+          AimRadius
+        );
       }
+    }
+
+    private Vector3 GetLimitedTargetPosition(
+      Vector3 targetPosition,
+      Vector3 origin,
+      float aimRadius
+    )
+    {
+      if (Vector3.Distance(targetPosition, origin) > aimRadius)
+      {
+        return origin + (targetPosition - origin).normalized * aimRadius;
+      }
+
+      return targetPosition;
     }
   }
 }

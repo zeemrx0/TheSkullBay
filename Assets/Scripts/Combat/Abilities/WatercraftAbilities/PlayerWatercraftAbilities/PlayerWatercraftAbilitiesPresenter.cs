@@ -156,18 +156,6 @@ namespace LNE.Combat.Abilities
     }
     #endregion
 
-    #region Model Methods
-    public float GetAbilityCooldownRemainingTime(AbilityData abilityData)
-    {
-      return _model.GetAbilityCooldownRemainingTime(abilityData);
-    }
-
-    public void StartCooldown(AbilityData abilityData, float cooldownTime)
-    {
-      _model.StartCooldown(abilityData, cooldownTime);
-    }
-    #endregion
-
     #region Input Handlers
     private void HandleAbility1(
       UnityEngine.InputSystem.InputAction.CallbackContext context

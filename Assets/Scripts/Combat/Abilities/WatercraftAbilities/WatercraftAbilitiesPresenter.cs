@@ -59,5 +59,17 @@ namespace LNE.Combat.Abilities
     {
       return _view.PlayAudioClip(audioClip);
     }
+
+    #region Model Methods
+    public float GetAbilityCooldownRemainingTime(AbilityData abilityData)
+    {
+      return _model.GetAbilityCooldownRemainingTime(abilityData);
+    }
+
+    public void StartCooldown(AbilityData abilityData, float cooldownTime)
+    {
+      _model.StartCooldown(abilityData, cooldownTime);
+    }
+    #endregion
   }
 }

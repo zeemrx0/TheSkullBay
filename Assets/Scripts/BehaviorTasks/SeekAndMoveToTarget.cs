@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using LNE.Combat.Abilities;
 using LNE.Core;
 using LNE.Movements;
 using UnityEngine;
@@ -7,11 +8,13 @@ namespace LNE.BehaviorTasks
 {
   public class SeekAndMoveToTarget : Action
   {
-    private AIWatercraftMovementPresenter _presenter;
+    private AIWatercraftMovementPresenter _movementPresenter;
+    private AIWatercraftAbilitiesPresenter _abilitiesPresenter;
 
     public override void OnAwake()
     {
-      _presenter = GetComponent<AIWatercraftMovementPresenter>();
+      _movementPresenter = GetComponent<AIWatercraftMovementPresenter>();
+      _abilitiesPresenter = GetComponent<AIWatercraftAbilitiesPresenter>();
     }
 
     public override TaskStatus OnUpdate()
@@ -28,7 +31,7 @@ namespace LNE.BehaviorTasks
     {
       RaycastHit[] hits = Physics.SphereCastAll(
         transform.position,
-        _presenter.FieldOfViewRadius,
+        _movementPresenter.FieldOfViewRadius,
         Vector3.up,
         0
       );
@@ -39,7 +42,8 @@ namespace LNE.BehaviorTasks
 
         if (character != null && character.gameObject != gameObject)
         {
-          _presenter.SetTargetPosition(character.transform.position);
+          _abilitiesPresenter.Target = character;
+          _movementPresenter.SetTargetPosition(character.transform.position);
           return true;
         }
       }
