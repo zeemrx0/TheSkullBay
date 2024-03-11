@@ -1,4 +1,5 @@
 using System.Collections;
+using LNE.Core;
 using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -7,8 +8,9 @@ namespace LNE.Combat
 {
   public class Projectile : MonoBehaviour
   {
-    public string OwnerId { get; set; }
+    public Character Owner { get; set; }
     public IObjectPool<Projectile> BelongingPool { get; set; }
+    public float AliveRange { get; set; }
 
     [SerializeField]
     private VFX _onCollideOceanVFXPrefab;
@@ -37,10 +39,8 @@ namespace LNE.Combat
 
     private void OnTriggerEnter(Collider other)
     {
-      if (
-        _isDestroyedOnCollision
-        || other.gameObject.GetInstanceID().ToString() == OwnerId
-      )
+      other.gameObject.TryGetComponent<Character>(out Character owner);
+      if (_isDestroyedOnCollision || owner == Owner)
       {
         return;
       }
@@ -63,7 +63,7 @@ namespace LNE.Combat
           break;
 
         case TagName.Projectile:
-          if (other.GetComponent<Projectile>().OwnerId == OwnerId)
+          if (other.GetComponent<Projectile>().Owner == Owner)
           {
             return;
           }
@@ -90,6 +90,17 @@ namespace LNE.Combat
             );
           }
           break;
+      }
+    }
+
+    private void Update()
+    {
+      if (
+        Vector3.Distance(transform.position, Owner.transform.position)
+        > AliveRange
+      )
+      {
+        Deactivate(0);
       }
     }
 
@@ -142,6 +153,11 @@ namespace LNE.Combat
     public void SetAngularVelocity(Vector3 angularVelocity)
     {
       _rigidbody.angularVelocity = angularVelocity;
+    }
+
+    public void SetUseGravity(bool useGravity)
+    {
+      _rigidbody.useGravity = useGravity;
     }
   }
 }

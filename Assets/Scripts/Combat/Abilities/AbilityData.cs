@@ -58,7 +58,6 @@ namespace LNE.Combat.Abilities
         {
           OnTargetAcquired(
             watercraftAbilitiesPresenter,
-            playerInputPresenter,
             abilityModel,
             projectilePool
           );
@@ -70,7 +69,6 @@ namespace LNE.Combat.Abilities
 
     public void OnTargetAcquired(
       WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
-      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
@@ -79,7 +77,6 @@ namespace LNE.Combat.Abilities
 
       _effectStrategy.StartEffect(
         watercraftAbilitiesPresenter,
-        playerInputPresenter,
         abilityModel,
         projectilePool
       );

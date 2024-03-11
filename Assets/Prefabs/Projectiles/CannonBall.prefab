@@ -201,6 +201,7 @@ MonoBehaviour:
   _onCollideObjectAudioClip: {fileID: 8300000, guid: 4dc3dfe3e51ae429283e9c8c811320be,
     type: 3}
   _damage: 40
+  _aliveTime: 1
 --- !u!1001 &4352817554629304532
 PrefabInstance:
   m_ObjectHideFlags: 0

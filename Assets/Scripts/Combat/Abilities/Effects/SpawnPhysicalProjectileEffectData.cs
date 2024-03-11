@@ -1,4 +1,4 @@
-using LNE.Inputs;
+using LNE.Core;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -37,7 +37,6 @@ namespace LNE.Combat.Abilities.Effects
 
     public override void StartEffect(
       WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
-      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
@@ -48,7 +47,8 @@ namespace LNE.Combat.Abilities.Effects
 
       Projectile projectile = projectilePool.Get();
       projectile.transform.position = abilityModel.InitialPosition;
-      projectile.OwnerId = watercraftAbilitiesPresenter.Id;
+      projectile.Owner =
+        watercraftAbilitiesPresenter.transform.GetComponent<Character>();
 
       Vector3 velocity = abilityModel.GetProjectVelocity();
 
