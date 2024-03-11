@@ -113,7 +113,7 @@ namespace LNE.Combat.Abilities.Targeting
 
         playerWatercraftAbilitiesPresenter.SetPhysicalProjectileTrajectory(
           abilityModel.InitialPosition,
-          abilityModel.GetProjectVelocity()
+          abilityModel.GetPhysicalProjectVelocity()
         );
 
         if (abilityModel.IsPerformed)

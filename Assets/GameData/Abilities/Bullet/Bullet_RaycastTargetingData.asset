@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bbc587d8e61475abf4973e4c0b641e, type: 3}
   m_Name: Bullet_RaycastTargetingData
   m_EditorClassIdentifier: 
-  <AimRadius>k__BackingField: 60
+  <AimRadius>k__BackingField: 70

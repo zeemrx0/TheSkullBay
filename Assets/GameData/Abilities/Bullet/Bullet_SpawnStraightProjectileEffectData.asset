@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bullet_SpawnStraightProjectileEffectData
   m_EditorClassIdentifier: 
   <ProjectSpeed>k__BackingField: 180
-  _projectilePrefab: {fileID: -5377492876554929425, guid: 30538d08e455740909832a1d8a70722a,
+  _projectilePrefab: {fileID: 5951738158950137145, guid: 6043423be6a934832b58b34ff2c4b283,
     type: 3}
-  _projectVFX: {fileID: 3153623433478953696, guid: 4c19e6069b271461299a1ebeef4fb158,
+  _projectVFX: {fileID: 8995836861048751783, guid: 0c3bc519c18804f2db3f9e72283b385f,
     type: 3}
-  _projectSound: {fileID: 8300000, guid: 156744ab95c4b4ca890d84658ba14299, type: 3}
+  _projectSound: {fileID: 8300000, guid: 08a9e812255874ab7a3ef6fb42816c91, type: 3}

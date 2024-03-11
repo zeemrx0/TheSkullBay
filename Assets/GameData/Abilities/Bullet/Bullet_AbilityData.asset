@@ -15,4 +15,4 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 8a08e777a119d448cb85f070e549cbfb, type: 3}
   _targetingStrategy: {fileID: 11400000, guid: aad3903ea78f84a3ca261646c5fdc89a, type: 2}
   _effectStrategy: {fileID: 11400000, guid: d033767146dec4001a00a4e2dab7a31a, type: 2}
-  _cooldownTime: 1
+  _cooldownTime: 0.7

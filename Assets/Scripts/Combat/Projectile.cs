@@ -10,7 +10,7 @@ namespace LNE.Combat
   {
     public Character Owner { get; set; }
     public IObjectPool<Projectile> BelongingPool { get; set; }
-    public float AliveRange { get; set; }
+    public float AliveRange { get; set; } = 1000f;
 
     [SerializeField]
     private VFX _onCollideOceanVFXPrefab;
@@ -19,10 +19,10 @@ namespace LNE.Combat
     private VFX _onCollideObjectVFXPrefab;
 
     [SerializeField]
-    private AudioClip _onCollideOceanAudioClip;
+    private AudioClip _onCollideOceanSound;
 
     [SerializeField]
-    private AudioClip _onCollideObjectAudioClip;
+    private AudioClip _onCollideObjectSound;
 
     [SerializeField]
     private float _damage;
@@ -51,11 +51,11 @@ namespace LNE.Combat
           if (_onCollideOceanVFXPrefab != null)
           {
             SpawnVFX(_onCollideOceanVFXPrefab);
-            _audioSource.PlayOneShot(_onCollideOceanAudioClip);
+            _audioSource.PlayOneShot(_onCollideOceanSound);
             Deactivate(
               Mathf.Max(
                 _onCollideOceanVFXPrefab.Duration,
-                _onCollideOceanAudioClip.length
+                _onCollideOceanSound.length
               )
             );
           }
@@ -76,7 +76,7 @@ namespace LNE.Combat
           if (_onCollideObjectVFXPrefab != null)
           {
             SpawnVFX(_onCollideObjectVFXPrefab);
-            _audioSource.PlayOneShot(_onCollideObjectAudioClip);
+            _audioSource.PlayOneShot(_onCollideObjectSound);
 
             other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
             health?.TakeDamage(_damage);
@@ -85,7 +85,7 @@ namespace LNE.Combat
             Deactivate(
               Mathf.Max(
                 _onCollideObjectVFXPrefab.Duration,
-                _onCollideObjectAudioClip.length
+                _onCollideObjectSound.length
               )
             );
           }

@@ -52,7 +52,7 @@ namespace LNE.Combat.Abilities
         watercraftAbilitiesPresenter.transform.GetComponent<Character>();
       projectile.AliveRange = abilityModel.AimRadius;
 
-      Vector3 velocity = abilityModel.GetProjectVelocity();
+      Vector3 velocity = abilityModel.GetStraightProjectVelocity();
 
       watercraftAbilitiesPresenter.PlayAudioClip(_projectSound);
 

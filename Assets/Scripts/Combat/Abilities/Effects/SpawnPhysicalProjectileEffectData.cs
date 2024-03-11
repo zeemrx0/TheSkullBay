@@ -50,7 +50,7 @@ namespace LNE.Combat.Abilities.Effects
       projectile.Owner =
         watercraftAbilitiesPresenter.transform.GetComponent<Character>();
 
-      Vector3 velocity = abilityModel.GetProjectVelocity();
+      Vector3 velocity = abilityModel.GetPhysicalProjectVelocity();
 
       watercraftAbilitiesPresenter.PlayAudioClip(_audioClip);
 

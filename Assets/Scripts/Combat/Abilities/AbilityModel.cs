@@ -11,7 +11,7 @@ namespace LNE.Combat.Abilities
     public float AimRadius { get; set; } = 0f;
     public float ProjectSpeed { get; set; }
 
-    public Vector3 GetProjectVelocity()
+    public Vector3 GetPhysicalProjectVelocity()
     {
       float distance = Vector3.Distance(InitialPosition, TargetPosition);
 
@@ -28,6 +28,14 @@ namespace LNE.Combat.Abilities
       Vector3 velocity =
         (TargetPosition - InitialPosition).normalized * speedX
         + Vector3.up * speedY;
+
+      return velocity;
+    }
+
+    public Vector3 GetStraightProjectVelocity()
+    {
+      Vector3 velocity =
+        (TargetPosition - InitialPosition).normalized * ProjectSpeed;
 
       return velocity;
     }
