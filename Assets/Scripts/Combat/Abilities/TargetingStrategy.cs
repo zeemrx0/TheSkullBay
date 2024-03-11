@@ -6,10 +6,13 @@ namespace LNE.Combat.Abilities
 {
   public abstract class TargetingStrategy : ScriptableObject
   {
+    [field: SerializeField]
+    public float AimRadius { get; protected set; } = 0f;
+
     public virtual void Init(AbilityModel abilityModel) { }
 
     public abstract void StartTargeting(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       AbilityModel abilityModel,
@@ -17,41 +20,41 @@ namespace LNE.Combat.Abilities
     );
 
     protected void HandleCancelTargeting(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
     {
       UnsubscribeFromInputEvents(
-        playerBoatAbilitiesPresenter,
+        playerWatercraftAbilitiesPresenter,
         playerInputPresenter,
         abilityModel
       );
 
-      playerBoatAbilitiesPresenter.HideAbilityIndicators();
+      playerWatercraftAbilitiesPresenter.HideAbilityIndicators();
 
       abilityModel.IsCancelled = true;
     }
 
     protected void HandleConfirmTargetPosition(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
     {
       UnsubscribeFromInputEvents(
-        playerBoatAbilitiesPresenter,
+        playerWatercraftAbilitiesPresenter,
         playerInputPresenter,
         abilityModel
       );
 
-      playerBoatAbilitiesPresenter.HideAbilityIndicators();
+      playerWatercraftAbilitiesPresenter.HideAbilityIndicators();
 
       abilityModel.IsPerformed = true;
     }
 
     protected void UnsubscribeFromInputEvents(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel
     )
@@ -59,15 +62,15 @@ namespace LNE.Combat.Abilities
       PlayerInputActions playerInputActions =
         playerInputPresenter.GetPlayerInputActions();
 
-      playerInputActions.Boat.Choose.performed -= ctx =>
+      playerInputActions.Watercraft.Choose.performed -= ctx =>
         HandleConfirmTargetPosition(
-          playerBoatAbilitiesPresenter,
+          playerWatercraftAbilitiesPresenter,
           playerInputPresenter,
           abilityModel
         );
-      playerInputActions.Boat.Cancel.performed -= ctx =>
+      playerInputActions.Watercraft.Cancel.performed -= ctx =>
         HandleCancelTargeting(
-          playerBoatAbilitiesPresenter,
+          playerWatercraftAbilitiesPresenter,
           playerInputPresenter,
           abilityModel
         );

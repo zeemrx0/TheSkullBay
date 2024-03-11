@@ -125,6 +125,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: acac27730903b40d08260165b44cdae9,
         type: 2}
+    - target: {fileID: 551646239130394361, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _watercraftMovementData
+      value: 
+      objectReference: {fileID: 11400000, guid: acac27730903b40d08260165b44cdae9,
+        type: 2}
     - target: {fileID: 628459328209206760, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: _slider

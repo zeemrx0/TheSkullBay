@@ -30,12 +30,12 @@ namespace LNE.Combat.Abilities
 
     private void OnEnable()
     {
-      _playerInputActions.Boat.Ability1.performed += HandleAbility1;
+      _playerInputActions.Watercraft.Ability1.performed += HandleAbility1;
     }
 
     private void OnDisable()
     {
-      _playerInputActions.Boat.Ability1.performed -= HandleAbility1;
+      _playerInputActions.Watercraft.Ability1.performed -= HandleAbility1;
     }
 
     protected override void Start()
@@ -92,54 +92,56 @@ namespace LNE.Combat.Abilities
     #region View Methods
     public void HideAbilityIndicators()
     {
-      _view.HideRangeIndicator();
-      _view.HideCircleIndicator();
-      _view.HidePhysicalProjectileTrajectory();
+      ((PlayerWatercraftAbilitiesView)_view).HideRangeIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).HideCircleIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).HidePhysicalProjectileTrajectory();
     }
 
     public void ShowRangeIndicator()
     {
-      _view.ShowRangeIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).ShowRangeIndicator();
     }
 
     public void HideRangeIndicator()
     {
-      _view.HideRangeIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).HideRangeIndicator();
     }
 
     public void SetRangeIndicatorSize(Vector2 size)
     {
-      _view.SetRangeIndicatorSize(size);
+      ((PlayerWatercraftAbilitiesView)_view).SetRangeIndicatorSize(size);
     }
 
     public void ShowCircleIndicator()
     {
-      _view.ShowCircleIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).ShowCircleIndicator();
     }
 
     public void HideCircleIndicator()
     {
-      _view.HideCircleIndicator();
+      ((PlayerWatercraftAbilitiesView)_view).HideCircleIndicator();
     }
 
     public void SetCircleIndicatorSize(Vector2 size)
     {
-      _view.SetCircleIndicatorSize(size);
+      ((PlayerWatercraftAbilitiesView)_view).SetCircleIndicatorSize(size);
     }
 
     public void SetCircleIndicatorPosition(Vector3 position)
     {
-      _view.SetCircleIndicatorPosition(position);
+      ((PlayerWatercraftAbilitiesView)_view).SetCircleIndicatorPosition(
+        position
+      );
     }
 
     public void ShowPhysicalProjectileTrajectory()
     {
-      _view.ShowPhysicalProjectileTrajectory();
+      ((PlayerWatercraftAbilitiesView)_view).ShowPhysicalProjectileTrajectory();
     }
 
     public void HidePhysicalProjectileTrajectory()
     {
-      _view.HidePhysicalProjectileTrajectory();
+      ((PlayerWatercraftAbilitiesView)_view).HidePhysicalProjectileTrajectory();
     }
 
     public void SetPhysicalProjectileTrajectory(
@@ -147,19 +149,10 @@ namespace LNE.Combat.Abilities
       Vector3 velocity
     )
     {
-      _view.SetPhysicalProjectileTrajectory(initialPosition, velocity);
-    }
-    #endregion
-
-    #region Model Methods
-    public float GetAbilityCooldownRemainingTime(AbilityData abilityData)
-    {
-      return _model.GetAbilityCooldownRemainingTime(abilityData);
-    }
-
-    public void StartCooldown(AbilityData abilityData, float cooldownTime)
-    {
-      _model.StartCooldown(abilityData, cooldownTime);
+      ((PlayerWatercraftAbilitiesView)_view).SetPhysicalProjectileTrajectory(
+        initialPosition,
+        velocity
+      );
     }
     #endregion
 

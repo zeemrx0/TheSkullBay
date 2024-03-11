@@ -1,4 +1,3 @@
-using LNE.Combat;
 using LNE.Inputs;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -16,8 +15,8 @@ namespace LNE.Combat.Abilities
     }
 
     public abstract void StartEffect(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
-      PlayerInputActions playerInputActions,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
+      PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     );

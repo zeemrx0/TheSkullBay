@@ -29,7 +29,7 @@ namespace LNE.Combat.Abilities
     }
 
     public bool Perform(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       Joystick joystick,
       IObjectPool<Projectile> projectilePool,
@@ -37,7 +37,7 @@ namespace LNE.Combat.Abilities
     )
     {
       if (
-        playerBoatAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
+        watercraftAbilitiesPresenter.GetAbilityCooldownRemainingTime(this) > 0
       )
       {
         return false;
@@ -46,18 +46,18 @@ namespace LNE.Combat.Abilities
       string abilityName = GetAbilityName(DefaultFileName);
 
       abilityModel.InitialPosition =
-        playerBoatAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
+        watercraftAbilitiesPresenter.FindAbilitySpawnPosition(abilityName);
       abilityModel.ProjectSpeed = _effectStrategy.ProjectSpeed;
 
       _targetingStrategy.StartTargeting(
-        playerBoatAbilitiesPresenter,
+        watercraftAbilitiesPresenter,
         playerInputPresenter,
         joystick,
         abilityModel,
         () =>
         {
           OnTargetAcquired(
-            playerBoatAbilitiesPresenter,
+            watercraftAbilitiesPresenter,
             playerInputPresenter,
             abilityModel,
             projectilePool
@@ -69,17 +69,17 @@ namespace LNE.Combat.Abilities
     }
 
     public void OnTargetAcquired(
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      WatercraftAbilitiesPresenter watercraftAbilitiesPresenter,
       PlayerInputPresenter playerInputPresenter,
       AbilityModel abilityModel,
       IObjectPool<Projectile> projectilePool
     )
     {
-      playerBoatAbilitiesPresenter.StartCooldown(this, _cooldownTime);
+      watercraftAbilitiesPresenter.StartCooldown(this, _cooldownTime);
 
       _effectStrategy.StartEffect(
-        playerBoatAbilitiesPresenter,
-        playerInputPresenter.GetPlayerInputActions(),
+        watercraftAbilitiesPresenter,
+        playerInputPresenter,
         abilityModel,
         projectilePool
       );
@@ -89,5 +89,9 @@ namespace LNE.Combat.Abilities
     {
       return name.Split(defaultFileName)[0];
     }
+
+    public float AimRadius => _targetingStrategy.AimRadius;
+
+    public float ProjectileSpeed => _effectStrategy.ProjectSpeed;
   }
 }

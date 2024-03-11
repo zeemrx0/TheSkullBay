@@ -27,7 +27,7 @@ namespace LNE.Inputs
       if (_playerInputActions == null)
       {
         _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Boat.Enable();
+        _playerInputActions.Watercraft.Enable();
       }
 
       return _playerInputActions;
@@ -41,14 +41,14 @@ namespace LNE.Inputs
       }
 
       _playerInputActions = new PlayerInputActions();
-      _playerInputActions.Boat.Enable();
+      _playerInputActions.Watercraft.Enable();
 
       // Use ` key instead of Esc when in editor
 #if UNITY_EDITOR
       string keyboardBackQuotePath = "<Keyboard>/BackQuote";
       string keyboardEscapePath = "<Keyboard>/Escape";
 
-      _playerInputActions.Boat.Cancel.ApplyBindingOverride(
+      _playerInputActions.Watercraft.Cancel.ApplyBindingOverride(
         keyboardBackQuotePath,
         path: keyboardEscapePath
       );

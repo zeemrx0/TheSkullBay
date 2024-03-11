@@ -5,7 +5,7 @@ using Application = UnityEngine.Device.Application;
 
 namespace LNE.Movements
 {
-  public class PlayerBoatMovementPresenter : WatercraftMovementPresenter
+  public class PlayerWatercraftMovementPresenter : WatercraftMovementPresenter
   {
     // Injected
     private PlayerInputPresenter _playerInputPresenter;
@@ -25,7 +25,7 @@ namespace LNE.Movements
     protected override void Awake()
     {
       base.Awake();
-      _view = GetComponent<PlayerBoatMovementView>();
+      _view = GetComponent<PlayerWatercraftMovementView>();
     }
 
     private void Update()
@@ -41,7 +41,7 @@ namespace LNE.Movements
       }
       else
       {
-        _moveInput = _playerInputActions.Boat.Move.ReadValue<Vector2>();
+        _moveInput = _playerInputActions.Watercraft.Move.ReadValue<Vector2>();
       }
 
       LimitVelocity();
@@ -64,7 +64,7 @@ namespace LNE.Movements
       {
         // Steer
         float steerSpeed =
-          _boatMovementData.SteerSpeed * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
+          _watercraftMovementData.SteerSpeed * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
 
         if (angle > 0f)
         {
@@ -75,7 +75,7 @@ namespace LNE.Movements
           Steer(-1, steerSpeed);
         }
 
-        if (Mathf.Abs(angle) < _boatMovementData.AngleThreshold)
+        if (Mathf.Abs(angle) < _watercraftMovementData.AngleThreshold)
         {
           MoveForward();
         }
@@ -86,7 +86,7 @@ namespace LNE.Movements
 
     private void MoveForward()
     {
-      _view.Move(_rigidbody, 1, _boatMovementData.MoveSpeed);
+      _view.Move(_rigidbody, 1, _watercraftMovementData.MoveSpeed);
     }
 
     private void Steer(float direction, float speed)

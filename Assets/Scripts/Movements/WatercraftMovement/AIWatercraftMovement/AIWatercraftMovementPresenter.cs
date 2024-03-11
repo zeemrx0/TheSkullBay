@@ -7,6 +7,8 @@ namespace LNE.Movements
   {
     public AIWatercraftCharacterSpawner Spawner { get; set; }
 
+    [field: SerializeField]
+    public float FieldOfViewRadius { get; private set; } = 200f;
     private AIWatercraftMovementModel _model;
 
     protected override void Awake()
@@ -60,7 +62,7 @@ namespace LNE.Movements
         _view.Steer(
           _rigidbody,
           1,
-          _boatMovementData.SteerSpeed
+          _watercraftMovementData.SteerSpeed
             * Mathf.Clamp01(
               Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
             )
@@ -71,7 +73,7 @@ namespace LNE.Movements
         _view.Steer(
           _rigidbody,
           -1,
-          _boatMovementData.SteerSpeed
+          _watercraftMovementData.SteerSpeed
             * Mathf.Clamp01(
               Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 180f
             )
@@ -96,9 +98,14 @@ namespace LNE.Movements
         _view.Move(
           _rigidbody,
           1,
-          _boatMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
+          _watercraftMovementData.MoveSpeed * Mathf.Clamp01(distance / 100f)
         );
       }
+    }
+
+    public void SetTargetPosition(Vector3 targetPosition)
+    {
+      _model.TargetPosition = targetPosition;
     }
   }
 }

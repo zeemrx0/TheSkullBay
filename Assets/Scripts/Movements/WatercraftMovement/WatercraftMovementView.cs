@@ -6,11 +6,11 @@ namespace LNE.Movements
 {
   public abstract class WatercraftMovementView : MonoBehaviour
   {
-    protected ParticleSystem _boatWaterVFX;
+    protected ParticleSystem _watercraftWaterVFX;
 
     protected virtual void Awake()
     {
-      _boatWaterVFX = transform
+      _watercraftWaterVFX = transform
         .GetComponentInChildren<Vehicle>()
         .transform.Find(GameObjectName.MoveWaterFX)
         .GetComponent<ParticleSystem>();
@@ -34,7 +34,7 @@ namespace LNE.Movements
 
     public void SetWaterVFXRateOverTime(float rate)
     {
-      ParticleSystem.EmissionModule emission = _boatWaterVFX.emission;
+      ParticleSystem.EmissionModule emission = _watercraftWaterVFX.emission;
       emission.rateOverTime = rate;
     }
   }

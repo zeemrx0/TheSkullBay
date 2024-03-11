@@ -12,7 +12,7 @@ namespace LNE.Combat.Abilities
       IDragHandler
   {
     private AbilityData _abilityData;
-    private PlayerWatercraftAbilitiesPresenter _playerBoatAbilitiesPresenter;
+    private PlayerWatercraftAbilitiesPresenter _playerWatercraftAbilitiesPresenter;
     private PlayerInputPresenter _playerInputPresenter;
     private IObjectPool<Projectile> _projectilePool;
 
@@ -23,13 +23,13 @@ namespace LNE.Combat.Abilities
 
     public void Init(
       AbilityData abilityData,
-      PlayerWatercraftAbilitiesPresenter playerBoatAbilitiesPresenter,
+      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       IObjectPool<Projectile> projectilePool,
       PlayerInputPresenter playerInputPresenter
     )
     {
       _abilityData = abilityData;
-      _playerBoatAbilitiesPresenter = playerBoatAbilitiesPresenter;
+      _playerWatercraftAbilitiesPresenter = playerWatercraftAbilitiesPresenter;
       _projectilePool = projectilePool;
       _playerInputPresenter = playerInputPresenter;
     }
@@ -43,7 +43,7 @@ namespace LNE.Combat.Abilities
     public void OnPointerDown(PointerEventData eventData)
     {
       if (
-        _playerBoatAbilitiesPresenter.GetAbilityCooldownRemainingTime(
+        _playerWatercraftAbilitiesPresenter.GetAbilityCooldownRemainingTime(
           _abilityData
         ) > 0
       )
@@ -58,7 +58,7 @@ namespace LNE.Combat.Abilities
 
       _abilityModel = new AbilityModel();
       _abilityData.Perform(
-        _playerBoatAbilitiesPresenter,
+        _playerWatercraftAbilitiesPresenter,
         _playerInputPresenter,
         _joystick,
         _projectilePool,
