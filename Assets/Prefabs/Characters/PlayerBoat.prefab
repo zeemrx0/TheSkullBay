@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityDataList:
-  - {fileID: 11400000, guid: 21277a2173e5349cda1cb74e4cf80c5d, type: 2}
   - {fileID: 11400000, guid: c19bdf8c94e4d4ca6b647f3b25e45085, type: 2}
+  - {fileID: 11400000, guid: 21277a2173e5349cda1cb74e4cf80c5d, type: 2}
   _abilityButtons: []
 --- !u!114 &3292498469647642372
 MonoBehaviour:
