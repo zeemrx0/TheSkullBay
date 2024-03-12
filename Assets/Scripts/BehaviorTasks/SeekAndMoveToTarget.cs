@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using LNE.Combat.Abilities;
 using LNE.Core;
 using LNE.Movements;
+using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.BehaviorTasks
@@ -40,7 +41,11 @@ namespace LNE.BehaviorTasks
       {
         hit.transform.TryGetComponent<Character>(out Character character);
 
-        if (character != null && character.gameObject != gameObject)
+        if (
+          character != null
+          && character.gameObject != gameObject
+          && character.CompareTag(TagName.Player)
+        )
         {
           _abilitiesPresenter.Target = character;
           _movementPresenter.SetTargetPosition(character.transform.position);

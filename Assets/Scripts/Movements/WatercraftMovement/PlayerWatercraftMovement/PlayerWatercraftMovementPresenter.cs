@@ -64,7 +64,8 @@ namespace LNE.Movements
       {
         // Steer
         float steerSpeed =
-          _watercraftMovementData.SteerSpeed * Mathf.Clamp01(Mathf.Abs(angle) / 90f);
+          _watercraftMovementData.SteerSpeed
+          * Mathf.Clamp01(Mathf.Abs(angle) / 30f);
 
         if (angle > 0f)
         {

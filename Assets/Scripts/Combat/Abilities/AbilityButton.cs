@@ -35,12 +35,17 @@ namespace LNE.Combat.Abilities
       _playerInputPresenter = playerInputPresenter;
     }
 
-    private void Start()
+    private void Awake()
     {
       _joystick = transform
         .Find(GameObjectName.TargetingJoystick)
         .GetComponent<FixedJoystick>();
+    }
+
+    private void Start()
+    {
       _joystick.gameObject.SetActive(false);
+      _abilityModel = new AbilityModel();
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -27,11 +27,21 @@ namespace LNE.Combat
         controlCanvas.SetActive(false);
       }
 
-      base.DieCoroutine(delayTime);
+      TryGetComponent(out Collider c);
+      if (c != null)
+      {
+        c.enabled = false;
+      }
+      foreach (Transform child in transform)
+      {
+        child.gameObject.SetActive(false);
+      }
+
+      yield return new WaitForSeconds(delayTime);
+
+      Destroy(gameObject);
 
       _gameCorePresenter.GameOver();
-
-      yield return null;
     }
   }
 }

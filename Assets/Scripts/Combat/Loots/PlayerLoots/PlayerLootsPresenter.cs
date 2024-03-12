@@ -9,6 +9,7 @@ namespace LNE.Combat.Loots
     [SerializeField]
     private PlayerLootsView _view;
 
+    // Injected
     private GameCorePresenter _gameCorePresenter;
 
     [Inject]
@@ -26,6 +27,14 @@ namespace LNE.Combat.Loots
     private void HandleGameOver()
     {
       _gameCorePresenter.SetGoldAmount(_goldAmount);
+    }
+
+    private void OnEnable()
+    {
+      if (_gameCorePresenter != null)
+      {
+        _gameCorePresenter.OnGameOver += HandleGameOver;
+      }
     }
 
     private void OnDisable()

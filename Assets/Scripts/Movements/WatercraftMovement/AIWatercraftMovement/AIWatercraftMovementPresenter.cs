@@ -75,7 +75,7 @@ namespace LNE.Movements
           -1,
           _watercraftMovementData.SteerSpeed
             * Mathf.Clamp01(
-              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 180f
+              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
             )
         );
       }
