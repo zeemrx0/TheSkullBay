@@ -48,7 +48,7 @@ namespace LNE.Combat
       StartCoroutine(DieCoroutine(time));
     }
 
-    private IEnumerator DieCoroutine(float delayTime)
+    protected virtual IEnumerator DieCoroutine(float delayTime)
     {
       TryGetComponent(out Collider c);
       if (c != null)
@@ -59,8 +59,12 @@ namespace LNE.Combat
       {
         child.gameObject.SetActive(false);
       }
+
       yield return new WaitForSeconds(delayTime);
+
       Destroy(gameObject);
+
+      yield return null;
     }
   }
 }

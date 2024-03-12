@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439099fca6f5c40b8a0d510c9acf495c, type: 3}
   m_Name: LargeBoat_WatercraftMovementData
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 300
-  <MaxMoveSpeed>k__BackingField: 30
-  _steerSpeed: 55
-  _maxSteerSpeed: 35
+  <MoveSpeed>k__BackingField: 340
+  <MaxMoveSpeed>k__BackingField: 34
+  _steerSpeed: 66
+  _maxSteerSpeed: 40
   <AngleThreshold>k__BackingField: 45

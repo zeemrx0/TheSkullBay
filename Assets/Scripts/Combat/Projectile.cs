@@ -30,6 +30,7 @@ namespace LNE.Combat
     private Rigidbody _rigidbody;
     private AudioSource _audioSource;
     private bool _isDestroyedOnCollision = false;
+    private Vector3 _lastOwnerPosition;
 
     private void Awake()
     {
@@ -95,10 +96,12 @@ namespace LNE.Combat
 
     private void Update()
     {
-      if (
-        Vector3.Distance(transform.position, Owner.transform.position)
-        > AliveRange
-      )
+      if (Owner != null)
+      {
+        _lastOwnerPosition = Owner.transform.position;
+      }
+
+      if (Vector3.Distance(transform.position, _lastOwnerPosition) > AliveRange)
       {
         Deactivate(0);
       }
