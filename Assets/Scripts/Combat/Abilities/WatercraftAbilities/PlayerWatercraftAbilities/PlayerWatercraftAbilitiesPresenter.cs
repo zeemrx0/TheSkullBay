@@ -90,13 +90,16 @@ namespace LNE.Combat.Abilities
     }
 
     #region View Methods
+
     public void HideAbilityIndicators()
     {
       ((PlayerWatercraftAbilitiesView)_view).HideRangeIndicator();
       ((PlayerWatercraftAbilitiesView)_view).HideCircleIndicator();
       ((PlayerWatercraftAbilitiesView)_view).HidePhysicalProjectileTrajectory();
+      ((PlayerWatercraftAbilitiesView)_view).HideAimRay();
     }
 
+    #region Range Indicator
     public void ShowRangeIndicator()
     {
       ((PlayerWatercraftAbilitiesView)_view).ShowRangeIndicator();
@@ -111,7 +114,9 @@ namespace LNE.Combat.Abilities
     {
       ((PlayerWatercraftAbilitiesView)_view).SetRangeIndicatorSize(size);
     }
+    #endregion
 
+    #region Aim Indicator
     public void ShowCircleIndicator()
     {
       ((PlayerWatercraftAbilitiesView)_view).ShowCircleIndicator();
@@ -133,7 +138,9 @@ namespace LNE.Combat.Abilities
         position
       );
     }
+    #endregion
 
+    #region Physical Projectile Trajectory
     public void ShowPhysicalProjectileTrajectory()
     {
       ((PlayerWatercraftAbilitiesView)_view).ShowPhysicalProjectileTrajectory();
@@ -154,6 +161,25 @@ namespace LNE.Combat.Abilities
         velocity
       );
     }
+    #endregion
+
+    #region Aim Ray
+    public void ShowAimRay()
+    {
+      ((PlayerWatercraftAbilitiesView)_view).ShowAimRay();
+    }
+
+    public void HideAimRay()
+    {
+      ((PlayerWatercraftAbilitiesView)_view).HideAimRay();
+    }
+
+    public void SetAimRay(Vector3 start, Vector3 end)
+    {
+      ((PlayerWatercraftAbilitiesView)_view).SetAimRay(start, end);
+    }
+    #endregion
+
     #endregion
 
     #region Input Handlers

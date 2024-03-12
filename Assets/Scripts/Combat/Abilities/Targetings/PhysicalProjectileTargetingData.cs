@@ -106,7 +106,6 @@ namespace LNE.Combat.Abilities.Targeting
         else
         {
           FindTargetPositionPC(
-            playerWatercraftAbilitiesPresenter,
             abilityModel,
             playerInputPresenter.CurrentMousePosition
           );
@@ -114,7 +113,7 @@ namespace LNE.Combat.Abilities.Targeting
 
         playerWatercraftAbilitiesPresenter.SetPhysicalProjectileTrajectory(
           abilityModel.InitialPosition,
-          abilityModel.GetProjectVelocity()
+          abilityModel.GetPhysicalProjectVelocity()
         );
 
         if (abilityModel.IsPerformed)
@@ -150,7 +149,7 @@ namespace LNE.Combat.Abilities.Targeting
       {
         abilityModel.TargetPosition = GetLimitedTargetPosition(
           aiWatercraftAbilitiesPresenter.GetPredictiveTargetPosition(),
-          aiWatercraftAbilitiesPresenter.Origin,
+          abilityModel.InitialPosition,
           AimRadius
         );
 
@@ -177,7 +176,6 @@ namespace LNE.Combat.Abilities.Targeting
     }
 
     private void FindTargetPositionPC(
-      PlayerWatercraftAbilitiesPresenter playerWatercraftAbilitiesPresenter,
       AbilityModel abilityModel,
       Vector2 mousePosition
     )
@@ -193,7 +191,7 @@ namespace LNE.Combat.Abilities.Targeting
       {
         abilityModel.TargetPosition = GetLimitedTargetPosition(
           raycastHit.point,
-          playerWatercraftAbilitiesPresenter.Origin,
+          abilityModel.InitialPosition,
           AimRadius
         );
       }

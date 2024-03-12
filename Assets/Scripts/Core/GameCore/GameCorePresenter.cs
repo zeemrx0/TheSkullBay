@@ -41,7 +41,9 @@ namespace LNE.Core
 
     private void Start()
     {
-      _aiWatercraftsContainer = GameObject.Find(GameObjectName.AIWatercraftCharactersContainer);
+      _aiWatercraftsContainer = GameObject.Find(
+        GameObjectName.AIWatercraftCharactersContainer
+      );
       _lootsContainer = GameObject.Find(GameObjectName.LootsContainer);
     }
 
@@ -60,7 +62,6 @@ namespace LNE.Core
         )
         {
           GameOver();
-          ShowGameOverPanel(GameString.Victory);
         }
       }
     }
@@ -70,9 +71,11 @@ namespace LNE.Core
       IsGameOver = true;
       OnGameOver?.Invoke();
       _playerInputActions.Disable();
+
+      ShowGameOverPanel();
     }
 
-    public void ShowGameOverPanel(string title)
+    private void ShowGameOverPanel()
     {
       _view.ShowGameOverPanel();
     }

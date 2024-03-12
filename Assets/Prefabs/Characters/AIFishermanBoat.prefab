@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIFishermanBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 8380352035124315358, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8059079233727253991, guid: 581d617dbb73045c3a860f4e205c71ed, type: 3}
     m_RemovedGameObjects: []

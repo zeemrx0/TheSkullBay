@@ -1,4 +1,5 @@
 using LNE.Inputs;
+using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
@@ -34,10 +35,17 @@ namespace LNE.Combat.Abilities
       _playerInputPresenter = playerInputPresenter;
     }
 
+    private void Awake()
+    {
+      _joystick = transform
+        .Find(GameObjectName.TargetingJoystick)
+        .GetComponent<FixedJoystick>();
+    }
+
     private void Start()
     {
-      _joystick = FindObjectOfType<FixedJoystick>();
       _joystick.gameObject.SetActive(false);
+      _abilityModel = new AbilityModel();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -52,7 +60,7 @@ namespace LNE.Combat.Abilities
       }
 
       _isPerforming = true;
-      
+
       _joystick.gameObject.SetActive(true);
       _joystick.OnPointerDown(eventData);
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using LNE.Core;
 using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -7,8 +8,9 @@ namespace LNE.Combat
 {
   public class Projectile : MonoBehaviour
   {
-    public string OwnerId { get; set; }
+    public Character Owner { get; set; }
     public IObjectPool<Projectile> BelongingPool { get; set; }
+    public float AliveRange { get; set; } = 1000f;
 
     [SerializeField]
     private VFX _onCollideOceanVFXPrefab;
@@ -17,10 +19,10 @@ namespace LNE.Combat
     private VFX _onCollideObjectVFXPrefab;
 
     [SerializeField]
-    private AudioClip _onCollideOceanAudioClip;
+    private AudioClip _onCollideOceanSound;
 
     [SerializeField]
-    private AudioClip _onCollideObjectAudioClip;
+    private AudioClip _onCollideObjectSound;
 
     [SerializeField]
     private float _damage;
@@ -28,6 +30,7 @@ namespace LNE.Combat
     private Rigidbody _rigidbody;
     private AudioSource _audioSource;
     private bool _isDestroyedOnCollision = false;
+    private Vector3 _lastOwnerPosition;
 
     private void Awake()
     {
@@ -37,10 +40,8 @@ namespace LNE.Combat
 
     private void OnTriggerEnter(Collider other)
     {
-      if (
-        _isDestroyedOnCollision
-        || other.gameObject.GetInstanceID().ToString() == OwnerId
-      )
+      other.gameObject.TryGetComponent<Character>(out Character owner);
+      if (_isDestroyedOnCollision || owner == Owner)
       {
         return;
       }
@@ -51,11 +52,11 @@ namespace LNE.Combat
           if (_onCollideOceanVFXPrefab != null)
           {
             SpawnVFX(_onCollideOceanVFXPrefab);
-            _audioSource.PlayOneShot(_onCollideOceanAudioClip);
+            _audioSource.PlayOneShot(_onCollideOceanSound);
             Deactivate(
               Mathf.Max(
                 _onCollideOceanVFXPrefab.Duration,
-                _onCollideOceanAudioClip.length
+                _onCollideOceanSound.length
               )
             );
           }
@@ -63,7 +64,7 @@ namespace LNE.Combat
           break;
 
         case TagName.Projectile:
-          if (other.GetComponent<Projectile>().OwnerId == OwnerId)
+          if (other.GetComponent<Projectile>().Owner == Owner)
           {
             return;
           }
@@ -76,7 +77,7 @@ namespace LNE.Combat
           if (_onCollideObjectVFXPrefab != null)
           {
             SpawnVFX(_onCollideObjectVFXPrefab);
-            _audioSource.PlayOneShot(_onCollideObjectAudioClip);
+            _audioSource.PlayOneShot(_onCollideObjectSound);
 
             other.TryGetComponent<HealthPresenter>(out HealthPresenter health);
             health?.TakeDamage(_damage);
@@ -85,11 +86,24 @@ namespace LNE.Combat
             Deactivate(
               Mathf.Max(
                 _onCollideObjectVFXPrefab.Duration,
-                _onCollideObjectAudioClip.length
+                _onCollideObjectSound.length
               )
             );
           }
           break;
+      }
+    }
+
+    private void Update()
+    {
+      if (Owner != null)
+      {
+        _lastOwnerPosition = Owner.transform.position;
+      }
+
+      if (Vector3.Distance(transform.position, _lastOwnerPosition) > AliveRange)
+      {
+        Deactivate(0);
       }
     }
 
@@ -142,6 +156,11 @@ namespace LNE.Combat
     public void SetAngularVelocity(Vector3 angularVelocity)
     {
       _rigidbody.angularVelocity = angularVelocity;
+    }
+
+    public void SetUseGravity(bool useGravity)
+    {
+      _rigidbody.useGravity = useGravity;
     }
   }
 }

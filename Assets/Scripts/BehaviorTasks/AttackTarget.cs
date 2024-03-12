@@ -3,16 +3,21 @@ using LNE.Combat.Abilities;
 
 public class AttackTarget : Action
 {
-  private AIWatercraftAbilitiesPresenter _presenter;
+  private AIWatercraftAbilitiesPresenter _aiWatercraftAbilitiesPresenter;
 
   public override void OnAwake()
   {
-    _presenter = GetComponent<AIWatercraftAbilitiesPresenter>();
+    _aiWatercraftAbilitiesPresenter =
+      GetComponent<AIWatercraftAbilitiesPresenter>();
   }
 
   public override TaskStatus OnUpdate()
   {
-    _presenter.PerformAbilities();
-    return TaskStatus.Success;
+    if (_aiWatercraftAbilitiesPresenter.PerformAbilities())
+    {
+      return TaskStatus.Success;
+    }
+
+    return TaskStatus.Failure;
   }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using LNE.Combat.Loots;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace LNE.Combat
 {
   public class HealthPresenter : MonoBehaviour
   {
+    public event Action OnDie;
+
     [SerializeField]
     private float _maxHealth = 100;
 
@@ -45,10 +48,12 @@ namespace LNE.Combat
       _view.ShowOnDieVFX();
       float time = _view.PlayOnDieAudioClip();
 
+      OnDie?.Invoke();
+
       StartCoroutine(DieCoroutine(time));
     }
 
-    private IEnumerator DieCoroutine(float delayTime)
+    protected virtual IEnumerator DieCoroutine(float delayTime)
     {
       TryGetComponent(out Collider c);
       if (c != null)
@@ -59,8 +64,12 @@ namespace LNE.Combat
       {
         child.gameObject.SetActive(false);
       }
+
       yield return new WaitForSeconds(delayTime);
+
       Destroy(gameObject);
+
+      yield return null;
     }
   }
 }

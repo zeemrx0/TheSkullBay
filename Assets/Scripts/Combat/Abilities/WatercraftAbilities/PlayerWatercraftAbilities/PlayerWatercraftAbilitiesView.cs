@@ -14,7 +14,10 @@ namespace LNE.Combat.Abilities
     private RectTransform _circleIndicator;
 
     [SerializeField]
-    private LineRenderer _lineRenderer;
+    private LineRenderer _physicalTrajectoryRenderer;
+
+    [SerializeField]
+    private LineRenderer _aimRayRenderer;
 
     [SerializeField]
     private GameObject[] _abilityButtons;
@@ -99,12 +102,12 @@ namespace LNE.Combat.Abilities
     #region Physical Projectile Trajectory
     public void ShowPhysicalProjectileTrajectory()
     {
-      _lineRenderer.gameObject.SetActive(true);
+      _physicalTrajectoryRenderer.gameObject.SetActive(true);
     }
 
     public void HidePhysicalProjectileTrajectory()
     {
-      _lineRenderer.gameObject.SetActive(false);
+      _physicalTrajectoryRenderer.gameObject.SetActive(false);
     }
 
     public void SetPhysicalProjectileTrajectory(
@@ -118,7 +121,7 @@ namespace LNE.Combat.Abilities
 
       Vector3[] positions = new Vector3[steps];
 
-      _lineRenderer.positionCount = steps;
+      _physicalTrajectoryRenderer.positionCount = steps;
 
       for (int i = 0; i < steps; i++)
       {
@@ -127,8 +130,27 @@ namespace LNE.Combat.Abilities
         positions[i].y =
           initialPosition.y + velocity.y * t + 0.5f * Physics.gravity.y * t * t;
 
-        _lineRenderer.SetPosition(i, positions[i]);
+        _physicalTrajectoryRenderer.SetPosition(i, positions[i]);
       }
+    }
+    #endregion
+
+    #region Aim Ray
+    public void ShowAimRay()
+    {
+      _aimRayRenderer.gameObject.SetActive(true);
+    }
+
+    public void HideAimRay()
+    {
+      _aimRayRenderer.gameObject.SetActive(false);
+    }
+
+    public void SetAimRay(Vector3 start, Vector3 end)
+    {
+      _aimRayRenderer.positionCount = 2;
+      _aimRayRenderer.SetPosition(0, start);
+      _aimRayRenderer.SetPosition(1, end);
     }
     #endregion
   }
