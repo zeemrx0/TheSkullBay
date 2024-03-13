@@ -136,6 +136,12 @@ PrefabInstance:
       propertyPath: _slider
       value: 
       objectReference: {fileID: 7215734800703358177}
+    - target: {fileID: 628459328209206760, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _onDieVFX
+      value: 
+      objectReference: {fileID: 8995836861048751783, guid: 91941d79f4f9f47dda0716991dd75001,
+        type: 3}
     - target: {fileID: 2240923906798959781, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: lootPrefab

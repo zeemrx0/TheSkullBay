@@ -321,7 +321,9 @@ MonoBehaviour:
   _abilityDataList:
   - {fileID: 11400000, guid: c19bdf8c94e4d4ca6b647f3b25e45085, type: 2}
   - {fileID: 11400000, guid: 21277a2173e5349cda1cb74e4cf80c5d, type: 2}
-  _abilityButtons: []
+  _abilityButtons:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3292498469647642372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +340,9 @@ MonoBehaviour:
   _circleIndicator: {fileID: 3870742510700841935}
   _physicalTrajectoryRenderer: {fileID: 9135308362267967455}
   _aimRayRenderer: {fileID: 5277262354066576385}
-  _abilityButtons: []
+  _abilityButtons:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6688556670782621033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bcd3eb8a20644b5926d8e845035af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHunger: 1000
+  _maxHunger: 1400
   _hungerDecreaseRate: 5.5
 --- !u!114 &8935126836796905353
 MonoBehaviour:
@@ -377,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853e0e7f497c54e0db5cc44adf250cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 180
   _currentHealth: 0
   controlCanvas: {fileID: 0}
 --- !u!114 &6692614757421814760
@@ -392,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5865a39d76694668b44fcf5d8e95a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDieVFX: {fileID: 4292187322305165381, guid: 628a7fd5d63ca4653910c98727a40bf0,
+  _onDieVFX: {fileID: 8995836861048751783, guid: 91941d79f4f9f47dda0716991dd75001,
     type: 3}
   _onDieAudioClip: {fileID: 8300000, guid: 6047d2e7daae74014a61e68316dcab78, type: 3}
 --- !u!114 &1569318290219632309
@@ -552,7 +556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3566503604819837208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3237954, y: -0.35841084, z: 0.13412042, w: 0.86528033}
+  m_LocalRotation: {x: 0.32379538, y: -0.35841078, z: 0.1341204, w: 0.86528033}
   m_LocalPosition: {x: 130, y: 163.3, z: -114.400024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

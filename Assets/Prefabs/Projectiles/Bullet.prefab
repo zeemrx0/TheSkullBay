@@ -186,7 +186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _onCollideObjectVFXPrefab
       value: 
-      objectReference: {fileID: 3153623433478953696, guid: 4c19e6069b271461299a1ebeef4fb158,
+      objectReference: {fileID: 8995836861048751783, guid: 8a44d331f11674be0a4cd343a1a233bb,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
