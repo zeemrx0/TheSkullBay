@@ -386,7 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 180
   _currentHealth: 0
-  controlCanvas: {fileID: 0}
+  _vehicle: {fileID: 6910858403922768505}
+  _controlCanvas: {fileID: 0}
 --- !u!114 &6692614757421814760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1224,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6910858403922768505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904885765439814651, guid: 902132aecd2f64e51b4c29b9b28f377f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2629204388403349890}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b2715fbccb6480bb74aca992aa1e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7592090304052528904 stripped
