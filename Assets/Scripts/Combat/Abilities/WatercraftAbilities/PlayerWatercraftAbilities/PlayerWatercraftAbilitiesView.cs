@@ -1,7 +1,4 @@
-using LNE.Utilities.Constants;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace LNE.Combat.Abilities
 {
@@ -20,23 +17,18 @@ namespace LNE.Combat.Abilities
     private LineRenderer _aimRayRenderer;
 
     [SerializeField]
-    private GameObject[] _abilityButtons;
+    private AbilityButton[] _abilityButtons;
+
+    private void Start() { }
 
     public void SetAbilityButtonIconActive(int index, bool active)
     {
-      _abilityButtons[index].transform
-        .Find(GameObjectName.Border)
-        .Find(GameObjectName.Icon)
-        .gameObject.SetActive(active);
+      _abilityButtons[index].SetIconActive(active);
     }
 
     public void SetAbilityButtonIcon(int index, Sprite icon)
     {
-      _abilityButtons[index].transform
-        .Find(GameObjectName.Border)
-        .Find(GameObjectName.Icon)
-        .GetComponent<Image>()
-        .sprite = icon;
+      _abilityButtons[index].SetIcon(icon);
     }
 
     public void SetAbilityCooldownTime(
@@ -45,17 +37,7 @@ namespace LNE.Combat.Abilities
       float initialTime
     )
     {
-      _abilityButtons[index].transform
-        .Find(GameObjectName.Border)
-        .Find(GameObjectName.Overlay)
-        .GetComponent<Image>()
-        .fillAmount = initialTime == 0 ? 0 : (remainingTime / initialTime);
-
-      _abilityButtons[index].transform
-        .Find(GameObjectName.Border)
-        .Find(GameObjectName.CooldownTimeText)
-        .GetComponent<TextMeshProUGUI>()
-        .text = initialTime == 0 ? "" : Mathf.Ceil(remainingTime).ToString();
+      _abilityButtons[index].SetCooldownTime(remainingTime, initialTime);
     }
 
     #region  Range Indicator

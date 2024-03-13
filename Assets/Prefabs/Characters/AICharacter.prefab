@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854ff0f0ef9ff4575acb202b52346980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _origin: {fileID: 7473795288472247788}
 --- !u!114 &4336286572999790527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   _onDieVFX: {fileID: 4292187322305165381, guid: 628a7fd5d63ca4653910c98727a40bf0,
     type: 3}
   _onDieAudioClip: {fileID: 8300000, guid: 6047d2e7daae74014a61e68316dcab78, type: 3}
+  _slider: {fileID: 0}
 --- !u!114 &551646239130394361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03505cb38872946fb8dc2c4cb46835a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boatMovementData: {fileID: 0}
+  _watercraftMovementData: {fileID: 0}
+  <FieldOfViewRadius>k__BackingField: 200
 --- !u!114 &4745241481992262289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a4c8cbb31204cc48114191aaa5e09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _watercraftWaterVFX: {fileID: 0}
 --- !u!114 &2240923906798959781
 MonoBehaviour:
   m_ObjectHideFlags: 0

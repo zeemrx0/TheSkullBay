@@ -1,20 +1,12 @@
-using LNE.Core;
-using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HungerView : MonoBehaviour
 {
+  [SerializeField]
   private Slider _slider;
 
-  private void Awake()
-  {
-    _slider = transform
-      .GetComponentInChildren<Vehicle>()
-      .transform.Find(GameObjectName.WatercraftCharacterInfoCanvas)
-      .Find(GameObjectName.HungerBar)
-      .GetComponent<Slider>();
-  }
+  private void Awake() { }
 
   public void SetHungerSliderValue(float value)
   {

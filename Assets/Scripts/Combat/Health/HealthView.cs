@@ -1,5 +1,4 @@
 using LNE.Core;
-using LNE.Utilities.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +12,13 @@ namespace LNE.Combat
     [SerializeField]
     private AudioClip _onDieAudioClip;
 
+    [SerializeField]
     private Slider _slider;
     private AudioSource _audioSource;
 
     private void Awake()
     {
       _audioSource = GetComponent<AudioSource>();
-      _slider = transform
-        .GetComponentInChildren<Vehicle>()
-        .transform.Find(GameObjectName.WatercraftCharacterInfoCanvas)
-        .Find(GameObjectName.HealthBar)
-        .GetComponent<Slider>();
     }
 
     public void SetHealthSliderValue(float value)

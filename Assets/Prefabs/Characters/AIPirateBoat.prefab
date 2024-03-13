@@ -93,6 +93,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f4f37c7c5e14730bee6adc13edc2a8, type: 3}
+--- !u!198 &778695159713697864 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1654491946307028732, guid: b2f4f37c7c5e14730bee6adc13edc2a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2034383174555735732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4354290448737470834 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2330076933451325382, guid: b2f4f37c7c5e14730bee6adc13edc2a8,
@@ -153,6 +159,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3972543701767278877, guid: 508c4ac19d2084f83aed382b3c315c1d,
         type: 3}
+    - target: {fileID: 4745241481992262289, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _watercraftWaterVFX
+      value: 
+      objectReference: {fileID: 778695159713697864}
     - target: {fileID: 6583341291365024174, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: m_LocalPosition.x

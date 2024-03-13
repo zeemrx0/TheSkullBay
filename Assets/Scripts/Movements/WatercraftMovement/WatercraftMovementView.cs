@@ -1,20 +1,11 @@
-using LNE.Core;
-using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.Movements
 {
   public abstract class WatercraftMovementView : MonoBehaviour
   {
+    [SerializeField]
     protected ParticleSystem _watercraftWaterVFX;
-
-    protected virtual void Awake()
-    {
-      _watercraftWaterVFX = transform
-        .GetComponentInChildren<Vehicle>()
-        .transform.Find(GameObjectName.MoveWaterFX)
-        .GetComponent<ParticleSystem>();
-    }
 
     public void Move(Rigidbody rigidbody, float direction, float moveSpeed)
     {
