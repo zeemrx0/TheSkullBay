@@ -46,6 +46,11 @@ namespace LNE.Movements
         _moveInput = _playerInputActions.Watercraft.Move.ReadValue<Vector2>();
       }
 
+      UpdateWaterVFX();
+    }
+
+    private void FixedUpdate()
+    {
       LimitVelocity();
 
       Transform cameraTransform = _mainCamera.transform;
@@ -83,8 +88,6 @@ namespace LNE.Movements
           MoveForward();
         }
       }
-
-      UpdateWaterVFX();
     }
 
     private void MoveForward()

@@ -10,15 +10,16 @@ Material:
   m_Name: Ocean_Material
   m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4,
     type: 3}
-  m_Parent: {fileID: 2100000, guid: a0b5f77a73da34b4aa3402decf70e1c7, type: 2}
+  m_Parent: {fileID: 2100000, guid: 9e73dc93ef929ba46ae79f13b165b3dc, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADVANCED_SHADING
-  - _FLAT_SHADING
+  - _ENVIRONMENTREFLECTIONS_OFF
+  - _FOAM
+  - _NORMALMAP
   - _RECEIVE_SHADOWS_OFF
   - _SHARP_INERSECTION
-  - _TRANSLUCENCY
-  - _WAVES
+  - _UNLIT
   m_InvalidKeywords:
   - _CROSSPAN_INTERSECTION
   - _DEPTHEXP_ON

@@ -10,6 +10,7 @@ namespace LNE.Movements
     [field: SerializeField]
     public float FieldOfViewRadius { get; private set; } = 200f;
     private AIWatercraftMovementModel _model;
+    private float _targetAngle;
 
     protected override void Awake()
     {
@@ -49,23 +50,27 @@ namespace LNE.Movements
         );
       }
 
-      LimitVelocity();
-      Move();
-      Steer();
       UpdateWaterVFX();
+    }
+
+    private void FixedUpdate()
+    {
+      Steer();
+      Move();
+      LimitVelocity();
     }
 
     private void Steer()
     {
-      if (_model.CheckTargetIsOnWhichSide(transform) > 0)
+      _targetAngle = _model.CheckTargetIsOnWhichSide(transform.eulerAngles.y);
+
+      if (_targetAngle > 0)
       {
         _view.Steer(
           _rigidbody,
           1,
           _watercraftMovementData.SteerSpeed
-            * Mathf.Clamp01(
-              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
-            )
+            * Mathf.Clamp01(Mathf.Abs(_targetAngle) / 30f)
         );
       }
       else
@@ -74,9 +79,7 @@ namespace LNE.Movements
           _rigidbody,
           -1,
           _watercraftMovementData.SteerSpeed
-            * Mathf.Clamp01(
-              Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) / 30f
-            )
+            * Mathf.Clamp01(Mathf.Abs(_targetAngle) / 30f)
         );
       }
     }
@@ -90,10 +93,7 @@ namespace LNE.Movements
         _model.TargetPosition
       );
 
-      if (
-        !_model.IsArrived
-        && Mathf.Abs(_model.CheckTargetIsOnWhichSide(transform)) < 5f
-      )
+      if (!_model.IsArrived && Mathf.Abs(_targetAngle) < 5f)
       {
         _view.Move(
           _rigidbody,

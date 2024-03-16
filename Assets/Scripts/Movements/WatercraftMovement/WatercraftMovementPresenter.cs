@@ -38,7 +38,8 @@ namespace LNE.Movements
     protected void LimitVelocity()
     {
       if (
-        Math.Abs(_rigidbody.velocity.magnitude) > _watercraftMovementData.MaxMoveSpeed
+        Math.Abs(_rigidbody.velocity.magnitude)
+        > _watercraftMovementData.MaxMoveSpeed
       )
       {
         float fraction =
@@ -52,7 +53,8 @@ namespace LNE.Movements
       }
 
       if (
-        Math.Abs(_rigidbody.angularVelocity.y) > _watercraftMovementData.MaxSteerSpeed
+        Math.Abs(_rigidbody.angularVelocity.y)
+        > _watercraftMovementData.MaxSteerSpeed
       )
       {
         _rigidbody.angularVelocity = new Vector3(
