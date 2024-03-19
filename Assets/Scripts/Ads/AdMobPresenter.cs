@@ -20,7 +20,6 @@ public class AdMobPresenter : MonoBehaviour
       {
         Debug.Log("AdMob initialized successfully");
         LoadInterstitialAd();
-        RegisterReloadHandler(_interstitialAd);
       }
     );
   }
@@ -59,21 +58,10 @@ public class AdMobPresenter : MonoBehaviour
         );
 
         _interstitialAd = ad;
+
+        RegisterReloadHandler(_interstitialAd);
       }
     );
-  }
-
-  public void ShowInterstitialAd()
-  {
-    if (_interstitialAd != null && _interstitialAd.CanShowAd())
-    {
-      Debug.Log("Showing interstitial ad.");
-      _interstitialAd.Show();
-    }
-    else
-    {
-      Debug.LogError("Interstitial ad is not ready yet.");
-    }
   }
 
   private void RegisterReloadHandler(InterstitialAd interstitialAd)
@@ -98,5 +86,18 @@ public class AdMobPresenter : MonoBehaviour
       // Reload the ad so that we can show another as soon as possible.
       LoadInterstitialAd();
     };
+  }
+
+  public void ShowInterstitialAd()
+  {
+    if (_interstitialAd != null && _interstitialAd.CanShowAd())
+    {
+      Debug.Log("Showing interstitial ad.");
+      _interstitialAd.Show();
+    }
+    else
+    {
+      Debug.LogError("Interstitial ad is not ready yet.");
+    }
   }
 }
