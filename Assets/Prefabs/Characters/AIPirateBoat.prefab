@@ -93,6 +93,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f4f37c7c5e14730bee6adc13edc2a8, type: 3}
+--- !u!198 &778695159713697864 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1654491946307028732, guid: b2f4f37c7c5e14730bee6adc13edc2a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2034383174555735732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4354290448737470834 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2330076933451325382, guid: b2f4f37c7c5e14730bee6adc13edc2a8,
@@ -111,6 +117,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2034383174555735732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7471215439202610511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904885765439814651, guid: b2f4f37c7c5e14730bee6adc13edc2a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2034383174555735732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b2715fbccb6480bb74aca992aa1e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7145974362913532867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,12 +159,28 @@ PrefabInstance:
       propertyPath: _slider
       value: 
       objectReference: {fileID: 4354290448737470834}
+    - target: {fileID: 628459328209206760, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _onDieVFX
+      value: 
+      objectReference: {fileID: 8995836861048751783, guid: 91941d79f4f9f47dda0716991dd75001,
+        type: 3}
     - target: {fileID: 2240923906798959781, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: lootPrefab
       value: 
       objectReference: {fileID: 3972543701767278877, guid: 508c4ac19d2084f83aed382b3c315c1d,
         type: 3}
+    - target: {fileID: 4336286572999790527, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _vehicle
+      value: 
+      objectReference: {fileID: 7471215439202610511}
+    - target: {fileID: 4745241481992262289, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _watercraftWaterVFX
+      value: 
+      objectReference: {fileID: 778695159713697864}
     - target: {fileID: 6583341291365024174, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: m_LocalPosition.x

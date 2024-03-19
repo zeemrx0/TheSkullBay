@@ -11,6 +11,7 @@ namespace LNE.Movements
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
 
+    private Camera _mainCamera;
     private Vector2 _moveInput;
 
     [Inject]
@@ -26,6 +27,7 @@ namespace LNE.Movements
     {
       base.Awake();
       _view = GetComponent<PlayerWatercraftMovementView>();
+      _mainCamera = Camera.main;
     }
 
     private void Update()
@@ -44,9 +46,14 @@ namespace LNE.Movements
         _moveInput = _playerInputActions.Watercraft.Move.ReadValue<Vector2>();
       }
 
+      UpdateWaterVFX();
+    }
+
+    private void FixedUpdate()
+    {
       LimitVelocity();
 
-      Transform cameraTransform = Camera.main.transform;
+      Transform cameraTransform = _mainCamera.transform;
       float cameraAngle = cameraTransform.eulerAngles.y;
 
       Vector3 moveDirection =
@@ -81,8 +88,6 @@ namespace LNE.Movements
           MoveForward();
         }
       }
-
-      UpdateWaterVFX();
     }
 
     private void MoveForward()

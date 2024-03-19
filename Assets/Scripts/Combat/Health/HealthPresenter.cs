@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using LNE.Combat.Loots;
+using LNE.Core;
 using UnityEngine;
 
 namespace LNE.Combat
@@ -14,6 +15,9 @@ namespace LNE.Combat
 
     [SerializeField]
     private float _currentHealth;
+
+    [SerializeField]
+    protected Vehicle _vehicle;
 
     private HealthView _view;
 
@@ -60,10 +64,8 @@ namespace LNE.Combat
       {
         c.enabled = false;
       }
-      foreach (Transform child in transform)
-      {
-        child.gameObject.SetActive(false);
-      }
+
+      _vehicle.gameObject.SetActive(false);
 
       yield return new WaitForSeconds(delayTime);
 

@@ -9,7 +9,7 @@ namespace LNE.Combat
   public class PlayerHealthPresenter : HealthPresenter
   {
     [SerializeField]
-    private GameObject controlCanvas;
+    private GameObject _controlCanvas;
 
     // Injected
     private GameCorePresenter _gameCorePresenter;
@@ -24,7 +24,7 @@ namespace LNE.Combat
     {
       if (gameObject.CompareTag(TagName.Player))
       {
-        controlCanvas.SetActive(false);
+        _controlCanvas.SetActive(false);
       }
 
       TryGetComponent(out Collider c);
@@ -32,10 +32,8 @@ namespace LNE.Combat
       {
         c.enabled = false;
       }
-      foreach (Transform child in transform)
-      {
-        child.gameObject.SetActive(false);
-      }
+
+      _vehicle.gameObject.SetActive(false);
 
       yield return new WaitForSeconds(delayTime);
 

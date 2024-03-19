@@ -29,9 +29,9 @@ namespace LNE.Movements
     }
 
     // Positive = Right, Negative = Left
-    public float CheckTargetIsOnWhichSide(Transform transform)
+    public float CheckTargetIsOnWhichSide(float currentYRotation)
     {
-      float alpha = -transform.eulerAngles.y + 90f;
+      float alpha = -currentYRotation + 90f;
       while (alpha < 0)
       {
         alpha += 360;

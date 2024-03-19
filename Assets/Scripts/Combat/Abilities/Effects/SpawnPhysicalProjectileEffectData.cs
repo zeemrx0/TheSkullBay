@@ -30,8 +30,8 @@ namespace LNE.Combat.Abilities.Effects
         pooledProjectile => pooledProjectile.gameObject.SetActive(false),
         pooledProjectile => Destroy(pooledProjectile.gameObject),
         true,
-        30,
-        30
+        10,
+        10
       );
     }
 

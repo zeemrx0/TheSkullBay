@@ -1,8 +1,10 @@
 using LNE.Inputs;
 using LNE.Utilities.Constants;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 
 namespace LNE.Combat.Abilities
 {
@@ -12,12 +14,23 @@ namespace LNE.Combat.Abilities
       IPointerUpHandler,
       IDragHandler
   {
+    [SerializeField]
+    private FixedJoystick _joystick;
+
+    [SerializeField]
+    private GameObject _icon;
+
+    [SerializeField]
+    private GameObject _overlay;
+
+    [SerializeField]
+    private GameObject _cooldownTimeText;
+
     private AbilityData _abilityData;
     private PlayerWatercraftAbilitiesPresenter _playerWatercraftAbilitiesPresenter;
     private PlayerInputPresenter _playerInputPresenter;
     private IObjectPool<Projectile> _projectilePool;
 
-    private FixedJoystick _joystick;
     private AbilityModel _abilityModel;
 
     private bool _isPerforming = false;
@@ -35,17 +48,28 @@ namespace LNE.Combat.Abilities
       _playerInputPresenter = playerInputPresenter;
     }
 
-    private void Awake()
-    {
-      _joystick = transform
-        .Find(GameObjectName.TargetingJoystick)
-        .GetComponent<FixedJoystick>();
-    }
-
     private void Start()
     {
-      _joystick.gameObject.SetActive(false);
       _abilityModel = new AbilityModel();
+    }
+
+    public void SetIconActive(bool active)
+    {
+      _icon.SetActive(active);
+    }
+
+    public void SetIcon(Sprite icon)
+    {
+      _icon.GetComponent<Image>().sprite = icon;
+    }
+
+    public void SetCooldownTime(float remainingTime, float initialTime)
+    {
+      _overlay.GetComponent<Image>().fillAmount =
+        initialTime == 0 ? 0 : (remainingTime / initialTime);
+
+      _cooldownTimeText.GetComponent<TextMeshProUGUI>().text =
+        initialTime == 0 ? "" : Mathf.Ceil(remainingTime).ToString();
     }
 
     public void OnPointerDown(PointerEventData eventData)

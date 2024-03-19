@@ -13,6 +13,8 @@ namespace LNE.Combat.Abilities
     private PlayerInputPresenter _playerInputPresenter;
     private PlayerInputActions _playerInputActions;
 
+    private Camera _mainCamera;
+
     [Inject]
     public void Init(PlayerInputPresenter playerInputPresenter)
     {
@@ -26,6 +28,7 @@ namespace LNE.Combat.Abilities
     {
       base.Awake();
       _view = GetComponent<PlayerWatercraftAbilitiesView>();
+      _mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -79,7 +82,7 @@ namespace LNE.Combat.Abilities
 
     public Vector3 GetJoystickDirection(Joystick joystick)
     {
-      Transform cameraTransform = Camera.main.transform;
+      Transform cameraTransform = _mainCamera.transform;
       float cameraAngle = cameraTransform.eulerAngles.y;
 
       Vector3 direction =

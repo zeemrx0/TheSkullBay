@@ -15,6 +15,7 @@ namespace LNE.Spawners
     [SerializeField]
     private Character _characterPrefab;
 
+    [SerializeField]
     private GameObject _aiWatercraftCharactersContainer;
 
     // Injected
@@ -28,10 +29,6 @@ namespace LNE.Spawners
 
     private void Start()
     {
-      _aiWatercraftCharactersContainer = GameObject.Find(
-        GameObjectName.AIWatercraftCharactersContainer
-      );
-
       SpawnCharacter();
     }
 

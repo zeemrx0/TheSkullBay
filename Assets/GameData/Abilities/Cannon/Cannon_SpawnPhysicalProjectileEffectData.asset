@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241cb4dee1750407c9b6921ef258abd0, type: 3}
   m_Name: Cannon_SpawnPhysicalProjectileEffectData
   m_EditorClassIdentifier: 
-  <ProjectSpeed>k__BackingField: 40
+  <ProjectSpeed>k__BackingField: 35
   _projectilePrefab: {fileID: 5951738158950137145, guid: 7052bc20f287b469da297e22db96507c,
     type: 3}
-  _projectVFX: {fileID: 9164958547708746705, guid: 224b0c0c247b7446688d26f5dddb0e09,
+  _projectVFX: {fileID: 8995836861048751783, guid: 8af9fc7bc16e74c2bb4bc8a0da2ad23f,
     type: 3}
   _audioClip: {fileID: 8300000, guid: 156744ab95c4b4ca890d84658ba14299, type: 3}

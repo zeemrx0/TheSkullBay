@@ -99,6 +99,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4932963531766864679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4603217985049682140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904885765439814651, guid: 6f92a00b1bc834ad489d6b3315209a83,
+    type: 3}
+  m_PrefabInstance: {fileID: 4932963531766864679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b2715fbccb6480bb74aca992aa1e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!198 &5944900607911108059 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1654491946307028732, guid: 6f92a00b1bc834ad489d6b3315209a83,
+    type: 3}
+  m_PrefabInstance: {fileID: 4932963531766864679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7215734800703358177 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2330076933451325382, guid: 6f92a00b1bc834ad489d6b3315209a83,
@@ -136,12 +154,28 @@ PrefabInstance:
       propertyPath: _slider
       value: 
       objectReference: {fileID: 7215734800703358177}
+    - target: {fileID: 628459328209206760, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _onDieVFX
+      value: 
+      objectReference: {fileID: 8995836861048751783, guid: 91941d79f4f9f47dda0716991dd75001,
+        type: 3}
     - target: {fileID: 2240923906798959781, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: lootPrefab
       value: 
       objectReference: {fileID: 3972543701767278877, guid: 508c4ac19d2084f83aed382b3c315c1d,
         type: 3}
+    - target: {fileID: 4336286572999790527, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _vehicle
+      value: 
+      objectReference: {fileID: 4603217985049682140}
+    - target: {fileID: 4745241481992262289, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _watercraftWaterVFX
+      value: 
+      objectReference: {fileID: 5944900607911108059}
     - target: {fileID: 6583341291365024174, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: m_LocalPosition.x

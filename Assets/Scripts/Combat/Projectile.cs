@@ -130,20 +130,16 @@ namespace LNE.Combat
     {
       yield return new WaitForSeconds(0.01f);
 
-      foreach (Transform child in transform)
-      {
-        child.gameObject.SetActive(false);
-      }
+      GameObject child = transform.GetChild(0).gameObject;
+      child?.SetActive(false);
 
       yield return new WaitForSeconds(time);
 
       _rigidbody.velocity = Vector3.zero;
       _rigidbody.angularVelocity = Vector3.zero;
       _isDestroyedOnCollision = false;
-      foreach (Transform child in transform)
-      {
-        child.gameObject.SetActive(true);
-      }
+
+      child?.SetActive(true);
 
       BelongingPool.Release(this);
     }
