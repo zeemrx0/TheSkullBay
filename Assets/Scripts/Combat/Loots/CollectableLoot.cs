@@ -12,7 +12,7 @@ namespace LNE.Combat.Loots
     {
       if (other.CompareTag(TagName.Player))
       {
-        _collectingStrategy.StartCollecting(
+        _collectingStrategy?.StartCollecting(
           other.GetComponent<PlayerLootsPresenter>()
         );
 

@@ -5,15 +5,15 @@ namespace LNE.Inventories
 {
   public class InventorySlotModel
   {
-    private InventoryItemData _itemData;
-    private int _quantity;
+    public int Quantity { get; set; }
+    public InventoryItemData ItemData { get; }
 
     public InventorySlotModel(InventoryItemData itemData, int quantity)
     {
-      _itemData = itemData;
-      _quantity = quantity;
+      ItemData = itemData;
+      Quantity = quantity;
 
-      if (_quantity > _itemData.GetMaxStack())
+      if (Quantity > ItemData.MaxStack)
       {
         throw new System.Exception(
           ExceptionMessage.ItemQuantityCannotBeGreaterThanMaxStack
@@ -21,44 +21,8 @@ namespace LNE.Inventories
       }
     }
 
-    public string GetItemName()
-    {
-      return _itemData.GetName();
-    }
-
-    public string GetItemDescription()
-    {
-      return _itemData.GetDescription();
-    }
-
-    public InventoryItemData GetItemData()
-    {
-      return _itemData;
-    }
-
-    public Sprite GetItemIcon()
-    {
-      return _itemData.GetIcon();
-    }
-
-    public int GetQuantity()
-    {
-      return _quantity;
-    }
-
-    public void SetQuantity(int quantity)
-    {
-      _quantity = quantity;
-    }
-
-    public ItemType GetItemType()
-    {
-      return _itemData.GetItemType();
-    }
-
-    // public ConsumableData GetConsumableData()
-    // {
-    //   return _itemData.GetConsumableData();
-    // }
+    public string Name => ItemData.Name;
+    public string Description => ItemData.Description;
+    public Sprite Icon => ItemData.Icon;
   }
 }

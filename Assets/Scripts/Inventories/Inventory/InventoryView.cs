@@ -34,17 +34,16 @@ namespace LNE.Inventories
 
       for (int i = 0; i < _slots.Length; i++)
       {
-        InventorySlotModel slot = _slots[i];
+        InventorySlotModel slotModel = _slots[i];
 
         GameObject slotObject = Instantiate(
           _inventorySlotPrefab,
           _inventoryContainerTransform
         );
 
-        // InventorySlotView slotView =
-        //   slotObject.GetComponent<InventorySlotView>();
+        InventorySlot slot = slotObject.GetComponent<InventorySlot>();
 
-        // slotView.Draw(slot);
+        slot.Draw(slotModel);
       }
     }
   }

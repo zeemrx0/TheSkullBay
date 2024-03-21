@@ -19,15 +19,9 @@ namespace LNE.Combat.Loots
       _gameCorePresenter.OnGameOver += HandleGameOver;
     }
 
-    private void Start()
-    {
-      ResetGold();
-    }
+    private void Start() { }
 
-    private void HandleGameOver()
-    {
-      _gameCorePresenter.SetGoldAmount(_goldAmount);
-    }
+    private void HandleGameOver() { }
 
     private void OnEnable()
     {
@@ -40,20 +34,6 @@ namespace LNE.Combat.Loots
     private void OnDisable()
     {
       _gameCorePresenter.OnGameOver -= HandleGameOver;
-    }
-
-    private int _goldAmount = 0;
-
-    public void AddGold(int amount)
-    {
-      _goldAmount += amount;
-      _view.SetGoldAmount(_goldAmount);
-    }
-
-    public void ResetGold()
-    {
-      _goldAmount = 0;
-      _view.SetGoldAmount(_goldAmount);
     }
   }
 }

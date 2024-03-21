@@ -13,27 +13,27 @@ namespace LNE.Inventories
     [SerializeField]
     private InventoryView _inventoryView;
 
-    private InventorySlotModel[] _slots;
+    private InventorySlotModel[] _slotModels;
 
     private void Awake()
     {
-      _slots = new InventorySlotModel[Size];
+      _slotModels = new InventorySlotModel[Size];
     }
 
     public InventorySlotModel GetInventorySlot(int index)
     {
-      return _slots[index];
+      return _slotModels[index];
     }
 
     public void SetQuantity(int index, int quantity)
     {
-      _slots[index].SetQuantity(quantity);
-      if (_slots[index].GetQuantity() == 0)
+      _slotModels[index].Quantity = quantity;
+      if (_slotModels[index].Quantity == 0)
       {
-        _slots[index] = null;
+        _slotModels[index] = null;
       }
 
-      _inventoryView.Draw(_slots);
+      _inventoryView.Draw(_slotModels);
     }
 
     public void AddItem(InventoryItemData itemData, int quantity)
@@ -45,33 +45,33 @@ namespace LNE.Inventories
 
       int remainingQuantity = quantity;
 
-      for (int i = 0; i < _slots.Length; i++)
+      for (int i = 0; i < _slotModels.Length; i++)
       {
         if (remainingQuantity == 0)
         {
           break;
         }
 
-        if (_slots[i] == null)
+        if (_slotModels[i] == null)
         {
-          int addQuantity = Math.Min(remainingQuantity, itemData.GetMaxStack());
-          _slots[i] = new InventorySlotModel(itemData, addQuantity);
+          int addQuantity = Math.Min(remainingQuantity, itemData.MaxStack);
+          _slotModels[i] = new InventorySlotModel(itemData, addQuantity);
           remainingQuantity -= addQuantity;
         }
         else
         {
           if (
-            _slots[i].GetItemData() == itemData
-            && _slots[i].GetQuantity() < itemData.GetMaxStack()
+            _slotModels[i].ItemData == itemData
+            && _slotModels[i].Quantity < itemData.MaxStack
           )
           {
             int addQuantity = Math.Min(
               remainingQuantity,
-              itemData.GetMaxStack() - _slots[i].GetQuantity()
+              itemData.MaxStack - _slotModels[i].Quantity
             );
-            _slots[i] = new InventorySlotModel(
+            _slotModels[i] = new InventorySlotModel(
               itemData,
-              _slots[i].GetQuantity() + addQuantity
+              _slotModels[i].Quantity + addQuantity
             );
             remainingQuantity -= addQuantity;
           }
@@ -92,9 +92,9 @@ namespace LNE.Inventories
         return;
       }
 
-      if (_slots[position] == null)
+      if (_slotModels[position] == null)
       {
-        _slots[position] = new InventorySlotModel(itemData, quantity);
+        _slotModels[position] = new InventorySlotModel(itemData, quantity);
       }
 
       OnInventoryChanged?.Invoke();
@@ -103,7 +103,7 @@ namespace LNE.Inventories
     public void Show()
     {
       _inventoryView.Show();
-      _inventoryView.Draw(_slots);
+      _inventoryView.Draw(_slotModels);
     }
 
     public void Hide()

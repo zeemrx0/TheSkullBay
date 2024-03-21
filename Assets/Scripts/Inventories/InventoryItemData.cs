@@ -13,82 +13,30 @@ namespace LNE.Inventories
     : ScriptableObject,
       ISerializationCallbackReceiver
   {
-    private string _id;
+    public string Id { get; private set; }
 
-    [SerializeField]
-    private string _name;
+    [field: SerializeField]
+    public string Name { get; private set; }
 
-    [SerializeField]
-    [TextArea]
-    private string _description;
+    [field: SerializeField]
+    public string Description { get; private set; }
 
-    [SerializeField]
-    private Sprite _icon;
+    [field: SerializeField]
+    public Sprite Icon { get; private set; }
 
-    [SerializeField]
-    private int _maxStack;
-
-    [SerializeField]
-    private ItemType _itemType;
-
-    // [SerializeField]
-    // private ConsumableData _consumableData;
+    [field: SerializeField]
+    public int MaxStack { get; private set; }
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
-      _maxStack = Mathf.Clamp(_maxStack, 1, 999);
+      MaxStack = Mathf.Clamp(MaxStack, 1, 99999);
     }
 #endif
 
-    public string GetId()
-    {
-      return _id;
-    }
-
-    public string GetName()
-    {
-      return _name;
-    }
-
-    public string GetDescription()
-    {
-      return _description;
-    }
-
-    public Sprite GetIcon()
-    {
-      return _icon;
-    }
-
-    public int GetMaxStack()
-    {
-      return _maxStack;
-    }
-
-    public ItemType GetItemType()
-    {
-      return _itemType;
-    }
-
-    // public ConsumableData GetConsumableData()
-    // {
-    //   return _consumableData;
-    // }
-
     public void OnBeforeSerialize()
     {
-      if (string.IsNullOrEmpty(_id))
-      {
-        _id = GUID.Generate().ToString();
-      }
-
-      // string consumableDataPath = ConsumableResourcePath.GetPath(name);
-
-      // if (!string.IsNullOrEmpty(consumableDataPath))
-      // {
-      //   _consumableData = Resources.Load<ConsumableData>(consumableDataPath);
-      // }
+      Id ??= GUID.Generate().ToString();
     }
 
     public void OnAfterDeserialize() { }

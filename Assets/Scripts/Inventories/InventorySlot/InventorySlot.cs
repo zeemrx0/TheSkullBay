@@ -29,8 +29,8 @@ namespace LNE.Inventories
         return;
       }
 
-      _itemImageGameObject.GetComponent<Image>().sprite = slot.GetItemIcon();
-      _quantityTMP.text = slot.GetQuantity().ToString();
+      _itemImageGameObject.GetComponent<Image>().sprite = slot.Icon;
+      _quantityTMP.text = slot.Quantity.ToString();
 
       _itemImageGameObject.SetActive(true);
       _quantityGameObject.SetActive(true);
