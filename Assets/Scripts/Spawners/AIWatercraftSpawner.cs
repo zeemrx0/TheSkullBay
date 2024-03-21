@@ -64,7 +64,7 @@ namespace LNE.Spawners
       return new Vector2(x, y);
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
       Handles.color = Color.blue;

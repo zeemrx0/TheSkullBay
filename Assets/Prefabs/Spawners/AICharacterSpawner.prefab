@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4fca4b561a9418ea1f6072da054094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Radius>k__BackingField: 80
+  <Radius>k__BackingField: 50
   _characterPrefab: {fileID: 0}
   _aiWatercraftCharactersContainer: {fileID: 0}
