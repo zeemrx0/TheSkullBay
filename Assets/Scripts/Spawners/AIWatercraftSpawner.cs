@@ -1,6 +1,5 @@
 using LNE.Core;
 using LNE.Movements;
-using LNE.Utilities.Constants;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
