@@ -2032,7 +2032,7 @@ PrefabInstance:
     - target: {fileID: 9161706906248037910, guid: 165b3a4b79f36407aa914bad919d9651,
         type: 3}
       propertyPath: m_Name
-      value: Complete_Get_Coin
+      value: GoldAmount
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
