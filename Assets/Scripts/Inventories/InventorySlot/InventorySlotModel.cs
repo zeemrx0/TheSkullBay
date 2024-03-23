@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace LNE.Inventories
 {
+  [System.Serializable]
   public class InventorySlotModel
   {
+    [field: SerializeField]
     public int Quantity { get; set; }
+
+    [field: SerializeField]
     public InventoryItemData ItemData { get; }
 
     public InventorySlotModel(InventoryItemData itemData, int quantity)

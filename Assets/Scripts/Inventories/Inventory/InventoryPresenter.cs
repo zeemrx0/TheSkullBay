@@ -8,10 +8,10 @@ namespace LNE.Inventories
     public event Action OnInventoryChanged;
 
     [field: SerializeField]
-    public int Size { get; private set; } = 10;
+    public int Size { get; protected set; } = 10;
 
     [field: SerializeField]
-    public int MaxWeight { get; private set; } = 100;
+    public int MaxWeight { get; protected set; } = 100;
 
     protected InventoryView _view;
     protected InventorySlotModel[] _slotModels;
@@ -100,6 +100,18 @@ namespace LNE.Inventories
         _slotModels[position] = new InventorySlotModel(itemData, quantity);
       }
 
+      OnInventoryChanged?.Invoke();
+    }
+
+    public void AddCurrencies(CurrenciesModel currenciesModel)
+    {
+      _gameResourcesModel.Add(currenciesModel);
+      OnInventoryChanged?.Invoke();
+    }
+
+    public void SubtractCurrencies(CurrenciesModel currenciesModel)
+    {
+      _gameResourcesModel.Subtract(currenciesModel);
       OnInventoryChanged?.Invoke();
     }
 

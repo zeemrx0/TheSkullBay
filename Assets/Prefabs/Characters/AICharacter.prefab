@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 551646239130394361}
   - component: {fileID: 4745241481992262289}
   - component: {fileID: 2240923906798959781}
+  - component: {fileID: 7179265605556091041}
   m_Layer: 0
   m_Name: AICharacter
   m_TagString: Untagged
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 0
+  _vehicle: {fileID: 0}
 --- !u!114 &628459328209206760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,4 +300,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb995334e9f47459c83a4205d0c243b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 0}
+  _lootPrefab: {fileID: 0}
+--- !u!114 &7179265605556091041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015060436209366002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed521163e26994d9fb0423974e38bc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Size>k__BackingField: 10
+  <MaxWeight>k__BackingField: 100

@@ -1,12 +1,11 @@
 using LNE.Utilities.Constants;
 using UnityEngine;
 
-namespace LNE.Inventories
+namespace LNE.Inventories.Loots
 {
   public class CollectableLoot : MonoBehaviour
   {
-    private InventorySlotModel[] _slotModel;
-    private CurrenciesModel _currenciesModel;
+    public CollectableLootModel CollectableLootModel { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,12 +14,19 @@ namespace LNE.Inventories
         PlayerWatercraftInventoryPresenter inventoryPresenter =
           other.GetComponent<PlayerWatercraftInventoryPresenter>();
 
-        foreach (InventorySlotModel slotModel in _slotModel)
+        Debug.Log(CollectableLootModel);
+
+        foreach (InventorySlotModel slotModel in CollectableLootModel.SlotModel)
         {
+          if (slotModel.ItemData == null)
+          {
+            continue;
+          }
+
           inventoryPresenter.AddItem(slotModel.ItemData, slotModel.Quantity);
         }
 
-        // TODO: Add currencies to the player's inventory
+        inventoryPresenter.AddCurrencies(CollectableLootModel.CurrenciesModel);
 
         Destroy(gameObject);
       }
