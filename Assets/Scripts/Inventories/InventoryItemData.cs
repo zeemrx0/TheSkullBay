@@ -1,12 +1,11 @@
-using LNE.Utilities.Constants;
 using UnityEditor;
 using UnityEngine;
 
 namespace LNE.Inventories
 {
   [CreateAssetMenu(
-    fileName = "NewInventoryItem",
-    menuName = "Game Data/Inventory Item",
+    fileName = "_InventoryItemData",
+    menuName = "Game Data/Item",
     order = 0
   )]
   public class InventoryItemData

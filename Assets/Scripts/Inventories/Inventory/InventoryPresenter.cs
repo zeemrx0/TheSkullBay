@@ -3,21 +3,24 @@ using UnityEngine;
 
 namespace LNE.Inventories
 {
-  public class InventoryPresenter : MonoBehaviour
+  public abstract class InventoryPresenter : MonoBehaviour
   {
     public event Action OnInventoryChanged;
 
     [field: SerializeField]
     public int Size { get; private set; } = 10;
 
-    [SerializeField]
-    private InventoryView _inventoryView;
+    [field: SerializeField]
+    public int MaxWeight { get; private set; } = 100;
 
-    private InventorySlotModel[] _slotModels;
+    protected InventoryView _view;
+    protected InventorySlotModel[] _slotModels;
+    protected CurrenciesModel _gameResourcesModel;
 
-    private void Awake()
+    protected virtual void Awake()
     {
       _slotModels = new InventorySlotModel[Size];
+      _gameResourcesModel = new CurrenciesModel();
     }
 
     public InventorySlotModel GetInventorySlot(int index)
@@ -33,7 +36,7 @@ namespace LNE.Inventories
         _slotModels[index] = null;
       }
 
-      _inventoryView.Draw(_slotModels);
+      _view.Draw(_slotModels, _gameResourcesModel);
     }
 
     public void AddItem(InventoryItemData itemData, int quantity)
@@ -102,13 +105,13 @@ namespace LNE.Inventories
 
     public void Show()
     {
-      _inventoryView.Show();
-      _inventoryView.Draw(_slotModels);
+      _view.Show();
+      _view.Draw(_slotModels, _gameResourcesModel);
     }
 
     public void Hide()
     {
-      _inventoryView.Hide();
+      _view.Hide();
     }
   }
 }

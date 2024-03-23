@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using LNE.Combat.Loots;
 using LNE.Core;
+using LNE.Inventories.Loots;
 using UnityEngine;
 
 namespace LNE.Combat
@@ -46,7 +46,7 @@ namespace LNE.Combat
     {
       if (TryGetComponent(out SpawnLootOnDeath trophySpawner))
       {
-        trophySpawner.SpawnTrophy();
+        trophySpawner.SpawnLoot();
       }
 
       _view.ShowOnDieVFX();

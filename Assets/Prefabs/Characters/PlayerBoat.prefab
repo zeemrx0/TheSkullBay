@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 8935126836796905353}
   - component: {fileID: 2291010420724872837}
   - component: {fileID: 6692614757421814760}
-  - component: {fileID: 1569318290219632309}
-  - component: {fileID: 6382168037117549516}
+  - component: {fileID: 7746420291525017809}
+  - component: {fileID: 5184564836776619130}
   m_Layer: 0
   m_Name: PlayerBoat
   m_TagString: Player
@@ -404,7 +404,7 @@ MonoBehaviour:
     type: 3}
   _onDieAudioClip: {fileID: 8300000, guid: 6047d2e7daae74014a61e68316dcab78, type: 3}
   _slider: {fileID: 300289639852054084}
---- !u!114 &1569318290219632309
+--- !u!114 &7746420291525017809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -413,11 +413,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1067654050787894254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac055315b4744940b58eabb792c4435, type: 3}
+  m_Script: {fileID: 11500000, guid: def197f6f82d14aa586f958389ccf602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view: {fileID: 6382168037117549516}
---- !u!114 &6382168037117549516
+  <Size>k__BackingField: 10
+  <MaxWeight>k__BackingField: 100
+--- !u!114 &5184564836776619130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,10 +427,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1067654050787894254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22267203f12a444d4a5e132605e1d107, type: 3}
+  m_Script: {fileID: 11500000, guid: ca4f0933181594809b15086a9f217342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goldAmountText: {fileID: 0}
+  _inventorySlotPrefab: {fileID: 5903582350962081272, guid: 9232557e140644a91b4d5c646de0ebaa,
+    type: 3}
+  _inventoryTransform: {fileID: 0}
+  _goldText: {fileID: 0}
 --- !u!1 &1981393859980045058
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +566,7 @@ Transform:
   m_GameObject: {fileID: 3566503604819837208}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32379538, y: -0.35841078, z: 0.1341204, w: 0.86528033}
-  m_LocalPosition: {x: 130, y: 163.3, z: -114.400024}
+  m_LocalPosition: {x: 130, y: 163.3, z: -114.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

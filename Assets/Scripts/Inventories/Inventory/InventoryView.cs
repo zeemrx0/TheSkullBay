@@ -1,33 +1,38 @@
+using TMPro;
 using UnityEngine;
 
 namespace LNE.Inventories
 {
-  public class InventoryView : MonoBehaviour
+  public abstract class InventoryView : MonoBehaviour
   {
     [SerializeField]
-    private GameObject _inventorySlotPrefab;
+    private InventorySlot _inventorySlotPrefab;
 
     [SerializeField]
-    private Transform _inventoryContainerTransform;
+    private GameObject _inventoryCanvas;
+
+    [SerializeField]
+    private Transform _inventoryGrid;
+
+    [SerializeField]
+    private TextMeshProUGUI _goldText;
 
     public void Show()
     {
-      gameObject.SetActive(true);
+      _inventoryCanvas.SetActive(true);
     }
 
     public void Hide()
     {
-      gameObject.SetActive(false);
+      _inventoryCanvas.SetActive(false);
     }
 
-    public void Draw(InventorySlotModel[] _slots)
+    public void Draw(
+      InventorySlotModel[] _slots,
+      CurrenciesModel gameResourcesModel
+    )
     {
-      if (gameObject.activeSelf == false)
-      {
-        return;
-      }
-
-      foreach (Transform child in _inventoryContainerTransform)
+      foreach (Transform child in _inventoryGrid)
       {
         Destroy(child.gameObject);
       }
@@ -36,15 +41,12 @@ namespace LNE.Inventories
       {
         InventorySlotModel slotModel = _slots[i];
 
-        GameObject slotObject = Instantiate(
-          _inventorySlotPrefab,
-          _inventoryContainerTransform
-        );
-
-        InventorySlot slot = slotObject.GetComponent<InventorySlot>();
+        InventorySlot slot = Instantiate(_inventorySlotPrefab, _inventoryGrid);
 
         slot.Draw(slotModel);
       }
+
+      _goldText.text = gameResourcesModel.Gold.ToString();
     }
   }
 }

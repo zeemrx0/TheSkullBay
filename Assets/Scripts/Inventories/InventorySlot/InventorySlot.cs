@@ -13,7 +13,7 @@ namespace LNE.Inventories
     private Sprite _emptyFrameSprite;
 
     [SerializeField]
-    private GameObject _itemImageGameObject;
+    private Image _itemImage;
 
     [SerializeField]
     private GameObject _quantityGameObject;
@@ -26,13 +26,15 @@ namespace LNE.Inventories
       if (slot == null)
       {
         _containerImage.sprite = _emptyFrameSprite;
+        _itemImage.gameObject.SetActive(false);
+        _quantityGameObject.SetActive(false);
         return;
       }
 
-      _itemImageGameObject.GetComponent<Image>().sprite = slot.Icon;
+      _itemImage.sprite = slot.Icon;
       _quantityTMP.text = slot.Quantity.ToString();
 
-      _itemImageGameObject.SetActive(true);
+      _itemImage.gameObject.SetActive(true);
       _quantityGameObject.SetActive(true);
     }
   }
