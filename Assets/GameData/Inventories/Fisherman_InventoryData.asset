@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6549fd6fad85747cdac284c3c31e5284, type: 3}
   m_Name: Fisherman_InventoryData
   m_EditorClassIdentifier: 
-  <Size>k__BackingField: 10
-  <MaxWeight>k__BackingField: 100
-  <SlotModels>k__BackingField:
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  - <Quantity>k__BackingField: 0
-  <CurrenciesModel>k__BackingField:
-    <Gold>k__BackingField: 100
+  InventoryModel:
+    <Size>k__BackingField: 10
+    <MaxWeight>k__BackingField: 100
+    <Slots>k__BackingField:
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    - <Quantity>k__BackingField: 0
+    <Currencies>k__BackingField:
+      <Gold>k__BackingField: 100

@@ -12,18 +12,15 @@ namespace LNE.Inventories
     {
       base.Awake();
 
-      Size = _aiInventoryData.Size;
-      MaxWeight = _aiInventoryData.MaxWeight;
-      _slotModels = _aiInventoryData.SlotModels;
-      _gameResourcesModel = _aiInventoryData.CurrenciesModel;
+      _model = _aiInventoryData.InventoryModel.Clone() as InventoryModel;
     }
 
     public CollectableLootModel GetCollectableLootModel()
     {
       CollectableLootModel collectableLootModel = new CollectableLootModel
       {
-        SlotModel = _slotModels,
-        CurrenciesModel = _gameResourcesModel
+        SlotModel = _model.Slots,
+        CurrenciesModel = _model.Currencies
       };
 
       return collectableLootModel;

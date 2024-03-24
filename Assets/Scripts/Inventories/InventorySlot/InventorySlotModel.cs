@@ -1,10 +1,11 @@
+using System;
 using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.Inventories
 {
   [System.Serializable]
-  public class InventorySlotModel
+  public class InventorySlotModel : ICloneable
   {
     [field: SerializeField]
     public int Quantity { get; set; }
@@ -14,6 +15,12 @@ namespace LNE.Inventories
 
     public InventorySlotModel(InventoryItemData itemData, int quantity)
     {
+      if (itemData == null)
+      {
+        Quantity = 0;
+        return;
+      }
+
       ItemData = itemData;
       Quantity = quantity;
 
@@ -28,5 +35,10 @@ namespace LNE.Inventories
     public string Name => ItemData.Name;
     public string Description => ItemData.Description;
     public Sprite Icon => ItemData.Icon;
+
+    public object Clone()
+    {
+      return new InventorySlotModel(ItemData, Quantity);
+    }
   }
 }

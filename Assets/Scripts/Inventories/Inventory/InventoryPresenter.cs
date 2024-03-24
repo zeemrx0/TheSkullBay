@@ -7,36 +7,25 @@ namespace LNE.Inventories
   {
     public event Action OnInventoryChanged;
 
-    [field: SerializeField]
-    public int Size { get; protected set; } = 10;
-
-    [field: SerializeField]
-    public int MaxWeight { get; protected set; } = 100;
-
     protected InventoryView _view;
-    protected InventorySlotModel[] _slotModels;
-    protected CurrenciesModel _gameResourcesModel;
+    protected InventoryModel _model = new InventoryModel();
 
-    protected virtual void Awake()
-    {
-      _slotModels = new InventorySlotModel[Size];
-      _gameResourcesModel = new CurrenciesModel();
-    }
+    protected virtual void Awake() { }
 
     public InventorySlotModel GetInventorySlot(int index)
     {
-      return _slotModels[index];
+      return _model.Slots[index];
     }
 
     public void SetQuantity(int index, int quantity)
     {
-      _slotModels[index].Quantity = quantity;
-      if (_slotModels[index].Quantity == 0)
+      _model.Slots[index].Quantity = quantity;
+      if (_model.Slots[index].Quantity == 0)
       {
-        _slotModels[index] = null;
+        _model.Slots[index] = null;
       }
 
-      _view.Draw(_slotModels, _gameResourcesModel);
+      _view.Draw(_model.Slots, _model.Currencies);
     }
 
     public void AddItem(InventoryItemData itemData, int quantity)
@@ -48,33 +37,33 @@ namespace LNE.Inventories
 
       int remainingQuantity = quantity;
 
-      for (int i = 0; i < _slotModels.Length; i++)
+      for (int i = 0; i < _model.Slots.Length; i++)
       {
         if (remainingQuantity == 0)
         {
           break;
         }
 
-        if (_slotModels[i] == null)
+        if (_model.Slots[i] == null)
         {
           int addQuantity = Math.Min(remainingQuantity, itemData.MaxStack);
-          _slotModels[i] = new InventorySlotModel(itemData, addQuantity);
+          _model.Slots[i] = new InventorySlotModel(itemData, addQuantity);
           remainingQuantity -= addQuantity;
         }
         else
         {
           if (
-            _slotModels[i].ItemData == itemData
-            && _slotModels[i].Quantity < itemData.MaxStack
+            _model.Slots[i].ItemData == itemData
+            && _model.Slots[i].Quantity < itemData.MaxStack
           )
           {
             int addQuantity = Math.Min(
               remainingQuantity,
-              itemData.MaxStack - _slotModels[i].Quantity
+              itemData.MaxStack - _model.Slots[i].Quantity
             );
-            _slotModels[i] = new InventorySlotModel(
+            _model.Slots[i] = new InventorySlotModel(
               itemData,
-              _slotModels[i].Quantity + addQuantity
+              _model.Slots[i].Quantity + addQuantity
             );
             remainingQuantity -= addQuantity;
           }
@@ -95,9 +84,9 @@ namespace LNE.Inventories
         return;
       }
 
-      if (_slotModels[position] == null)
+      if (_model.Slots[position] == null)
       {
-        _slotModels[position] = new InventorySlotModel(itemData, quantity);
+        _model.Slots[position] = new InventorySlotModel(itemData, quantity);
       }
 
       OnInventoryChanged?.Invoke();
@@ -105,20 +94,20 @@ namespace LNE.Inventories
 
     public void AddCurrencies(CurrenciesModel currenciesModel)
     {
-      _gameResourcesModel.Add(currenciesModel);
+      _model.Currencies.Add(currenciesModel);
       OnInventoryChanged?.Invoke();
     }
 
     public void SubtractCurrencies(CurrenciesModel currenciesModel)
     {
-      _gameResourcesModel.Subtract(currenciesModel);
+      _model.Currencies.Subtract(currenciesModel);
       OnInventoryChanged?.Invoke();
     }
 
     public void Show()
     {
       _view.Show();
-      _view.Draw(_slotModels, _gameResourcesModel);
+      _view.Draw(_model.Slots, _model.Currencies);
     }
 
     public void Hide()
