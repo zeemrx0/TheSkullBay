@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3643770524003385598}
   - component: {fileID: 6845469208149175635}
   - component: {fileID: 8071734365275690008}
-  m_Layer: 4
+  - component: {fileID: 7556218643299587947}
+  m_Layer: 6
   m_Name: StylizedOceanTile
   m_TagString: Ocean
   m_Icon: {fileID: 0}
@@ -121,3 +122,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 100, y: 0.3, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!210 &7556218643299587947
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200069594166892541}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_SortAtRoot: 0
