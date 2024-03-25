@@ -7,6 +7,11 @@ namespace LNE.Inventories
   {
     private GameCorePresenter _gameCorePresenter;
 
+    public void SetInventoryModel(InventoryModel inventoryModel)
+    {
+      _model = inventoryModel;
+    }
+
     [Inject]
     public void Construct(GameCorePresenter gameCorePresenter)
     {
@@ -19,6 +24,8 @@ namespace LNE.Inventories
       base.Awake();
       _view = GetComponent<PlayerWatercraftInventoryView>();
     }
+
+    public InventoryModel InventoryModel => _model;
 
     private void HandleGameOver()
     {
