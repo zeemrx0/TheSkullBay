@@ -16,11 +16,9 @@ namespace LNE.Combat.Abilities
     private Camera _mainCamera;
 
     [Inject]
-    public void Init(PlayerInputPresenter playerInputPresenter)
+    private void Construct(PlayerInputPresenter playerInputPresenter)
     {
       _playerInputPresenter = playerInputPresenter;
-      _playerInputPresenter.Init();
-
       _playerInputActions = _playerInputPresenter.GetPlayerInputActions();
     }
 

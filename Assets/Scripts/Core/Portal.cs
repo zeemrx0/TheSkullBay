@@ -1,15 +1,23 @@
+using LNE.Core;
+using LNE.Utilities.Constants;
 using UnityEngine;
-using UnityEngine.Events;
+using Zenject;
 
 public class Portal : MonoBehaviour
 {
-  public UnityEvent onPlayerEnter;
+  private GameCorePresenter _gameCorePresenter;
+
+  [Inject]
+  public void Construct(GameCorePresenter gameCorePresenter)
+  {
+    _gameCorePresenter = gameCorePresenter;
+  }
 
   private void OnTriggerEnter(Collider other)
   {
-    if (other.CompareTag("Player"))
+    if (other.CompareTag(TagName.Player))
     {
-      onPlayerEnter.Invoke();
+      _gameCorePresenter.GameOver();
     }
   }
 }

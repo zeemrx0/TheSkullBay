@@ -17,7 +17,7 @@ namespace LNE.Movements
     protected WatercraftMovementView _view;
 
     [Inject]
-    public void Init(GameCorePresenter gameCorePresenter)
+    public void Construct(GameCorePresenter gameCorePresenter)
     {
       _gameCorePresenter = gameCorePresenter;
       _gameCorePresenter.OnGameOver += HandleGameOver;

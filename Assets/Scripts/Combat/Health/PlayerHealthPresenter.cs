@@ -15,7 +15,7 @@ namespace LNE.Combat
     private GameCorePresenter _gameCorePresenter;
 
     [Inject]
-    public void Init(GameCorePresenter gameCorePresenter)
+    private void Construct(GameCorePresenter gameCorePresenter)
     {
       _gameCorePresenter = gameCorePresenter;
     }

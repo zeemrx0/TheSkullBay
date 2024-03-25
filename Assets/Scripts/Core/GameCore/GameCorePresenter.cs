@@ -28,7 +28,7 @@ namespace LNE.Core
     private bool _hasShownAd = false;
 
     [Inject]
-    private void Init(
+    private void Construct(
       PlayerInputPresenter playerInputPresenter,
       AdMobPresenter adMobPresenter
     )

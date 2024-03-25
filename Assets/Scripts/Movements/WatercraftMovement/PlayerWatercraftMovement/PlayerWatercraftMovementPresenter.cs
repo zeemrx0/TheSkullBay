@@ -15,7 +15,7 @@ namespace LNE.Movements
     private Vector2 _moveInput;
 
     [Inject]
-    public void Init(PlayerInputPresenter playerInputPresenter)
+    public void Construct(PlayerInputPresenter playerInputPresenter)
     {
       _playerInputPresenter = playerInputPresenter;
       _playerInputPresenter.Init();
@@ -36,7 +36,6 @@ namespace LNE.Movements
       {
         return;
       }
-
       if (Application.isMobilePlatform)
       {
         _moveInput = _playerInputPresenter.MoveInput;
@@ -51,6 +50,15 @@ namespace LNE.Movements
 
     private void FixedUpdate()
     {
+      if (_gameCorePresenter.IsGameOver)
+      {
+        return;
+      }
+      if (_gameCorePresenter.IsGameOver)
+      {
+        return;
+      }
+
       LimitVelocity();
 
       Transform cameraTransform = _mainCamera.transform;
