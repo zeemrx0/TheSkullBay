@@ -54,10 +54,6 @@ namespace LNE.Movements
       {
         return;
       }
-      if (_gameCorePresenter.IsGameOver)
-      {
-        return;
-      }
 
       LimitVelocity();
 
