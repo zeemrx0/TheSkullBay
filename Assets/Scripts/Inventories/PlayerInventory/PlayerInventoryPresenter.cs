@@ -5,13 +5,9 @@ namespace LNE.Inventories
 {
   public class PlayerInventoryPresenter : InventoryPresenter
   {
-    [SerializeField]
-    private PlayerWatercraftInventoryPresenter _playerWatercraftInventoryPresenter;
-
     protected override void Awake()
     {
       LoadFromFile();
-      _playerWatercraftInventoryPresenter.SetInventoryModel(_model);
     }
 
     public void MovePlayerWatercraftInventoryToPlayerInventory(
@@ -56,7 +52,6 @@ namespace LNE.Inventories
           SavingKey.PlayerInventoryKey,
           SavingKey.PlayerInventoryPath
         );
-        Debug.Log(_model.Currencies.Gold);
       }
     }
   }

@@ -11,7 +11,7 @@ namespace LNE.Inventories
     public int Quantity { get; set; }
 
     [field: SerializeField]
-    public InventoryItemData ItemData { get; }
+    public InventoryItemData ItemData { get; private set; }
 
     public InventorySlotModel(InventoryItemData itemData, int quantity)
     {

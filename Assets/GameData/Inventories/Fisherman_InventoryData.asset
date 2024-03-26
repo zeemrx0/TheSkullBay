@@ -16,15 +16,26 @@ MonoBehaviour:
     <Size>k__BackingField: 10
     <MaxWeight>k__BackingField: 100
     <Slots>k__BackingField:
+    - <Quantity>k__BackingField: 1
+      <ItemData>k__BackingField: {fileID: 11400000, guid: c9b83a9772fdc4527ba2bd043c05c07f,
+        type: 2}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     - <Quantity>k__BackingField: 0
-    - <Quantity>k__BackingField: 0
+      <ItemData>k__BackingField: {fileID: 0}
     <Currencies>k__BackingField:
       <Gold>k__BackingField: 100
