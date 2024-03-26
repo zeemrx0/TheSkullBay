@@ -5,7 +5,7 @@ namespace LNE.Inventories
 {
   [CreateAssetMenu(
     fileName = "_InventoryItemData",
-    menuName = "Game Data/Item",
+    menuName = "Inventories/Item",
     order = 0
   )]
   public class InventoryItemData
