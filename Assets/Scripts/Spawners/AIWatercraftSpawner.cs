@@ -1,6 +1,5 @@
 using LNE.Core;
 using LNE.Movements;
-using LNE.Utilities.Constants;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
@@ -22,7 +21,7 @@ namespace LNE.Spawners
     private GameCorePresenter _gameCorePresenter;
 
     [Inject]
-    public void Init(GameCorePresenter gameCorePresenter)
+    private void Construct(GameCorePresenter gameCorePresenter)
     {
       _gameCorePresenter = gameCorePresenter;
     }
@@ -40,7 +39,7 @@ namespace LNE.Spawners
       );
       character
         .GetComponent<WatercraftMovementPresenter>()
-        .Init(_gameCorePresenter);
+        .Construct(_gameCorePresenter);
       character.GetComponent<AIWatercraftMovementPresenter>().Spawner = this;
 
       Vector2 randomPosition = RandomPositionOnCircle(
@@ -64,7 +63,7 @@ namespace LNE.Spawners
       return new Vector2(x, y);
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
       Handles.color = Color.blue;

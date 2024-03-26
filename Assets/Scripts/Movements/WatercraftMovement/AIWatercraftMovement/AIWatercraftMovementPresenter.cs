@@ -55,6 +55,11 @@ namespace LNE.Movements
 
     private void FixedUpdate()
     {
+      if (_gameCorePresenter.IsGameOver)
+      {
+        return;
+      }
+
       Steer();
       Move();
       LimitVelocity();

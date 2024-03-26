@@ -166,6 +166,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3972543701767278877, guid: 508c4ac19d2084f83aed382b3c315c1d,
         type: 3}
+    - target: {fileID: 2240923906798959781, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _lootPrefab
+      value: 
+      objectReference: {fileID: 3943785896585530043, guid: 508c4ac19d2084f83aed382b3c315c1d,
+        type: 3}
     - target: {fileID: 4336286572999790527, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: _vehicle
@@ -246,6 +252,12 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 10.603715
       objectReference: {fileID: 0}
+    - target: {fileID: 7179265605556091041, guid: 581d617dbb73045c3a860f4e205c71ed,
+        type: 3}
+      propertyPath: _aiInventoryData
+      value: 
+      objectReference: {fileID: 11400000, guid: fc70eef83878d46d2a8baf6ba948c091,
+        type: 2}
     - target: {fileID: 8015060436209366002, guid: 581d617dbb73045c3a860f4e205c71ed,
         type: 3}
       propertyPath: m_Name

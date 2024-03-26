@@ -17,7 +17,7 @@ public class HungerPresenter : MonoBehaviour
   private float _currentHunger;
 
   [Inject]
-  public void Init(GameCorePresenter gameCorePresenter)
+  public void Construct(GameCorePresenter gameCorePresenter)
   {
     _gameCorePresenter = gameCorePresenter;
   }

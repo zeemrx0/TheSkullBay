@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "_WatercraftMovementData",
-  menuName = "Game Data/Watercraft Movement Data"
+  menuName = "Movements/Watercraft Movement"
 )]
 public class WatercraftMovementData : ScriptableObject
 {
