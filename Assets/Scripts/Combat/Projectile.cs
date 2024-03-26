@@ -8,7 +8,7 @@ namespace LNE.Combat
 {
   public class Projectile : MonoBehaviour
   {
-    public Character Owner { get; set; }
+    public WatercraftCharacter Owner { get; set; }
     public IObjectPool<Projectile> BelongingPool { get; set; }
     public float AliveRange { get; set; } = 1000f;
 
@@ -40,7 +40,7 @@ namespace LNE.Combat
 
     private void OnTriggerEnter(Collider other)
     {
-      other.gameObject.TryGetComponent<Character>(out Character owner);
+      other.gameObject.TryGetComponent<WatercraftCharacter>(out WatercraftCharacter owner);
       if (_isDestroyedOnCollision || owner == Owner)
       {
         return;

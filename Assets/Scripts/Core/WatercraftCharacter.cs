@@ -1,9 +1,8 @@
-using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.Core
 {
-  public class Character : MonoBehaviour
+  public class WatercraftCharacter : MonoBehaviour
   {
     [SerializeField]
     private Transform _origin;

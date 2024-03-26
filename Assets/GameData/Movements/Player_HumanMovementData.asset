@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373f67d88f5b140f2903f53b3c01a593, type: 3}
   m_Name: Player_HumanMovementData
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 10
+  <MoveSpeed>k__BackingField: 500
+  <MaxMoveSpeed>k__BackingField: 100

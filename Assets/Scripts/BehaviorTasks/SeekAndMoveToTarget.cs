@@ -39,7 +39,7 @@ namespace LNE.BehaviorTasks
 
       foreach (RaycastHit hit in hits)
       {
-        hit.transform.TryGetComponent<Character>(out Character character);
+        hit.transform.TryGetComponent<WatercraftCharacter>(out WatercraftCharacter character);
 
         if (
           character != null

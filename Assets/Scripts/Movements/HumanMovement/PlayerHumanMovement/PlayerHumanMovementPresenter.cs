@@ -1,7 +1,9 @@
+using System;
 using LNE.Core;
 using LNE.Inputs;
 using UnityEngine;
 using Zenject;
+using ECM2;
 
 namespace LNE.Movements.Human
 {
@@ -16,6 +18,8 @@ namespace LNE.Movements.Human
     #endregion
 
     private PlayerHumanMovementView _view;
+    private Rigidbody _rigidbody;
+    private Character _character;
     private Camera _mainCamera;
     private HumanMovementModel _model = new HumanMovementModel();
 
@@ -32,15 +36,9 @@ namespace LNE.Movements.Human
     private void Awake()
     {
       _view = GetComponent<PlayerHumanMovementView>();
+      _rigidbody = GetComponent<Rigidbody>();
+      _character = GetComponent<Character>();
       _mainCamera = Camera.main;
-    }
-
-    private void Update()
-    {
-      if (_gameCorePresenter.IsGameOver)
-      {
-        return;
-      }
     }
 
     private void FixedUpdate()
@@ -50,8 +48,6 @@ namespace LNE.Movements.Human
         return;
       }
 
-      ApplyGravity();
-
       Move();
     }
 
@@ -60,40 +56,22 @@ namespace LNE.Movements.Human
       Transform cameraTransform = _mainCamera.transform;
       float cameraAngle = cameraTransform.eulerAngles.y;
 
-      Vector3 moveDirection =
+      Vector3 moveDirection = (
         Quaternion.Euler(0, cameraAngle, 0)
         * new Vector3(
           _playerInputPresenter.MoveInput.x,
           0,
           _playerInputPresenter.MoveInput.y
-        );
+        )
+      ).normalized;
 
-      _model.MoveDirection = new Vector3(
-        moveDirection.x,
-        _model.MoveDirection.y,
-        moveDirection.z
+      _model.MoveVelocity = new Vector2(
+        moveDirection.x * _humanMovementData.MoveSpeed,
+        moveDirection.z * _humanMovementData.MoveSpeed
       );
 
-      Vector3 velocity = new Vector3(
-        _model.MoveDirection.x * _humanMovementData.MoveSpeed / 10f,
-        _model.MoveDirection.y,
-        _model.MoveDirection.z * _humanMovementData.MoveSpeed / 10f
-      );
-
-      _view.Move(velocity);
-    }
-
-    private void ApplyGravity()
-    {
-      if (_model.IsGrounded && _model.MoveDirection.y < 0.0f)
-      {
-        _model.MoveDirection.y = -2f;
-      }
-      else
-      {
-        _model.MoveDirection.y +=
-          Physics.gravity.y * Time.fixedDeltaTime * Time.fixedDeltaTime;
-      }
+      _character.SetMovementDirection(moveDirection);
+      _view.Move(_model);
     }
   }
 }

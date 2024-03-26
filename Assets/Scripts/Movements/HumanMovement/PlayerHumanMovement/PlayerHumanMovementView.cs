@@ -1,19 +1,16 @@
+using LNE.Utilities.Constants;
 using UnityEngine;
 
 namespace LNE.Movements.Human
 {
   public class PlayerHumanMovementView : MonoBehaviour
   {
-    private CharacterController _characterController;
+    [SerializeField]
+    private Animator _animator;
 
-    private void Awake()
+    public void Move(HumanMovementModel model)
     {
-      _characterController = GetComponent<CharacterController>();
-    }
-
-    public void Move(Vector3 velocity)
-    {
-      _characterController.Move(velocity * Time.fixedDeltaTime);
+      _animator.SetFloat(AnimationName.MoveSpeed, model.MoveVelocity.magnitude);
     }
   }
 }

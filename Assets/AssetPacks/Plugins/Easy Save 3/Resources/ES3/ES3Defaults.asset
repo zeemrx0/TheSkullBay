@@ -32,6 +32,9 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Cinemachine
+    - ECM2
+    - ECM2.Examples
+    - ECM2.Walkthrough
     - LowPolyUnderwaterPack
     - sc.stylizedwater2.runtime
     - UltimateEditorEnhancer

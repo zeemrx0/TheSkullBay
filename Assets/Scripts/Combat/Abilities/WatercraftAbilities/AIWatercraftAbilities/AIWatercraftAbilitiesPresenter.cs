@@ -5,7 +5,7 @@ namespace LNE.Combat.Abilities
 {
   public class AIWatercraftAbilitiesPresenter : WatercraftAbilitiesPresenter
   {
-    public Character Target { get; set; }
+    public WatercraftCharacter Target { get; set; }
     private HealthPresenter _healthPresenter;
 
     private bool canPerformAbilities = true;
