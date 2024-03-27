@@ -28,7 +28,7 @@ namespace LNE.Combat
 
     public void ShowOnDieVFX()
     {
-      Vector3? origin = TryGetComponent<Character>(out Character character)
+      Vector3? origin = TryGetComponent<WatercraftCharacter>(out WatercraftCharacter character)
         ? character.Position
         : null;
 

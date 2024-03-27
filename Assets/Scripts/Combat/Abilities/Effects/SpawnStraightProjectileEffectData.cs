@@ -49,7 +49,7 @@ namespace LNE.Combat.Abilities
       projectile.SetUseGravity(false);
       projectile.transform.position = abilityModel.InitialPosition;
       projectile.Owner =
-        watercraftAbilitiesPresenter.transform.GetComponent<Character>();
+        watercraftAbilitiesPresenter.transform.GetComponent<WatercraftCharacter>();
       projectile.AliveRange = abilityModel.AimRadius;
 
       Vector3 velocity = abilityModel.GetStraightProjectVelocity();

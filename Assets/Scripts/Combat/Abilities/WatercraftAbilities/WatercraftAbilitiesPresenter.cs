@@ -12,7 +12,7 @@ namespace LNE.Combat.Abilities
     [SerializeField]
     protected List<AbilityData> _abilityDataList;
 
-    protected Character _character;
+    protected WatercraftCharacter _character;
 
     protected List<IObjectPool<Projectile>> _projectilePools =
       new List<IObjectPool<Projectile>>();
@@ -25,7 +25,7 @@ namespace LNE.Combat.Abilities
     protected virtual void Awake()
     {
       Id = gameObject.GetInstanceID().ToString();
-      _character = GetComponent<Character>();
+      _character = GetComponent<WatercraftCharacter>();
     }
 
     protected virtual void Start()

@@ -48,7 +48,7 @@ namespace LNE.Combat.Abilities.Effects
       Projectile projectile = projectilePool.Get();
       projectile.transform.position = abilityModel.InitialPosition;
       projectile.Owner =
-        watercraftAbilitiesPresenter.transform.GetComponent<Character>();
+        watercraftAbilitiesPresenter.transform.GetComponent<WatercraftCharacter>();
 
       Vector3 velocity = abilityModel.GetPhysicalProjectVelocity();
 

@@ -12,7 +12,7 @@ namespace LNE.Spawners
     public float Radius { get; private set; } = 50f;
 
     [SerializeField]
-    private Character _characterPrefab;
+    private WatercraftCharacter _characterPrefab;
 
     [SerializeField]
     private GameObject _aiWatercraftCharactersContainer;
@@ -31,9 +31,9 @@ namespace LNE.Spawners
       SpawnCharacter();
     }
 
-    private Character SpawnCharacter()
+    private WatercraftCharacter SpawnCharacter()
     {
-      Character character = Instantiate(
+      WatercraftCharacter character = Instantiate(
         original: _characterPrefab,
         parent: _aiWatercraftCharactersContainer.transform
       );

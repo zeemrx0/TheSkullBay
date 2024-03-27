@@ -21,7 +21,7 @@ namespace LNE.Inventories.Loots
       CollectableLootModel collectableLootModel =
         _aiInventoryPresenter.GetCollectableLootModel();
 
-      Vector3? origin = TryGetComponent<Character>(out Character character)
+      Vector3? origin = TryGetComponent<WatercraftCharacter>(out WatercraftCharacter character)
         ? character.Position
         : null;
 
